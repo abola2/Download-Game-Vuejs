@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import WelcomePage from './components/WelcomePage.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <!--img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" -->
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+      <WelcomePage msg="Welcome download game!" />
+      
+      <!--Link to other page-->
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <button class="btn" @click="$router.push('game')">Download</button>
       </nav>
     </div>
   </header>
@@ -24,6 +24,15 @@ import HelloWorld from './components/HelloWorld.vue'
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .logo {
