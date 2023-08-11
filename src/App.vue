@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import WelcomePage from './components/WelcomePage.vue'
+
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import WelcomePage from './components/WelcomePage.vue'
       
       <!--Link to other page-->
       <nav>
-        <button class="btn" @click="$router.push('game')">Download</button>
+        <button class="p-3 text-bg-primary rounded-3" @click="$router.push('game')">Download</button>
       </nav>
     </div>
   </header>
