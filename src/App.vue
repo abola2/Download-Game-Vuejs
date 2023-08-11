@@ -6,14 +6,12 @@ import WelcomePage from './components/WelcomePage.vue'
 
 <template>
   <header>
-    <!--img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" -->
-
     <div class="wrapper">
       <WelcomePage msg="Welcome download game!" />
       
       <!--Link to other page-->
       <nav>
-        <button class="p-3 text-bg-primary rounded-3" @click="$router.push('game')">Download</button>
+        <button class="p-3 w-75 text-bg-primary rounded-3" @click="$router.push('game')">Download</button>
       </nav>
     </div>
   </header>
@@ -27,19 +25,6 @@ header {
   max-height: 100vh;
 }
 
-.btn {
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
 nav {
   width: 100%;
