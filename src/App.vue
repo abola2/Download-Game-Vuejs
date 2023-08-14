@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import WelcomePage from './components/WelcomePage.vue'
 
 </script>
 
 <template>
   <header>
+    
     <div class="wrapper">
       <WelcomePage msg="Welcome download game!" />
       
