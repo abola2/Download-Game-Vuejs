@@ -2,17 +2,20 @@
 import { RouterView } from 'vue-router'
 import WelcomePage from './components/WelcomePage.vue'
 
+function emptyPage()
+{
+ // toDo
+}
 </script>
-
 <template>
   <header>
     
-    <div class="wrapper">
-      <WelcomePage msg="Welcome download game!" />
+    <div id = FirstButton class="wrapper">
+      <WelcomePage msg="Welcome to the download game!" />
       
       <!--Link to other page-->
       <nav>
-        <button class="p-3 w-75 text-bg-primary rounded-3" @click="$router.push('game')">Download</button>
+        <button class="p-3 w-75 text-bg-primary rounded-3"  @click="$router.push('level1')">Download</button>
       </nav>
     </div>
   </header>
@@ -28,10 +31,13 @@ header {
 
 
 nav {
-  width: 100%;
+  width: 15%;
   font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-30%, -50%);
 }
 
 nav a.router-link-exact-active {
