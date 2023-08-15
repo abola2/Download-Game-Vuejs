@@ -1,16 +1,29 @@
-<script setup lang="ts">
+<script lang="ts" xmlns="http://www.w3.org/1999/html">
 
-defineProps<{
-  msg: string
-}>()
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  components: {
+
+  },
+
+  emits: [
+    'notify'
+  ]
+})
+
+
+
+
 
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="blue">{{ msg }}</h1>
+    <h1 class="blue"></h1>
     <h3>
       Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
+      <button class="p-3 w-75 text-bg-primary rounded-3"  @click="this.$emit('notify')">Test</button>
     </h3>
   </div>
 </template>

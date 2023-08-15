@@ -1,30 +1,55 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router'
-import WelcomePage from './components/WelcomePage.vue'
-import { MakeToast } from "./components/Functions";
-
-function emptyPage()
-{
-  var div = document.getElementById('FirstButton');
-  while(div.firstChild)
-    div.removeChild(div.firstChild);
-}
-</script>
 <template>
+
+  <WelcomePage
+    @notify="notification"
+  />
+
+
   <header>
-    
+
     <div id = FirstButton class="wrapper">
       <WelcomePage msg="Welcome to the download game!" />
-      
+
       <!--Link to other page-->
       <nav>
-        <button class="p-3 w-75 text-bg-primary rounded-3"  @click="$router.push('level1'), emptyPage(), MakeToast()">Download</button>
+        <button class="p-3 w-75 text-bg-primary rounded-3"  @click="$router.push('level1')">Download</button>
       </nav>
     </div>
   </header>
 
   <RouterView />
 </template>
+
+
+<script lang="ts">
+import WelcomePage from './components/WelcomePage.vue'
+import {defineComponent} from "vue";
+
+export default defineComponent( {
+
+  components: {
+    WelcomePage
+  },
+
+  emits: {
+
+  },
+  props: {
+
+  },
+  methods: {
+
+    notification() {
+      console.log("testi")
+    }
+
+  },
+})
+
+
+
+</script>
+
 
 <style scoped>
 header {
