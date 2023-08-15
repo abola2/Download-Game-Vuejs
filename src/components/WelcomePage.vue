@@ -1,4 +1,4 @@
-<script lang="ts" xmlns="http://www.w3.org/1999/html">
+<script lang="ts">
 
 import {defineComponent} from "vue";
 
@@ -8,8 +8,26 @@ export default defineComponent({
   },
 
   emits: [
-    'notify'
-  ]
+    'notify',
+  ],
+
+  props: {
+    hidden: {
+      default: true,
+      type: Boolean
+    }
+  },
+  computed: {
+    isHidden (): boolean {
+      return this.hidden;
+    }
+  },
+  watch: {
+    isHidden () {
+      console.log("hidden")
+    }
+
+  }
 })
 
 
@@ -22,8 +40,9 @@ export default defineComponent({
   <div class="greetings">
     <h1 class="blue"></h1>
     <h3>
+
       Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
-      <button class="p-3 w-75 text-bg-primary rounded-3"  @click="this.$emit('notify')">Test</button>
+      <button class="p-3 w-75 text-bg-primary rounded-3" v-if="isHidden"  @click="this.$emit('notify')">Test</button>
     </h3>
   </div>
 </template>

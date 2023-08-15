@@ -2,6 +2,7 @@
 
   <WelcomePage
     @notify="notification"
+    :hidden="hide"
   />
 
 
@@ -27,6 +28,12 @@ import {defineComponent} from "vue";
 
 export default defineComponent( {
 
+  data () {
+    return {
+      hide: true
+    }
+  },
+
   components: {
     WelcomePage
   },
@@ -41,6 +48,8 @@ export default defineComponent( {
 
     notification() {
       console.log("testi")
+      this.hide = false;
+
     }
 
   },
