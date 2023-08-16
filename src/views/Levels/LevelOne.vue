@@ -1,11 +1,51 @@
-<template>
+<template v-show="currentLevel == 1">
   <div class="level1">
-    <header>You fool! That wasn't a real download button. <br> But maybe one of these is? </Header>
-
-    <button class = button1>Download</button>
+    <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 1 </Header>
+    <button class = "button1" @click="this.$emit('addLevel')">Download</button>
 
   </div>
 </template>
+
+
+<script lang="ts">
+
+
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  components: {
+
+  },
+
+  emits: [
+      'addLevel'
+
+  ],
+
+  props: {
+    currentLevel: {
+      default: 0,
+      type: Number
+    }
+  },
+  computed: {
+    getCurrentLevel (): number {
+      return this.currentLevel;
+    }
+  },
+  watch: {
+    getCurrentLevel () {
+      console.log("hidden " + this.currentLevel)
+    }
+
+  },
+  methods: {
+
+  }
+})
+
+
+</script>
 
 <style>
 

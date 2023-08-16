@@ -8,18 +8,18 @@ export default defineComponent({
   },
 
   emits: [
-    'notify',
+    'addLevel',
   ],
 
   props: {
-    hidden: {
-      default: true,
-      type: Boolean
+    currentLevel: {
+      default: 0,
+      type: Number
     }
   },
   computed: {
-    isHidden (): boolean {
-      return this.hidden;
+    getCurrentLevel (): number {
+      return this.currentLevel;
     }
   },
   watch: {
@@ -36,13 +36,11 @@ export default defineComponent({
 
 </script>
 
-<template>
+<template v-show="this.currentLevel == 0">
   <div class="greetings">
     <h1 class="blue"></h1>
     <h3>
-
       Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
-      <button class="p-3 w-75 text-bg-primary rounded-3" v-if="isHidden"  @click="this.$emit('notify')">Test</button>
     </h3>
   </div>
 </template>

@@ -1,9 +1,15 @@
-<template>
+<template v-show="this.currentLevel == 0" >
 
   <WelcomePage
-    @notify="notification"
-    :hidden="hide"
-  />
+    @addLevel="addLevel"
+    :current-level="currentLevel">
+  </WelcomePage>
+
+
+  <LevelOne
+    :current-level="currentLevel">
+
+  </LevelOne>
 
 
   <header>
@@ -13,7 +19,7 @@
 
       <!--Link to other page-->
       <nav>
-        <button class="p-3 w-75 text-bg-primary rounded-3"  @click="$router.push('level1')">Download</button>
+        <button class="p-3 w-75 text-bg-primary rounded-3"  @click="this.currentLevel = 1">Download</button>
       </nav>
     </div>
   </header>
@@ -25,16 +31,19 @@
 <script lang="ts">
 import WelcomePage from './components/WelcomePage.vue'
 import {defineComponent} from "vue";
+import LevelOne from "@/views/Levels/LevelOne.vue";
 
 export default defineComponent( {
 
   data () {
     return {
-      hide: true
+      hide: true,
+      currentLevel: 0
     }
   },
 
   components: {
+    LevelOne,
     WelcomePage
   },
 
@@ -45,14 +54,20 @@ export default defineComponent( {
 
   },
   methods: {
-
-    notification() {
-      console.log("testi")
-      this.hide = false;
-
+    //Example
+    addLevel() {
+      console.log("current level: " + this.currentLevel)
+      this.currentLevel++
     }
 
   },
+
+  watch: {
+    currentLevel () {
+      alert(this.currentLevel)
+      console.log(this.currentLevel)
+    }
+  }
 })
 
 
