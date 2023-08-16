@@ -1,7 +1,7 @@
-<template v-show="this.getCurrentLevel">
-  <div class="level2">
+<template>
+  <div class="level2" v-show="this.getCurrentLevel">
     <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 2 </Header>
-    <button class = button2>Download</button>
+    <button class = "button2" @click="this.$emit('addLevel')">Download</button>
 
   </div>
 
@@ -17,6 +17,7 @@ export default defineComponent({
   },
 
   emits: [
+      'addLevel'
 
   ],
 

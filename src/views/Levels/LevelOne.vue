@@ -1,5 +1,5 @@
-<template v-show="currentLevel == 1">
-  <div class="level1">
+<template >
+  <div class="level1" v-show="currentLevel == 1">
     <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 1 </Header>
     <button class = "button1" @click="this.$emit('addLevel')">Download</button>
 

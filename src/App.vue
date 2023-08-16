@@ -1,4 +1,4 @@
-<template v-show="this.currentLevel == 0" >
+<template >
 
   <WelcomePage
     @addLevel="addLevel"
@@ -12,14 +12,14 @@
   </LevelOne>
 
 
-  <header>
+  <header v-show="this.currentLevel == 0">
 
-    <div id = FirstButton class="wrapper">
+    <div id = "FirstButton" class="wrapper">
       <WelcomePage msg="Welcome to the download game!" />
 
       <!--Link to other page-->
       <nav>
-        <button class="p-3 w-75 text-bg-primary rounded-3"  @click="this.currentLevel = 1">Download</button>
+        <button class="p-5 w-25 text-bg-primary rounded-3"  @click="this.currentLevel = 1">Download</button>
       </nav>
     </div>
   </header>
@@ -54,7 +54,6 @@ export default defineComponent( {
 
   },
   methods: {
-    //Example
     addLevel() {
       console.log("current level: " + this.currentLevel)
       this.currentLevel++

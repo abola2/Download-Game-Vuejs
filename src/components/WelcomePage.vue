@@ -23,9 +23,8 @@ export default defineComponent({
     }
   },
   watch: {
-    isHidden () {
-      console.log("hidden")
-    }
+
+
 
   }
 })
@@ -41,6 +40,7 @@ export default defineComponent({
     <h1 class="blue"></h1>
     <h3>
       Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
+
     </h3>
   </div>
 </template>
