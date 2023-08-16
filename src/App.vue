@@ -12,18 +12,6 @@
   </LevelOne>
 
 
-  <header v-show="this.currentLevel == 0">
-
-    <div id = "FirstButton" class="wrapper">
-      <WelcomePage msg="Welcome to the download game!" />
-
-      <!--Link to other page-->
-      <nav>
-        <button class="p-5 w-25 text-bg-primary rounded-3"  @click="this.currentLevel = 1">Download</button>
-      </nav>
-    </div>
-  </header>
-
   <RouterView />
 </template>
 
