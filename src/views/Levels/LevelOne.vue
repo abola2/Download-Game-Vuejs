@@ -1,8 +1,9 @@
 <template >
   <div class="level1" v-show="currentLevel == 1">
     <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 1 </Header>
-    <button class = "button1" @click="this.$emit('addLevel')">Download</button>
-
+    <button id = "button1" @click="this.$emit('addLevel2')">Download</button>
+    <img id ="image1" src="../../assets/clickbait_arrow.png">
+    <img id ="image2" src="../../assets/clickbait_arrow.png">
   </div>
 </template>
 
@@ -51,25 +52,43 @@ export default defineComponent({
 
 header {
   font-weight: 500;
-  font-size: 2.6rem;
+  font-size: 2.1rem;
   text-align: center;
   position: absolute;
-  top: 30%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
   
 }
 
+#image1{
+  
+  position: absolute;
+  height: 125px;
+  transform: rotate(15deg);
+  top: 20%;
+  left: 30%;
+}
+#image2{
+  
+  position: absolute;
+  height: 125px;
+  transform: scaleX(-1) rotate(15deg);
 
-.button1{
+  top: 20%;
+  left: 60%;
+}
+
+#button1{
   /*don't even ask*/
   
   font-weight: 400;
   font-size: 25px;
+  
+	position: absolute;
 
-  top: 25%;
-  left: 50%;
-	position: relative;
+  top: 40%;
+  left: 45%;
 	z-index: 0;
 	width: 200px;
 	height: 100px;
@@ -93,15 +112,6 @@ header {
 		animation: rotate 5s linear infinite;
 	}
 	
-	&::after {
-		content: '';
-		position: absolute;
-		z-index: -1;
-		left: 6px;
-		top: 6px;
-		border-radius: 5px;
-		animation: opacityChange 3s infinite alternate;
-	}
 
 }
 
