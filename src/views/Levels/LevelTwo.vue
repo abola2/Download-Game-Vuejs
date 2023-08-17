@@ -1,5 +1,5 @@
 <template>
-  <div class="level2" v-show="this.getCurrentLevel == 2">
+  <div class="level2" v-show="this.getCurrentLevel">
     <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 2 </Header>
     <button class = "button2" @click="this.$emit('addLevel')">Download</button>
 
@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts">
+
 
 import {defineComponent} from "vue";
 

@@ -1,9 +1,36 @@
+<!--
+Level 1 idea
+
+Install free version
+
+Fill page with adds
+
+
+
+-->
+
+
+
+
 <template >
-  <div class="level1" v-show="currentLevel == 1">
+
+  <PopupWindow
+
+
+  />
+
+
+  <div class="level1" v-show="currentLevel === 1">
     <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 1 </Header>
-    <button id = "button1" @click="this.$emit('addLevel2')">Download</button>
-    <img id ="image1" src="../../assets/clickbait_arrow.png">
-    <img id ="image2" src="../../assets/clickbait_arrow.png">
+    <button class = "button1" @click="this.$emit('showPopup')">Download</button>
+
+    <select v-model="selected">
+      <option disabled value="">Please select one</option>
+      <option id="1"> Watch add to support develoment </option>
+      <option id="2">Download for free</option>
+      <option id="3">Support development</option>
+    </select>
+    <h2>Selected: {{ selected }}</h2>>
   </div>
 </template>
 
@@ -11,15 +38,25 @@
 <script lang="ts">
 
 
-import {defineComponent} from "vue";
+import {defineComponent, ref} from "vue";
+import PopupWindow from "@/views/Functionality/PopupWindow.vue";
+
+
 
 export default defineComponent({
   components: {
+    PopupWindow
 
+  },
+  data () {
+    return {
+      selected: ref(),
+    }
   },
 
   emits: [
-      'addLevel'
+      'addLevel',
+      'showPopup'
 
   ],
 
@@ -27,6 +64,10 @@ export default defineComponent({
     currentLevel: {
       default: 0,
       type: Number
+    },
+    popupWindow: {
+      default: false,
+      type: Boolean
     }
   },
   computed: {
