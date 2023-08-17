@@ -9,7 +9,8 @@
 
 <script lang="ts">
 
-import {defineComponent} from "vue/dist/vue";
+
+import {defineComponent} from "vue";
 
 export default defineComponent({
   components: {

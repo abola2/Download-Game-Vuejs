@@ -1,6 +1,25 @@
+
+<template >
+
+  <PopupWindows>
+
+  </PopupWindows>
+
+
+  <div class="greetings" v-show="this.currentLevel == 0">
+    <h1 class="blue"></h1>
+    <h3>
+      Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
+    <button class="p-5 w-25 text-bg-primary rounded-3 alert alert-primary"    @click="this.$emit('addLevel')">Download</button>
+    </h3>
+  </div>
+</template>
+
+
 <script lang="ts">
 
 import {defineComponent} from "vue";
+
 
 export default defineComponent({
   components: {
@@ -35,15 +54,7 @@ export default defineComponent({
 
 </script>
 
-<template >
-  <div class="greetings" v-show="this.currentLevel == 0">
-    <h1 class="blue"></h1>
-    <h3>
-      Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
-      <button class="p-5 w-25 text-bg-primary rounded-3"  @click="this.$emit('addLevel')">Download</button>
-    </h3>
-  </div>
-</template>
+
 
 <style scoped>
 h1 {

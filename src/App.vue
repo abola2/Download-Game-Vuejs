@@ -7,12 +7,27 @@
 
 
   <LevelOne
-    :current-level="currentLevel">
+      @addLevel="addLevel"
+      @showPopup="waitSpecificTime(5000)"
+    :current-level="currentLevel"
+    :popupWindow="popupWindow">
 
   </LevelOne>
 
+  <PopupWindow
+      @closepopup="closePopup"
+      :popupWindow="popupWindow">
+    </PopupWindow>
 
-  <RouterView />
+  <LevelTwo
+      @addLevel="addLevel"
+      :current-level="currentLevel">
+
+  </LevelTwo>
+
+
+
+
 </template>
 
 
@@ -20,19 +35,24 @@
 import WelcomePage from './components/WelcomePage.vue'
 import {defineComponent} from "vue";
 import LevelOne from "@/views/Levels/LevelOne.vue";
+import LevelTwo from "@/views/Levels/LevelTwo.vue";
+import PopupWindow from "@/views/Functionality/PopupWindow.vue";
 
 export default defineComponent( {
 
   data () {
     return {
       hide: true,
-      currentLevel: 0
+      currentLevel: 0,
+      popupWindow: false
     }
   },
 
   components: {
+    LevelTwo,
     LevelOne,
-    WelcomePage
+    WelcomePage,
+    PopupWindow
   },
 
   emits: {
@@ -45,13 +65,28 @@ export default defineComponent( {
     addLevel() {
       console.log("current level: " + this.currentLevel)
       this.currentLevel++
+    },
+    waitSpecificTime: function (value) {
+      this.popupWindow = true;
+      console.log("test " + this.popupWindow);
+
+      setTimeout(() => {  // Using an arrow function to maintain the correct context
+        this.popupWindow = false;  // Corrected property name
+        console.log("end " + this.popupWindow);
+      }, value);
+    },
+
+    closePopup() {
+      if (this.popupWindow) {
+        this.popupWindow = false
+      }
     }
+
 
   },
 
   watch: {
     currentLevel () {
-      alert(this.currentLevel)
       console.log(this.currentLevel)
     }
   }
