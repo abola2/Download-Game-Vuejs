@@ -30,16 +30,16 @@ export default defineComponent({
 })
 
 
-
-
-
 </script>
 
 <template >
   <div class="greetings" v-show="this.currentLevel == 0">
-    <h1 class="blue"></h1>
-    <h3>
+    <h1 class="blue">
+
       Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"
+
+    </h1>
+    <h3>
       <button class="p-5 w-25 text-bg-primary rounded-3"  @click="this.$emit('addLevel')">Download</button>
     </h3>
   </div>
@@ -57,11 +57,13 @@ h1 {
 }
 
 h3 {
-  font-size: 1.2rem;  
+  font-size: 1.0rem;  
   position: absolute;
-  top: 40%;
+  top:50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
+  width: 750px;
 }
 
 .greetings h1,

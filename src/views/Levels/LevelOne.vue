@@ -53,7 +53,7 @@ header {
   font-weight: 500;
   font-size: 2.6rem;
   text-align: center;
-  position: static;
+  position: absolute;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -67,8 +67,8 @@ header {
   font-weight: 400;
   font-size: 25px;
 
-  top: -25%;
-  left: -15%;
+  top: 25%;
+  left: 50%;
 	position: relative;
 	z-index: 0;
 	width: 200px;
