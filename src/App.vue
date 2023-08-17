@@ -15,7 +15,7 @@
   </LevelOne>
 
   <PopupWindow
-      @closepopup="closePopup"
+      @close-popup="closePopup"
       :popupWindow="popupWindow">
     </PopupWindow>
 
@@ -70,8 +70,8 @@ export default defineComponent( {
       this.popupWindow = true;
       console.log("test " + this.popupWindow);
 
-      setTimeout(() => {  // Using an arrow function to maintain the correct context
-        this.popupWindow = false;  // Corrected property name
+      setTimeout(() => {
+        this.popupWindow = false;
         console.log("end " + this.popupWindow);
       }, value);
     },

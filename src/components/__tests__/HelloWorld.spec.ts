@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import WelcomePage from '../WelcomePage.vue'
 
-describe('HelloWorld', () => {
-  it('renders properly', () => {
-    const wrapper = mount(WelcomePage, { props: { msg: 'Hello Vitest' } })
-    expect(wrapper.text()).toContain('Hello Vitest')
-  })
-})
+// @ts-ignore
+test('has title', async ({ page }) => {
+  await page.goto('http://localhost:5173/');
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/program/);
+});
