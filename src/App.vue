@@ -8,14 +8,17 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="waitSpecificTime(5000)"
+      @showPopup="popupWithGif(5000, 'https://image.ibb.co/epha5A/giphy.gif')"
     :current-level="currentLevel"
+      :image-url="gifUrl"
     :popupWindow="popupWindow">
+
 
   </LevelOne>
 
   <PopupWindow
       @close-popup="closePopup"
+      :image-url="gifUrl"
       :popupWindow="popupWindow">
     </PopupWindow>
 
@@ -44,7 +47,8 @@ export default defineComponent( {
     return {
       hide: true,
       currentLevel: 0,
-      popupWindow: false
+      popupWindow: false,
+      gifUrl: "" //https://image.ibb.co/epha5A/giphy.gif
     }
   },
 
@@ -66,14 +70,18 @@ export default defineComponent( {
       console.log("current level: " + this.currentLevel)
       this.currentLevel++
     },
-    waitSpecificTime: function (value) {
+
+    popupWithGif: function (showTImeInMilliseconds, gifUrl) {
+
       this.popupWindow = true;
       console.log("test " + this.popupWindow);
+      this.gifUrl = gifUrl
+
 
       setTimeout(() => {
         this.popupWindow = false;
         console.log("end " + this.popupWindow);
-      }, value);
+      }, showTImeInMilliseconds);
     },
 
     closePopup() {

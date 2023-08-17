@@ -38,7 +38,8 @@
           </div>
 
           <div class="modal-body">
-            <slot name="body">default body</slot>
+            <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''">
+
           </div>
 
           <div class="modal-footer">
@@ -77,6 +78,11 @@ export default {
     popupWindow: {
       default: false,
       type: Boolean
+    },
+    imageUrl: {
+      default: "",
+      type: String
+
     }
   },
   methods:{
@@ -117,7 +123,7 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  width: 600px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
