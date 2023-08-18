@@ -31,6 +31,8 @@
 
 
 
+
+
 </template>
 
 
@@ -40,6 +42,10 @@ import {defineComponent} from "vue";
 import LevelOne from "@/views/Levels/LevelOne.vue";
 import LevelTwo from "@/views/Levels/LevelTwo.vue";
 import PopupWindow from "@/views/Functionality/PopupWindow.vue";
+
+
+
+
 
 export default defineComponent( {
 
@@ -57,7 +63,7 @@ export default defineComponent( {
     LevelTwo,
     LevelOne,
     WelcomePage,
-    PopupWindow
+    PopupWindow,
   },
 
   emits: {
@@ -75,10 +81,9 @@ export default defineComponent( {
     popupWithGif: function (showTImeInMilliseconds, gifUrl, title) {
 
       this.popupWindow = true;
-      console.log("test " + this.popupWindow);
       this.gifUrl = gifUrl
       this.popupTitle = title;
-      console.log(this.popupTitle)
+      console.log("start " + this.popupTitle)
 
 
       setTimeout(() => {
@@ -106,6 +111,7 @@ export default defineComponent( {
 
 
 </script>
+
 
 
 <style scoped>

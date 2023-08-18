@@ -14,23 +14,30 @@ Fill page with adds
 
 <template >
 
-  <PopupWindow
-
-
-  />
-
 
   <div class="level1" v-show="currentLevel === 1">
     <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 1 </Header>
     <button class = "button1" @click="this.$emit('showPopup')">Download</button>
 
-    <select v-model="selected">
-      <option disabled value="">Please select one</option>
-      <option id="1"> Watch add to support develoment </option>
-      <option id="2">Download for free</option>
-      <option id="3">Support development</option>
-    </select>
-    <h2>Selected: {{ selected }}</h2>>
+    <div>
+      <label class="typo__label">Select with search</label>
+      <div>
+        <Multiselect
+            class="multiselect-blue"
+            @select="console.log(value)"
+            v-model="value"
+            :close-on-select="true"
+            :searchable="true"
+            :mode="'single'"
+            :placeholder="'select'"
+            :options="[
+    { value: '1', label: 'Buy' },
+    { value: '2', label: 'Wiki' },
+    { value: '3', label: 'Tos' },
+  ]"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,19 +45,28 @@ Fill page with adds
 <script lang="ts">
 
 
-import {defineComponent, ref} from "vue";
-import PopupWindow from "@/views/Functionality/PopupWindow.vue";
+import {ref} from "vue";
+import Multiselect from "@vueform/multiselect";
 
 
 
-export default defineComponent({
+
+
+
+export default{
   components: {
-    PopupWindow
+    Multiselect
 
   },
   data () {
     return {
-      selected: ref(),
+      selected: ref(''),
+      value: null,
+      options: [
+       'wdwdwd',
+        'efefwg',
+        'wqdttt'
+      ]
     }
   },
 
@@ -83,13 +99,26 @@ export default defineComponent({
   },
   methods: {
 
+
   }
-})
+}
 
 
 </script>
+<style src="@vueform/multiselect/themes/default.css"></style>
+
 
 <style>
+
+
+
+
+.multiselect-blue {
+  --ms-tag-bg: #DBEAFE;
+  --ms-tag-color: #2563EB;
+}
+
+
 
 header {
   font-weight: 500;
