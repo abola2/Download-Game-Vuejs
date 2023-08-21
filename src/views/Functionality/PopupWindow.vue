@@ -15,6 +15,7 @@
 
           <div class="modal-body">
             <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''">
+            <slot name="body-text">{{ popupText }}</slot>
           </div>
 
           <div class="modal-footer">
@@ -72,6 +73,11 @@ export default {
     },
     popupTitle: {
       default: " nej",
+      type: String
+    },
+    popupText: 
+    {
+      default: "",
       type: String
     }
   },
