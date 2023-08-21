@@ -67,9 +67,6 @@ export default{
       selected: ref(''),
       value: null,
       options: [
-       'wdwdwd',
-        'efefwg',
-        'wqdttt'
       ]
     }
   },
