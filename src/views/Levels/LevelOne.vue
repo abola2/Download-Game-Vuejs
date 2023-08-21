@@ -25,7 +25,7 @@ Fill page with adds
 
     <div>
       <label class="typo__label">Select with search</label>
-      <div>
+      <div class="multiselect-style">
         <Multiselect
             class="multiselect-blue"
             @select="console.log(value)"
@@ -54,9 +54,6 @@ import Multiselect from "@vueform/multiselect";
 
 
 
-
-
-
 export default{
   components: {
     Multiselect
@@ -67,6 +64,9 @@ export default{
       selected: ref(''),
       value: null,
       options: [
+        'wdwdwd',
+        'efefwg',
+        'wqdttt'
       ]
     }
   },
@@ -114,9 +114,18 @@ export default{
 .multiselect-blue {
   --ms-tag-bg: #DBEAFE;
   --ms-tag-color: #2563EB;
+  width: 150px;
+  position: absolute;
+  top: 80%;
+  left: 71%;
+  transform: translate(-50%, -50%);
 }
-
-
+.typo__label{
+  position: absolute;
+  top: 76%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
 
 header {
   font-weight: 500;
@@ -129,24 +138,6 @@ header {
   
 }
 
-dropdown {
-  font-size: 18px;
-  width: 10px;
-  text-align: center;
-  position: absolute;
-  top: 80%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-
-}
-
-dropdownselected {
-  font-size: 18px;
-  position: absolute;
-  top: 85%;
-  left: 70%;
-
-}
 
 #image1{
   
