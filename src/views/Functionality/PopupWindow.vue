@@ -34,7 +34,7 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">default header</slot>
+            <slot name="header">LOOK! A cool monkey!</slot>
           </div>
 
           <div class="modal-body">
@@ -44,11 +44,15 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              default footer
+              Isn't this monkey cute?
               <button
                   class="modal-default-button"
                   @click="$emit('close-popup')"
-              >OK</button>
+              >Yes</button>
+              <button
+                  class="modal-default-button"
+                  @click="$emit('close-popup')"
+              >Yes</button>
             </slot>
           </div>
         </div>
@@ -133,7 +137,7 @@ export default {
 }
 
 .modal-header h3 {
-  margin-top: 0;
+  margin-top: 10;
   color: #42b983;
 }
 
@@ -142,6 +146,7 @@ export default {
 }
 
 .modal-default-button {
+  border-radius: 5px;
   float: right;
 }
 

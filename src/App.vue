@@ -8,7 +8,7 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="popupWithGif(5000, 'https://image.ibb.co/epha5A/giphy.gif')"
+      @showPopup="popupWithGif(15000, 'https://image.ibb.co/epha5A/giphy.gif')"
     :current-level="currentLevel"
       :image-url="gifUrl"
     :popupWindow="popupWindow">

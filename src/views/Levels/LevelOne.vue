@@ -21,16 +21,20 @@ Fill page with adds
 
 
   <div class="level1" v-show="currentLevel === 1">
-    <header>You fool! That wasn't a real download button. <br> But maybe one of these is? 1 </Header>
-    <button class = "button1" @click="this.$emit('showPopup')">Download</button>
-
-    <select v-model="selected">
-      <option disabled value="">Please select one</option>
-      <option id="1"> Watch add to support develoment </option>
-      <option id="2">Download for free</option>
-      <option id="3">Support development</option>
-    </select>
-    <h2>Selected: {{ selected }}</h2>>
+    <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
+    <button id = "button1" @click="this.$emit('showPopup')">Download</button>
+    <button id = "button2" hidden="true">Download</button>
+    <img id="image1" src="../../assets/clickbait_arrow.png">
+    <img id="image2" src="../../assets/clickbait_arrow.png">
+    <dropdown>
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option id="1">Watch an ad to support develoment </option>
+        <option id="2" @click="this.$methods('insertButton')" >Download for free</option>
+        <option id="3">Support development</option>
+      </select>
+    </dropdown>
+    <dropdownselected>>Selected: <br>{{ selected }}</dropdownselected>
   </div>
 </template>
 
@@ -82,6 +86,9 @@ export default defineComponent({
 
   },
   methods: {
+    insertButton () {
+      document.getElementById("button2").hidden = false;
+    }
 
   }
 })
@@ -93,7 +100,7 @@ export default defineComponent({
 
 header {
   font-weight: 500;
-  font-size: 2.1rem;
+  font-size: 2.6rem;
   text-align: center;
   position: absolute;
   top: 15%;
@@ -102,13 +109,32 @@ header {
   
 }
 
+dropdown {
+  font-size: 18px;
+  width: 10px;
+  text-align: center;
+  position: absolute;
+  top: 80%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+
+}
+
+dropdownselected {
+  font-size: 18px;
+  position: absolute;
+  top: 85%;
+  left: 70%;
+
+}
+
 #image1{
   
   position: absolute;
   height: 125px;
   transform: rotate(15deg);
-  top: 20%;
-  left: 30%;
+  top: 30%;
+  left: 32%;
 }
 #image2{
   
@@ -116,8 +142,8 @@ header {
   height: 125px;
   transform: scaleX(-1) rotate(15deg);
 
-  top: 20%;
-  left: 60%;
+  top: 30%;
+  left: 58%;
 }
 
 #button1{
@@ -127,8 +153,8 @@ header {
   font-size: 25px;
   
 	position: absolute;
-
-  top: 40%;
+  
+  top: 45%;
   left: 45%;
 	z-index: 0;
 	width: 200px;
@@ -154,6 +180,12 @@ header {
 	}
 	
 
+}
+
+#button2 {
+  position: absolute;
+  top: 75%;
+  left: 45%;
 }
 
 @keyframes rotate {
