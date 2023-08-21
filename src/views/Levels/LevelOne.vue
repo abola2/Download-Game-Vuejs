@@ -22,8 +22,8 @@ Fill page with adds
     <div class="page_Header_Bottom"></div>
     <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
       <button id = "button1" v-if="value===1" @click="this.$emit('showPopup')">Download</button>
-      <img id="image1" src="../../assets/clickbait_arrow.png" alt="">
-      <img id="image2" src="../../assets/clickbait_arrow.png" alt="">
+      <img id="arrow1" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
+      <img id="arrow2" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
       <img id="mtndew_Ad" src="../../assets/fake_mtndew_ad.jpg" alt="">
       <header id="mtndew_Ad_Header">Advertisement: </header>
       <img id="tacobell_Ad" src="../../assets/fake_tacobell_ad.jpg" alt="">
@@ -40,7 +40,6 @@ Fill page with adds
   
 
     <div>
-      <label class="typo__label">Select with search</label>
       <div class="multiselect-style">
         <Multiselect
             class="multiselect-blue"
@@ -78,7 +77,7 @@ export default{
   data () {
     return {
       selected: ref(''),
-      value: 1,
+      value: 0,
       options: [
 
       ]
@@ -109,10 +108,10 @@ export default{
   watch: {
     value () {
       if (this.value === 2) {
-        alert("wrong")
+        alert("Redirecting to wiki. Have fun ;)")
       }
       else if (this.value === 3) {
-        alert("worng two")
+        alert("Redirecting to Tos.")
       }
     }
 
@@ -122,6 +121,7 @@ export default{
 
 
 </script>
+
 <style src="@vueform/multiselect/themes/default.css"></style>
 
 
@@ -153,8 +153,9 @@ export default{
   --ms-tag-color: #2563EB;
   width: 150px;
   position: absolute;
-  top: 80%;
-  left: 71%;
+  top: 40%;
+  left: 50%;
+  width: 30%;
   transform: translate(-50%, -50%);
 }
 .typo__label{
@@ -169,7 +170,7 @@ header {
   font-size: 2.6rem;
   text-align: center;
   position: absolute;
-  top: 20%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
   
@@ -180,21 +181,21 @@ header {
   height: 75px;
 }
 
-#image1{
+#arrow1{
   
   position: absolute;
   height: 12.5%;
   transform: rotate(15deg);
-  top: 30%;
+  top: 60%;
   left: 32%;
 }
-#image2{
+#arrow2{
   
   position: absolute;
   height: 12.5%;
   transform: scaleX(-1) rotate(15deg);
 
-  top: 30%;
+  top: 60%;
   left: 58%;
 }
 
@@ -336,8 +337,8 @@ header {
   
 	position: absolute;
   
-  top: 45%;
-  left: 45%;
+  top: 75%;
+  left: 43%;
 	z-index: 0;
 	width: 200px;
 	height: 100px;
