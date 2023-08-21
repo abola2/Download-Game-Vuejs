@@ -21,6 +21,10 @@ Fill page with adds
       <button id = "button2" hidden="true">Download</button>
       <img id="image1" src="../../assets/clickbait_arrow.png">
       <img id="image2" src="../../assets/clickbait_arrow.png">
+      <img id="image3" src="../../assets/fake_mtndew_ad.jpg">
+      <img id="image4" src="../../assets/fake_tacobell_ad.jpg">
+      <img id="image5" src="../../assets/fake_macncheese_ad.png">
+      <img id="image6" src="../../assets/fake_toothpaste_ad.jpg">
   
 
     <div>
@@ -155,6 +159,40 @@ header {
 
   top: 30%;
   left: 58%;
+}
+
+#image3{
+  
+  position: absolute;
+  height: 500px;
+  width: 350px;
+  top: 50%;
+  left: 82%;
+}
+
+#image4{
+  
+  position: absolute;
+  height: 500px;
+  width: 350PX;
+  top: 2%;
+  left: 82%;
+}
+#image5{
+  
+  position: absolute;
+  height: 500px;
+  width: 350PX;
+  top: 2%;
+  left: 2%;
+}
+#image6{
+  
+  position: absolute;
+  height: 500px;
+  width: 350PX;
+  top: 50%;
+  left: 2%;
 }
 
 #button1{
