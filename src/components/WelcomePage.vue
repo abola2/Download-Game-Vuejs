@@ -10,7 +10,7 @@
     <h1 class="blue">
       Welcome to the funny download game. Start the game by downloading a very nonsuspicious "program"</h1>
     <h3>
-      <button class="p-5 w-25 text-bg-primary rounded-3 alert alert-primary"    @click="this.$emit('addLevel')">Download</button>
+      <button class="p-5 w-50 text-bg-primary rounded-3 alert alert-primary"    @click="this.$emit('addLevel')">Download</button>
     </h3>
   </div>
 </template>

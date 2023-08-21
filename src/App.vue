@@ -8,11 +8,9 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="popupWithGif(15000, 'https://image.ibb.co/epha5A/giphy.gif', 'Epic custom title')"
+      @showPopup="popupWithGif(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!')"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
-
-
   </LevelOne>
 
   <PopupWindow
@@ -85,7 +83,9 @@ export default defineComponent( {
       this.popupTitle = title;
       console.log("start " + this.popupTitle)
 
-
+      if (showTImeInMilliseconds == -1) {
+        return
+      }
       setTimeout(() => {
         this.popupWindow = false;
         console.log("end " + this.popupWindow);

@@ -10,7 +10,6 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">LOOK! A cool monkey!</slot>
             <slot name="header"> {{ popupTitle }}</slot>
           </div>
 
@@ -20,12 +19,13 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              Isn't this monkey cute?
-              <button
+              {{ buttonText }}
+              <button v-show="this.showButtons"
                   class="modal-default-button"
-                  @click="$emit('close-popup')"
-              >Yes</button>
-              <button
+                  @click="hideButtons"
+              >Yes (no)</button>
+
+              <button v-show="this.showButtons"
                   class="modal-default-button"
                   @click="$emit('close-popup')"
               >Yes</button>
@@ -47,12 +47,18 @@
 export default {
   data () {
     return {
+      showButtons: true
     }
   },
   emits: [
       'close-popup'
   ],
   components: {
+  },
+  computed: {
+    buttonText (): string {
+      return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
+    },
   },
   props: {
     popupWindow: {
@@ -70,19 +76,22 @@ export default {
     }
   },
   methods:{
-
-
-
-  },
-  computed: {
-    getshown (): boolean {
-      return this.popupWindow;
+    hideButtons () {
+      this.toggleButtons()
+      console.log("hide buttons")
+      setTimeout(() => {
+        console.log("show buttons")
+        this.toggleButtons()
+      }, 900);
+    },
+    toggleButtons() {
+      this.showButtons ? this.showButtons = false : this.showButtons = true;
     }
+
+
+
   },
   watch: {
-    getshown () {
-      console.log("näytetään: " + this.getshown)
-    }
   }
 }
 </script>
