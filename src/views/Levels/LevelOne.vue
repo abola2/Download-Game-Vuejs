@@ -16,15 +16,27 @@ Fill page with adds
 
 
   <div class="level1" v-show="currentLevel === 1">
+    <div class="page_Header">
+      <img id="headerImg" src="../../assets/placeholder.png">
+    </div>
+    <div class="page_Header_Bottom"></div>
     <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
       <button id = "button1" @click="this.$emit('showPopup')">Download</button>
-      <button id = "button2" hidden="hidden">Download</button>
       <img id="image1" src="../../assets/clickbait_arrow.png">
       <img id="image2" src="../../assets/clickbait_arrow.png">
-      <img id="image3" src="../../assets/fake_mtndew_ad.jpg">
-      <img id="image4" src="../../assets/fake_tacobell_ad.jpg">
-      <img id="image5" src="../../assets/fake_macncheese_ad.png">
-      <img id="image6" src="../../assets/fake_toothpaste_ad.jpg">
+      <img id="mtndew_Ad" src="../../assets/fake_mtndew_ad.jpg">
+      <header id="mtndew_Ad_Header">Advertisement: </header>
+      <img id="tacobell_Ad" src="../../assets/fake_tacobell_ad.jpg">
+      <header id="tacobell_Ad_Header">Advertisement: </header>
+      <img id="macncheese_Ad" src="../../assets/fake_macncheese_ad.png">
+      <header id="macncheese_Ad_Header">Advertisement: </header>
+      <img id="toothpaste_Ad" src="../../assets/fake_toothpaste_ad.jpg">
+      <header id="toothpaste_Ad_Header">Advertisement: </header>
+      
+      <button id = "fake_x_mtndew">X</button>
+      <button id = "fake_x_tacobell">X</button>
+      <button id = "fake_x_macncheese">X</button>
+      <button id = "fake_x_toothpaste">X</button>
   
 
     <div>
@@ -111,7 +123,25 @@ export default{
 <style>
 
 
+.page_Header {
+  background: linear-gradient(to left, #000 0%, #333 50%, #868787 75%, #DBEAFE 100%);
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  
+}
 
+.page_Header_Bottom {
+  background: linear-gradient(to left, darkred 25%, #ffcccb 100%);
+  height: 15px;
+  width: 100%;
+  position: absolute;
+  top: 100px;
+  left: 0%;
+
+}
 
 .multiselect-blue {
   --ms-tag-bg: #DBEAFE;
@@ -134,17 +164,21 @@ header {
   font-size: 2.6rem;
   text-align: center;
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   
 }
 
+#headerImg{
+  width: 350px;
+  height: 75px;
+}
 
 #image1{
   
   position: absolute;
-  height: 125px;
+  height: 12.5%;
   transform: rotate(15deg);
   top: 30%;
   left: 32%;
@@ -152,45 +186,141 @@ header {
 #image2{
   
   position: absolute;
-  height: 125px;
+  height: 12.5%;
   transform: scaleX(-1) rotate(15deg);
 
   top: 30%;
   left: 58%;
 }
 
-#image3{
-  
+#mtndew_Ad{
+  border: #000;
+  border-radius: 2px;
+  border-style: solid;
+
   position: absolute;
-  height: 500px;
-  width: 350px;
-  top: 50%;
+  height: 25%;
+  width: 15%;
+  top: 70%;
+  left: 82%;
+}
+#mtndew_Ad_Header{
+  background: #e4e4e4;
+  text-align: left;
+  padding: 5px;
+  width: 3.5%;
+  height: 2%;
+  position: absolute;
+  font-size: 10px;
+  top: 69%;
+  left: 84%;
+}
+
+#fake_x_mtndew{
+  height: 2%;
+  font-size: 13px;
+  position: absolute;
+  top: 70%;
+  left: 96%;
+}
+
+#tacobell_Ad{
+  
+  border: #000;
+  border-radius: 2px;
+  border-style: solid;
+
+  position: absolute;
+  height: 25%;
+  width: 15%;
+  top: 15%;
   left: 82%;
 }
 
-#image4{
-  
+#tacobell_Ad_Header{
+  background: #e4e4e4;
+  text-align: left;
+  padding: 5px;
+  width: 3.5%;
+  height: 2%;
   position: absolute;
-  height: 500px;
-  width: 350PX;
-  top: 2%;
-  left: 82%;
+  font-size: 10px;
+  top: 14%;
+  left: 84%;
 }
-#image5{
-  
+
+#fake_x_tacobell{
+  height: 2%;
+  font-size: 13px;
   position: absolute;
-  height: 500px;
-  width: 350PX;
-  top: 2%;
+  top: 15%;
+  left: 96%;
+}
+
+#macncheese_Ad{
+  
+  border: #000;
+  border-radius: 2px;
+  border-style: solid;
+
+  position: absolute;
+  height: 25%;
+  width: 15%;
+  top: 14%;
   left: 2%;
 }
-#image6{
-  
+#macncheese_Ad_Header{
+  background: #e4e4e4;
+  text-align: left;
+  padding: 5px;
+  width: 3.5%;
+  height: 2%;
   position: absolute;
-  height: 500px;
-  width: 350PX;
-  top: 50%;
+  font-size: 10px;
+  top: 13%;
+  left: 4%;
+}
+
+
+#fake_x_macncheese{
+  height: 2%;
+  font-size: 13px;
+  position: absolute;
+  top: 14%;
+  left: 16%;
+}
+
+#toothpaste_Ad{
+  
+  border: #000;
+  border-radius: 2px;
+  border-style: solid;
+
+  position: absolute;
+  height: 25%;
+  width: 15%;
+  top: 70%;
   left: 2%;
+}
+
+#toothpaste_Ad_Header{
+  background: #e4e4e4;
+  text-align: left;
+  padding: 5px;
+  width: 3.5%;
+  height: 2%;
+  position: absolute;
+  font-size: 10px;
+  top: 69%;
+  left: 4%;
+}
+
+#fake_x_toothpaste{
+  height: 2%;
+  font-size: 13px;
+  position: absolute;
+  top: 70%;
+  left: 16%;
 }
 
 #button1{
@@ -234,6 +364,7 @@ header {
   top: 75%;
   left: 45%;
 }
+
 
 @keyframes rotate {
 	100% {
