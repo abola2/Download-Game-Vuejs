@@ -21,22 +21,22 @@ Fill page with adds
     </div>
     <div class="page_Header_Bottom"></div>
     <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
-      <button id = "button1" @click="this.$emit('showPopup')">Download</button>
-      <img id="image1" src="../../assets/clickbait_arrow.png">
-      <img id="image2" src="../../assets/clickbait_arrow.png">
-      <img id="mtndew_Ad" src="../../assets/fake_mtndew_ad.jpg">
+      <button id = "button1" v-if="value===1" @click="this.$emit('showPopup')">Download</button>
+      <img id="image1" src="../../assets/clickbait_arrow.png" alt="">
+      <img id="image2" src="../../assets/clickbait_arrow.png" alt="">
+      <img id="mtndew_Ad" src="../../assets/fake_mtndew_ad.jpg" alt="">
       <header id="mtndew_Ad_Header">Advertisement: </header>
-      <img id="tacobell_Ad" src="../../assets/fake_tacobell_ad.jpg">
+      <img id="tacobell_Ad" src="../../assets/fake_tacobell_ad.jpg" alt="">
       <header id="tacobell_Ad_Header">Advertisement: </header>
-      <img id="macncheese_Ad" src="../../assets/fake_macncheese_ad.png">
+      <img id="macncheese_Ad" src="../../assets/fake_macncheese_ad.png" alt="">
       <header id="macncheese_Ad_Header">Advertisement: </header>
-      <img id="toothpaste_Ad" src="../../assets/fake_toothpaste_ad.jpg">
+      <img id="toothpaste_Ad" src="../../assets/fake_toothpaste_ad.jpg" alt="">
       <header id="toothpaste_Ad_Header">Advertisement: </header>
       
-      <button id = "fake_x_mtndew">X</button>
-      <button id = "fake_x_tacobell">X</button>
-      <button id = "fake_x_macncheese">X</button>
-      <button id = "fake_x_toothpaste">X</button>
+      <button id="fake_x_mtndew">X</button>
+      <button id="fake_x_tacobell">X</button>
+      <button id="fake_x_macncheese">X</button>
+      <button id="fake_x_toothpaste">X</button>
   
 
     <div>
@@ -51,9 +51,9 @@ Fill page with adds
             :mode="'single'"
             :placeholder="'select'"
             :options="[
-    { value: '1', label: 'Buy' },
-    { value: '2', label: 'Wiki' },
-    { value: '3', label: 'Tos' },
+    { value: 1, label: 'Buy' },
+    { value: 2, label: 'Wiki' },
+    { value: 3, label: 'Tos' },
   ]"
         />
       </div>
@@ -78,7 +78,7 @@ export default{
   data () {
     return {
       selected: ref(''),
-      value: null,
+      value: 1,
       options: [
 
       ]
@@ -107,8 +107,13 @@ export default{
     }
   },
   watch: {
-    getCurrentLevel () {
-      console.log("hidden " + this.currentLevel)
+    value () {
+      if (this.value === 2) {
+        alert("wrong")
+      }
+      else if (this.value === 3) {
+        alert("worng two")
+      }
     }
 
   },
