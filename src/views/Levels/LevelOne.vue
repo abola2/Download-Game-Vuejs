@@ -18,7 +18,7 @@ Fill page with adds
   <div class="level1" v-show="currentLevel === 1">
     <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
       <button id = "button1" @click="this.$emit('showPopup')">Download</button>
-      <button id = "button2" hidden="true">Download</button>
+      <button id = "button2" hidden="hidden">Download</button>
       <img id="image1" src="../../assets/clickbait_arrow.png">
       <img id="image2" src="../../assets/clickbait_arrow.png">
   
@@ -64,9 +64,7 @@ export default{
       selected: ref(''),
       value: null,
       options: [
-        'wdwdwd',
-        'efefwg',
-        'wqdttt'
+
       ]
     }
   },
