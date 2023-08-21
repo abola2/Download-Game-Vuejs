@@ -14,27 +14,34 @@ Fill page with adds
 
 <template >
 
-  <PopupWindow
-
-
-  />
-
 
   <div class="level1" v-show="currentLevel === 1">
     <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
-    <button id = "button1" @click="this.$emit('showPopup')">Download</button>
-    <button id = "button2" hidden="true">Download</button>
-    <img id="image1" src="../../assets/clickbait_arrow.png">
-    <img id="image2" src="../../assets/clickbait_arrow.png">
-    <dropdown>
-      <select v-model="selected">
-        <option disabled value="">Please select one</option>
-        <option id="1">Watch an ad to support develoment </option>
-        <option id="2" @click="this.$methods('insertButton')" >Download for free</option>
-        <option id="3">Support development</option>
-      </select>
-    </dropdown>
-    <dropdownselected>>Selected: <br>{{ selected }}</dropdownselected>
+      <button id = "button1" @click="this.$emit('showPopup')">Download</button>
+      <button id = "button2" hidden="true">Download</button>
+      <img id="image1" src="../../assets/clickbait_arrow.png">
+      <img id="image2" src="../../assets/clickbait_arrow.png">
+  
+
+    <div>
+      <label class="typo__label">Select with search</label>
+      <div>
+        <Multiselect
+            class="multiselect-blue"
+            @select="console.log(value)"
+            v-model="value"
+            :close-on-select="true"
+            :searchable="true"
+            :mode="'single'"
+            :placeholder="'select'"
+            :options="[
+    { value: '1', label: 'Buy' },
+    { value: '2', label: 'Wiki' },
+    { value: '3', label: 'Tos' },
+  ]"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -42,19 +49,28 @@ Fill page with adds
 <script lang="ts">
 
 
-import {defineComponent, ref} from "vue";
-import PopupWindow from "@/views/Functionality/PopupWindow.vue";
+import {ref} from "vue";
+import Multiselect from "@vueform/multiselect";
 
 
 
-export default defineComponent({
+
+
+
+export default{
   components: {
-    PopupWindow
+    Multiselect
 
   },
   data () {
     return {
-      selected: ref(),
+      selected: ref(''),
+      value: null,
+      options: [
+       'wdwdwd',
+        'efefwg',
+        'wqdttt'
+      ]
     }
   },
 
@@ -85,18 +101,25 @@ export default defineComponent({
     }
 
   },
-  methods: {
-    insertButton () {
-      document.getElementById("button2").hidden = false;
-    }
 
-  }
-})
+}
 
 
 </script>
+<style src="@vueform/multiselect/themes/default.css"></style>
+
 
 <style>
+
+
+
+
+.multiselect-blue {
+  --ms-tag-bg: #DBEAFE;
+  --ms-tag-color: #2563EB;
+}
+
+
 
 header {
   font-weight: 500;

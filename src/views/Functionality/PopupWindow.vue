@@ -1,31 +1,7 @@
 
 
 <template>
-  <Transition name="modal">
-    <div v-if="popupWindow" class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <div class="modal-header">
-            <slot name="header">default header</slot>
-          </div>
 
-          <div class="modal-body">
-            <slot name="body">default body</slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button
-                  class="modal-default-button"
-                  @click="$emit('close-popup')"
-              >OK</button>
-            </slot>
-          </div>
-        </div>
-      </div>
-    </div>
-  </Transition>
 
 
 <!--with video-->
@@ -35,11 +11,11 @@
         <div class="modal-container">
           <div class="modal-header">
             <slot name="header">LOOK! A cool monkey!</slot>
+            <slot name="header"> {{ popupTitle }}</slot>
           </div>
 
           <div class="modal-body">
             <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''">
-
           </div>
 
           <div class="modal-footer">
@@ -87,6 +63,10 @@ export default {
       default: "",
       type: String
 
+    },
+    popupTitle: {
+      default: " nej",
+      type: String
     }
   },
   methods:{

@@ -8,10 +8,9 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="popupWithGif(15000, 'https://image.ibb.co/epha5A/giphy.gif')"
-    :current-level="currentLevel"
-      :image-url="gifUrl"
-    :popupWindow="popupWindow">
+      @showPopup="popupWithGif(15000, 'https://image.ibb.co/epha5A/giphy.gif', 'Epic custom title')"
+      :current-level="currentLevel"
+      :popupWindow="popupWindow">
 
 
   </LevelOne>
@@ -19,6 +18,7 @@
   <PopupWindow
       @close-popup="closePopup"
       :image-url="gifUrl"
+      :popup-title="popupTitle"
       :popupWindow="popupWindow">
     </PopupWindow>
 
@@ -27,6 +27,8 @@
       :current-level="currentLevel">
 
   </LevelTwo>
+
+
 
 
 
@@ -41,6 +43,10 @@ import LevelOne from "@/views/Levels/LevelOne.vue";
 import LevelTwo from "@/views/Levels/LevelTwo.vue";
 import PopupWindow from "@/views/Functionality/PopupWindow.vue";
 
+
+
+
+
 export default defineComponent( {
 
   data () {
@@ -48,7 +54,8 @@ export default defineComponent( {
       hide: true,
       currentLevel: 0,
       popupWindow: false,
-      gifUrl: "" //https://image.ibb.co/epha5A/giphy.gif
+      gifUrl: "", //https://image.ibb.co/epha5A/giphy.gif
+      popupTitle: "",
     }
   },
 
@@ -56,7 +63,7 @@ export default defineComponent( {
     LevelTwo,
     LevelOne,
     WelcomePage,
-    PopupWindow
+    PopupWindow,
   },
 
   emits: {
@@ -71,11 +78,12 @@ export default defineComponent( {
       this.currentLevel++
     },
 
-    popupWithGif: function (showTImeInMilliseconds, gifUrl) {
+    popupWithGif: function (showTImeInMilliseconds, gifUrl, title) {
 
       this.popupWindow = true;
-      console.log("test " + this.popupWindow);
       this.gifUrl = gifUrl
+      this.popupTitle = title;
+      console.log("start " + this.popupTitle)
 
 
       setTimeout(() => {
@@ -103,6 +111,7 @@ export default defineComponent( {
 
 
 </script>
+
 
 
 <style scoped>
