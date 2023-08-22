@@ -21,12 +21,12 @@
           <div class="modal-footer">
             <slot name="footer">
               {{ footerTextComputed }}
-              <button v-show="this.showButtons"
+              <button v-show="showButtons"
                   class="modal-default-button"
                   @click="hideButtons"
               >{{ buttonTextLeft }}</button>
 
-              <button v-show="this.showButtons"
+              <button v-show="showButtons"
                   class="modal-default-button"
                   @click="buttonFunctionality"
               >{{ buttonTextRight }}</button>

@@ -1,7 +1,7 @@
 <template>
-  <div class="level2" v-show="this.getCurrentLevel === 2">
+  <div class="level2" v-show="getCurrentLevel === 2">
     <header>level2 placeholder text </Header>
-    <button class = "button2" @click="this.$emit('addLevel')">Download</button>
+    <button class = "button2" @click="$emit('addLevel')">Download</button>
 
   </div>
 
