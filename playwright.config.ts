@@ -32,7 +32,7 @@ export default defineConfig({
 
 
   webServer: {
-    command: 'npm start',
+    command: 'npm run build',
     // Point to the url that returns 200 once dev server is ready.
     url: 'http://localhost:5173/',
     // Give it 120 seconds. Increase/decrease depending on your dev server speed.
