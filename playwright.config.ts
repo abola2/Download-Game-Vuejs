@@ -10,7 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './e2e/uitests.spec.ts',
+  testDir: './e2e/',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -23,10 +23,12 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
+  
+
 
 
   webServer: {
-    command: 'npm run build',
+    command: 'npm run dev',
     // Point to the url that returns 200 once dev server is ready.
     url: 'http://localhost:5173/',
     // Give it 120 seconds. Increase/decrease depending on your dev server speed.
