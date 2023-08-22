@@ -86,7 +86,8 @@ export default{
 
   emits: [
       'addLevel',
-      'showPopup'
+      'showPopup',
+      'showTosPopup'
 
   ],
 
@@ -111,7 +112,7 @@ export default{
         alert("Redirecting to wiki. Have fun ;)")
       }
       else if (this.value === 3) {
-        alert("Redirecting to Tos.")
+        this.$emit('showTosPopup')
       }
     }
 
@@ -338,7 +339,7 @@ header {
 	position: absolute;
   
   top: 75%;
-  left: 43%;
+  left: 45%;
 	z-index: 0;
 	width: 200px;
 	height: 100px;

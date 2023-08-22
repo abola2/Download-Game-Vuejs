@@ -9,6 +9,7 @@
   <LevelOne
       @addLevel="addLevel"
       @showPopup="popupWithGif(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!')"
+      @showTosPopup="popupWithText(-1, 'placeholder','We expect you to read the whole of our terms of service')"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelOne>
@@ -17,6 +18,7 @@
       @close-popup="closePopup"
       :image-url="gifUrl"
       :popup-title="popupTitle"
+      :popup-text="popupText"
       :popupWindow="popupWindow">
     </PopupWindow>
 
@@ -54,6 +56,7 @@ export default defineComponent( {
       popupWindow: false,
       gifUrl: "", //https://image.ibb.co/epha5A/giphy.gif
       popupTitle: "",
+      popupText:""
     }
   },
 
@@ -76,11 +79,27 @@ export default defineComponent( {
       this.currentLevel++
     },
 
-    popupWithGif: function (showTImeInMilliseconds, gifUrl, title) {
+    popupWithGif: function (showTImeInMilliseconds: number, gifUrl: string, title: string) {
 
       this.popupWindow = true;
       this.gifUrl = gifUrl
       this.popupTitle = title;
+      console.log("start " + this.popupTitle)
+
+      if (showTImeInMilliseconds == -1) {
+        return
+      }
+      setTimeout(() => {
+        this.popupWindow = false;
+        console.log("end " + this.popupWindow);
+      }, showTImeInMilliseconds);
+    },
+
+    popupWithText: function (showTImeInMilliseconds: number, text: string, title: string) {
+      this.popupWindow = true;
+      this.popupTitle = title;
+      this.gifUrl = "";
+      this.popupText = text;
       console.log("start " + this.popupTitle)
 
       if (showTImeInMilliseconds == -1) {
