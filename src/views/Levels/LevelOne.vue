@@ -215,7 +215,7 @@ header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
-  width: 3.5%;
+  width: 4.5%;
   height: 2%;
   position: absolute;
   font-size: 10px;
@@ -248,7 +248,7 @@ header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
-  width: 3.5%;
+  width: 4.5%;
   height: 2%;
   position: absolute;
   font-size: 10px;
@@ -280,7 +280,7 @@ header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
-  width: 3.5%;
+  width: 4.5%;
   height: 2%;
   position: absolute;
   font-size: 10px;
@@ -314,7 +314,7 @@ header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
-  width: 3.5%;
+  width: 4.5%;
   height: 2%;
   position: absolute;
   font-size: 10px;

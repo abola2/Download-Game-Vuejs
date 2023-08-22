@@ -20,16 +20,16 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              {{ buttonText }}
+              {{ footerTextComputed }}
               <button v-show="this.showButtons"
                   class="modal-default-button"
                   @click="hideButtons"
-              >Yes (no)</button>
+              >{{ buttonTextLeft }}</button>
 
               <button v-show="this.showButtons"
                   class="modal-default-button"
-                  @click="$emit('close-popup')"
-              >Yes</button>
+                  @click="buttonFunctionality"
+              >{{ buttonTextRight }}</button>
             </slot>
           </div>
         </div>
@@ -52,16 +52,34 @@ export default {
     }
   },
   emits: [
+      'addLevel',
       'close-popup'
   ],
   components: {
   },
   computed: {
-    buttonText (): string {
-      return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
+    getCurrentLevel (): number {
+      return this.currentLevel;
     },
+
+    footerTextComputed (): string {
+      if (this.footerText != "")
+      {
+        return !this.showButtons ? "Oof" : this.footerText;
+      }
+      else
+      {
+      return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
+      
+      }
+    }
+
   },
   props: {
+    currentLevel: {
+      default: 0,
+      type: Number
+    },
     popupWindow: {
       default: false,
       type: Boolean
@@ -79,6 +97,26 @@ export default {
     {
       default: "",
       type: String
+    },
+    buttonTextLeft:
+    {
+      default:"Yes (no)",
+      type: String
+    },
+    buttonTextRight:
+    {
+      default:"Yes",
+      type: String
+    },
+    footerText:
+    {
+      default:"",
+      type: String
+    },
+    tosButton:
+    {
+      default: false,
+      type: Boolean
     }
   },
   methods:{
@@ -92,6 +130,19 @@ export default {
     },
     toggleButtons() {
       this.showButtons ? this.showButtons = false : this.showButtons = true;
+    },
+    buttonFunctionality() {
+      if (this.tosButton)
+      {
+      console.log("adding level");
+      this.$emit('addLevel');
+      this.$emit('close-popup');
+      }
+      else
+      {
+      console.log("closing popup");
+      this.$emit('close-popup');
+      }
     }
 
 

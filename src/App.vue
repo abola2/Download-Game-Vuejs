@@ -8,17 +8,23 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="popupWithGif(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!')"
-      @showTosPopup="popupWithText(-1, 'placeholder','We expect you to read the whole of our terms of service')"
+      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes', false)"
+      @showTosPopup="popup(-1, '', 'We expect you to read the whole of our terms of service','placeholder', 'do you accept terms and conditions? ','Yes (no)', 'Yes', true)"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelOne>
 
   <PopupWindow
       @close-popup="closePopup"
+      @addLevel="addLevel"
+      :current-level="currentLevel"
       :image-url="gifUrl"
       :popup-title="popupTitle"
       :popup-text="popupText"
+      :footer-text="footerText"
+      :button-text-left="buttonTextLeft"
+      :button-text-right="buttonTextRight"
+      :tos-Button="tosButton"
       :popupWindow="popupWindow">
     </PopupWindow>
 
@@ -56,7 +62,11 @@ export default defineComponent( {
       popupWindow: false,
       gifUrl: "", //https://image.ibb.co/epha5A/giphy.gif
       popupTitle: "",
-      popupText:""
+      popupText: "",
+      footerText: "",
+      buttonTextLeft: "",
+      buttonTextRight: "",
+      tosButton: false
     }
   },
 
@@ -79,27 +89,16 @@ export default defineComponent( {
       this.currentLevel++
     },
 
-    popupWithGif: function (showTImeInMilliseconds: number, gifUrl: string, title: string) {
+    popup: function (showTImeInMilliseconds: number, gifUrl: string, title: string, text: string, footer: string, buttonTextLeft: string, buttonTextRight: string, tosButton: boolean) {
 
       this.popupWindow = true;
       this.gifUrl = gifUrl
       this.popupTitle = title;
-      console.log("start " + this.popupTitle)
-
-      if (showTImeInMilliseconds == -1) {
-        return
-      }
-      setTimeout(() => {
-        this.popupWindow = false;
-        console.log("end " + this.popupWindow);
-      }, showTImeInMilliseconds);
-    },
-
-    popupWithText: function (showTImeInMilliseconds: number, text: string, title: string) {
-      this.popupWindow = true;
-      this.popupTitle = title;
-      this.gifUrl = "";
       this.popupText = text;
+      this.footerText = footer;
+      this.buttonTextLeft = buttonTextLeft;
+      this.buttonTextRight= buttonTextRight;
+      this.tosButton = tosButton;
       console.log("start " + this.popupTitle)
 
       if (showTImeInMilliseconds == -1) {
@@ -110,6 +109,7 @@ export default defineComponent( {
         console.log("end " + this.popupWindow);
       }, showTImeInMilliseconds);
     },
+
 
     closePopup() {
       if (this.popupWindow) {
