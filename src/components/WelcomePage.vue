@@ -109,12 +109,12 @@ html, body {
 a { text-decoration: none; cursor: pointer; }
 
 .app-container {
-  position: relative;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  border-radius: 5px;
+  width: 200%;
+  height: 200%;
   max-width: 1200px;
-  max-height: 900px;
+  max-height: 9000px;
   background: linear-gradient(180deg, rgba(224,233,253,1) 0%, rgba(233,236,241,1) 90%);
   box-shadow: 0 0 0 10px rgba(255, 255, 255,.4);
   display: flex;

@@ -16,29 +16,29 @@ Fill page with adds
 
 
   <div class="level1" v-show="currentLevel === 1">
-    <div class="page_Header">
-      <img id="headerImg" src="../../assets/placeholder.png" alt="">
-    </div>
-    <div class="page_Header_Bottom"></div>
+    <div class="page_Header_Right"></div>
+    <div class="page_Header_Left"></div>
     <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
       <button id = "button1" v-if="value===1" @click="$emit('showPopup')">Download</button>
       <img id="arrow1" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
       <img id="arrow2" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
     <iframe v-if="value===2" src="https://www.wikipedia.com" class="" width="60%" height="50%">
     </iframe>
-      <img id="mtndew_Ad" src="../../assets/fake_mtndew_ad.jpg" alt="">
-      <header id="mtndew_Ad_Header">Advertisement: </header>
-      <img id="tacobell_Ad" src="../../assets/fake_tacobell_ad.jpg" alt="">
+      <div class="img-add-div">
+        <img id="mtndew_Ad" class="img-thumbnail" src="../../assets/capuchin-8183528_640.jpg" alt="">
+        <header id="mtndew_Ad_Header" >Advertisement: </header>
+      </div>
+        <img id="tacobell_Ad" class="img-thumbnail" src="../../assets/elephant-1822636_640.jpg" alt="">
       <header id="tacobell_Ad_Header">Advertisement: </header>
-      <img id="macncheese_Ad" src="../../assets/fake_macncheese_ad.png" alt="">
+      <img id="macncheese_Ad" class="img-thumbnail" src="../../assets/lifeguard-tower-8173913_640.jpg" alt="">
       <header id="macncheese_Ad_Header">Advertisement: </header>
-      <img id="toothpaste_Ad" src="../../assets/fake_toothpaste_ad.jpg" alt="">
+      <img id="toothpaste_Ad" class="img-thumbnail" src="../../assets/iceland-1979445_640.jpg" alt="">
       <header id="toothpaste_Ad_Header">Advertisement: </header>
       
-      <button id="fake_x_mtndew">X</button>
-      <button id="fake_x_tacobell">X</button>
-      <button id="fake_x_macncheese">X</button>
-      <button id="fake_x_toothpaste">X</button>
+      <button id="btn_fake_x_mtndew">X</button>
+      <button id="btn_fake_x_tacobell">X</button>
+      <button id="btn_fake_x_macncheese">X</button>
+      <button id="btn_fake_x_toothpaste">X</button>
   
 
     <div>
@@ -138,61 +138,45 @@ iframe{
 
 
 
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
-}
-
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .col-s-1 {width: 8.33%;}
-  .col-s-2 {width: 16.66%;}
-  .col-s-3 {width: 25%;}
-  .col-s-4 {width: 33.33%;}
-  .col-s-5 {width: 41.66%;}
-  .col-s-6 {width: 50%;}
-  .col-s-7 {width: 58.33%;}
-  .col-s-8 {width: 66.66%;}
-  .col-s-9 {width: 75%;}
-  .col-s-10 {width: 83.33%;}
-  .col-s-11 {width: 91.66%;}
-  .col-s-12 {width: 100%;}
-}
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
-  .col-6 {width: 50%;}
-  .col-7 {width: 58.33%;}
-  .col-8 {width: 66.66%;}
-  .col-9 {width: 75%;}
-  .col-10 {width: 83.33%;}
-  .col-11 {width: 91.66%;}
-  .col-12 {width: 100%;}
-}
-
 
 .page_Header {
-  background: linear-gradient(to left, #000 0%, #333 50%, #868787 75%, #DBEAFE 100%);
+  background: #dbe2e8;
   height: 100px;
   width: 100%;
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   top: 0;
   left: 0;
+  padding: 10px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   
 }
 
-.page_Header_Bottom {
-  background: linear-gradient(to left, darkred 25%, #ffcccb 100%);
-  height: 15px;
-  width: 100%;
+.page_Header_Right {
+  background: #dbe2e8;
+  width: 30%;
   position: absolute;
-  top: 100px;
-  left: 0;
+  overflow-y: hidden;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 80%;
+  bottom: 0;
 
+}
+
+
+.page_Header_Left {
+  background: #dbe2e8;
+  width: 30%;
+  position: absolute;
+  overflow-y: hidden;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  right: 80%;
+  bottom: 0;
 }
 
 .multiselect-blue {
@@ -204,12 +188,8 @@ iframe{
   width: 30%;
   transform: translate(-50%, -50%);
 }
-.typo__label{
-  position: absolute;
-  top: 76%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-}
+
+
 
 header {
   font-weight: 500;
@@ -260,25 +240,23 @@ header {
   text-align: left;
   padding: 5px;
   width: 4.5%;
-  height: 2%;
   position: absolute;
   font-size: 10px;
   top: 69%;
   left: 84%;
 }
 
-#fake_x_mtndew{
-  height: 2%;
+#btn_fake_x_mtndew{
   font-size: 13px;
   position: absolute;
-  top: 70%;
+  top: 69%;
   left: 96%;
+  border-radius: 3px;
 }
 
 #tacobell_Ad{
 
-  border-radius: 2px;
-  border: solid #000;
+  border-radius: 3px;
 
   position: absolute;
   height: 25%;
@@ -292,19 +270,18 @@ header {
   text-align: left;
   padding: 5px;
   width: 4.5%;
-  height: 2%;
   position: absolute;
   font-size: 10px;
   top: 14%;
   left: 84%;
 }
 
-#fake_x_tacobell{
-  height: 2%;
+#btn_fake_x_tacobell{
   font-size: 13px;
   position: absolute;
   top: 15%;
   left: 96%;
+  border-radius: 3px;
 }
 
 #macncheese_Ad{
@@ -323,7 +300,6 @@ header {
   text-align: left;
   padding: 5px;
   width: 4.5%;
-  height: 2%;
   position: absolute;
   font-size: 10px;
   top: 13%;
@@ -331,12 +307,12 @@ header {
 }
 
 
-#fake_x_macncheese{
-  height: 2%;
+#btn_fake_x_macncheese{
   font-size: 13px;
   position: absolute;
   top: 14%;
   left: 16%;
+  border-radius: 3px;
 }
 
 #toothpaste_Ad{
@@ -363,8 +339,7 @@ header {
   left: 4%;
 }
 
-#fake_x_toothpaste{
-  height: 2%;
+#btn_fake_x_toothpaste{
   font-size: 13px;
   position: absolute;
   top: 70%;
