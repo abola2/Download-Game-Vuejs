@@ -110,10 +110,7 @@ export default{
   },
   watch: {
     value () {
-      if (this.value === 2) {
-        alert("Redirecting to wiki. Have fun ;)")
-      }
-      else if (this.value === 3) {
+      if (this.value === 3) {
         this.$emit('showTosPopup')
       }
     }
@@ -183,8 +180,8 @@ iframe{
   height: 100px;
   width: 100%;
   position: absolute;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   
 }
 
@@ -194,14 +191,13 @@ iframe{
   width: 100%;
   position: absolute;
   top: 100px;
-  left: 0%;
+  left: 0;
 
 }
 
 .multiselect-blue {
   --ms-tag-bg: #DBEAFE;
   --ms-tag-color: #2563EB;
-  width: 150px;
   position: absolute;
   top: 40%;
   left: 50%;
@@ -250,9 +246,8 @@ header {
 }
 
 #mtndew_Ad{
-  border: #000;
   border-radius: 2px;
-  border-style: solid;
+  border: solid #000;
 
   position: absolute;
   height: 25%;
@@ -281,10 +276,9 @@ header {
 }
 
 #tacobell_Ad{
-  
-  border: #000;
+
   border-radius: 2px;
-  border-style: solid;
+  border: solid #000;
 
   position: absolute;
   height: 25%;
@@ -314,10 +308,9 @@ header {
 }
 
 #macncheese_Ad{
-  
-  border: #000;
+
   border-radius: 2px;
-  border-style: solid;
+  border: solid #000;
 
   position: absolute;
   height: 25%;
@@ -347,10 +340,9 @@ header {
 }
 
 #toothpaste_Ad{
-  
-  border: #000;
+
   border-radius: 2px;
-  border-style: solid;
+  border: solid #000;
 
   position: absolute;
   height: 25%;
@@ -415,11 +407,6 @@ header {
 
 }
 
-#button2 {
-  position: absolute;
-  top: 75%;
-  left: 45%;
-}
 
 
 @keyframes rotate {

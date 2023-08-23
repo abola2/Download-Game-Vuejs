@@ -7,15 +7,14 @@
 
 
   <section class="parent" v-show="currentLevel == 0">
-    <body>
-    <h1 class="alert-heading"> Welcome to the funny download game.</h1>
-    <h1 class="download-text-header"> Start the game by downloading a very nonsuspicious "program"</h1>
+    <body class="body">
+    <h1 class="text-center"> Welcome to the funny download game.</h1>
+    <h4 class="text-center "> Start the game by downloading a very nonsuspicious "program"</h4>
     <button class="btn-play col-lg-12" @click="$emit('addLevel')"></button>
     </body>
   </section>
 
 </template>
-
 
 <script lang="ts">
 
@@ -59,7 +58,11 @@ export default defineComponent({
 
 <style>
 
+
 <!--https://codepen.io/aybukeceylan/pen/yLOxRyG-->
+
+
+
 
 * {
   box-sizing: border-box;
@@ -88,14 +91,13 @@ html, body {
   margin: 0;
 }
 
-body {
+.body {
   font-family: 'DM Sans', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
   padding: 10px;
 }
 
@@ -316,7 +318,7 @@ a { text-decoration: none; cursor: pointer; }
   height: 100%;
 }
 
-.content-section-line { margin: 0 -8px; }
+.content-section-line { margin: 10px 40px; }
 
 .section-part { flex-basis: 49%; }
 
@@ -497,7 +499,7 @@ a { text-decoration: none; cursor: pointer; }
 }
 
 .btn-play {
-  background-color: #e5dcdc;
+  background-color: #1b9fdc;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%2322244a' stroke='%2322244a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-play'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'/%3E%3C/svg%3E");
   background-position: center;
   background-repeat: no-repeat;
@@ -505,6 +507,8 @@ a { text-decoration: none; cursor: pointer; }
   width: 120px;
   height: 60px;
   flex-shrink: 0;
+  border: none;
+  border-radius: 10px;
 }
 
 .right-area {
