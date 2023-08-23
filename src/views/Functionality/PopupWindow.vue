@@ -35,10 +35,10 @@
             >{{ buttonTextRight }}
           </button>
 
-          <button id="popupclosebutton" v-show="this.showButtons">
-            class="modal-default-button"
-            @click="buttonFunctionality"
-            >X
+          <button id="popupclosebutton" v-show="this.showButtons"
+          class="modal-default-button"
+          @click="this.$emit('close-popup');"
+          >X
           </button>
         </div>
       </div>
@@ -234,7 +234,7 @@ export default {
 .footertext {
   
   position: absolute;
-  right: 43%;
+  right: 45%;
   border-radius: 20px;
   float: right;
 }
@@ -264,13 +264,23 @@ export default {
 #popupbutton1 {
   
   position: absolute;
-  right: 37.5%;
+  
+  top: 72.5%;
+  right: 40%;
 }
 
 #popupbutton2 {
   
   position: absolute;
-  right: 35%;
+  top: 72.5%;
+  right: 37.5%;
+}
+
+#popupclosebutton {
+
+  position: absolute;
+  top: 25%;
+  right: 37.5%;
 }
 
 </style>

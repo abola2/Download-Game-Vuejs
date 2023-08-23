@@ -59,7 +59,7 @@ export default defineComponent({
 <style>
 
 
-<!--https://codepen.io/aybukeceylan/pen/yLOxRyG-->
+/*https://codepen.io/aybukeceylan/pen/yLOxRyG--*/
 
 
 
@@ -128,7 +128,7 @@ a { text-decoration: none; cursor: pointer; }
   display: flex;
   flex-direction: column;
   align-items: center;
-//transition: all cubic-bezier(0.25, 0.1, 0.28, 1.54) .5s;
+  transition: all cubic-bezier(0.25, 0.1, 0.28, 1.54) .5s;
   transition: all 300ms cubic-bezier(0.190, 1.000, 0.560, 1.000);
   position: relative;
   overflow: auto;
