@@ -15,23 +15,31 @@
 
           <div class="modal-body">
             <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''">
-            <slot name="body-text">{{ popupText }}</slot>
+            <div class="popup-text">{{ popupTextComputed }}</div>
           </div>
 
           <div class="modal-footer">
-            <slot name="footer">
+            <div class="footertext">
               {{ footerTextComputed }}
-              <button v-show="showButtons"
-                  class="modal-default-button"
-                  @click="hideButtons"
-              >{{ buttonTextLeft }}</button>
-
-              <button v-show="showButtons"
-                  class="modal-default-button"
-                  @click="buttonFunctionality"
-              >{{ buttonTextRight }}</button>
-            </slot>
+            </div>
           </div>
+          <button id="popupbutton1" v-show="this.showButtons"
+            class="modal-default-button"
+            @click="hideButtons"
+            >{{ buttonTextLeft }}
+          </button>
+
+          <button id="popupbutton2" v-show="this.showButtons"
+            class="modal-default-button"
+            @click="buttonFunctionality"
+            >{{ buttonTextRight }}
+          </button>
+
+          <button id="popupclosebutton" v-show="this.showButtons"
+          class="modal-default-button"
+          @click="this.$emit('close-popup');"
+          >X
+          </button>
         </div>
       </div>
     </div>
@@ -43,9 +51,10 @@
 </template>
 
 <script lang="ts">
-
+/* import { readFile } from "./readFromFile"; */
 
 export default {
+  
   data () {
     return {
       showButtons: true
@@ -69,8 +78,32 @@ export default {
       }
       else
       {
-      return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
-      
+        return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
+      }
+    },
+    
+    popupTextComputed (): string {
+      if (this.popupText != "TermsOfService")
+      {
+        /*
+        let modalbody = document.getElementById('modal-body') as HTMLElement;
+        modalbody.style.setProperty('overflow', 'hidden'); 
+         */
+        console.log("the popup should have this text:" + this.popupText);
+        return this.popupText;
+      }
+      else 
+      {
+        /*
+        let modalbody = document.getElementById('modal-body') as HTMLElement;
+        modalbody.style.setProperty('overflow', 'scroll'); 
+        */
+        /* const file = readFile('../../assets/fake_tos.txt'); 
+        not sure how to fix this, but it's not that important right now
+        Uncaught (in promise) Error: Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code.
+        */
+        const file = "TOS should be here anyday now...";
+        return file;
       }
     }
 
@@ -155,6 +188,7 @@ export default {
 
 
 <style>
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -188,11 +222,20 @@ export default {
 }
 
 .modal-body {
+
   margin: 20px 0;
 }
 
 .modal-default-button {
-  border-radius: 5px;
+  border-radius: 20px;
+  float: right;
+}
+
+.footertext {
+  
+  position: absolute;
+  right: 45%;
+  border-radius: 20px;
   float: right;
 }
 
@@ -218,4 +261,26 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+#popupbutton1 {
+  
+  position: absolute;
+  
+  top: 72.5%;
+  right: 40%;
+}
+
+#popupbutton2 {
+  
+  position: absolute;
+  top: 72.5%;
+  right: 37.5%;
+}
+
+#popupclosebutton {
+
+  position: absolute;
+  top: 25%;
+  right: 37.5%;
+}
+
 </style>

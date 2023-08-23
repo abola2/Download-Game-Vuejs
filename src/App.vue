@@ -9,7 +9,7 @@
   <LevelOne
       @addLevel="addLevel"
       @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes', false)"
-      @showTosPopup="popup(-1, '', 'We expect you to read the whole of our terms of service','placeholder', 'do you accept terms and conditions? ','Yes (no)', 'Yes', true)"
+      @showTosPopup="popup(-1, '', 'We expect you to read the whole of our terms of service','TermsOfService', 'do you accept terms and conditions? ','Yes (no)', 'Yes', true)"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelOne>
