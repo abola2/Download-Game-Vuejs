@@ -10,8 +10,8 @@
 <script lang="ts">
 
 import {defineComponent} from "vue";
-import { NumberOfClicks, ChangeNumberOfClicks } from '../../components/Functionality/globalVariables';
-
+let NumberOfClicks: number = 0;
+let clicksForLevelCompletion: number = 10;
 export default defineComponent({
   components: {
 
@@ -25,10 +25,6 @@ export default defineComponent({
   props: {
     currentLevel: {
       default: 0,
-      type: Number
-    },
-    clicksForLevelCompletion: {
-      default: 10,
       type: Number
     }
   },
@@ -46,7 +42,7 @@ export default defineComponent({
   methods: {
     
     moveButton() {
-      if (NumberOfClicks >= this.clicksForLevelCompletion)
+      if (NumberOfClicks >= clicksForLevelCompletion)
       {
         console.log("level completed");
         /*this.$emit('addLevel');*/
@@ -54,7 +50,7 @@ export default defineComponent({
       else 
       {
         console.log(NumberOfClicks);
-        ChangeNumberOfClicks(NumberOfClicks + 1);
+        NumberOfClicks++;
         let topPosition: number = Math.random()* (100 - 0) + 1;
         let leftPosition: number = Math.random()* (100 - 0) + 1;
         document.getElementById('movingButton')!.style.left = leftPosition + "%";
