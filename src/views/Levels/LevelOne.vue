@@ -18,7 +18,7 @@ Fill page with adds
   <div class="level1" v-show="currentLevel === 1">
     <div class="page_Header_Right"></div>
     <div class="page_Header_Left"></div>
-    <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
+    <h2 class="page_Header text-center">You fool! That wasn't a real download button. <br> But maybe one of these is?</h2>
       <button id = "button1" v-if="value===1" @click="$emit('showPopup')">Download</button>
       <img id="arrow1" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
       <img id="arrow2" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
@@ -140,16 +140,14 @@ iframe{
 
 
 .page_Header {
-  background: #dbe2e8;
-  height: 100px;
-  width: 100%;
+  height: 40%;
+  width: 40%;
   position: fixed;
   overflow: hidden;
   top: 0;
   left: 0;
-  padding: 10px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  padding: 10px -20px 20px;
+  transform: translate(75%, 10%);
   
 }
 
