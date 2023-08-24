@@ -18,7 +18,7 @@ Fill page with adds
   <div class="level1" v-show="currentLevel === 1">
     <div class="page_Header_Right"></div>
     <div class="page_Header_Left"></div>
-    <header class = "blue">You fool! That wasn't a real download button. <br> But maybe one of these is?</Header>
+    <header class = "blue">You fool! That wasn't a real download button. <br> But maybe you can find one here?</Header>
       <button id = "button1" v-if="value===1" @click="$emit('showPopup')">Download</button>
       <img id="arrow1" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">
       <img id="arrow2" v-if="value===1" src="../../assets/clickbait_arrow.png" alt="">

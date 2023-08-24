@@ -30,11 +30,17 @@
 
   <LevelTwo
       @addLevel="addLevel"
+      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes', false)"
       :current-level="currentLevel">
+      :popupWindow="popupWindow">
 
   </LevelTwo>
 
-
+  <LevelThree
+      @addLevel="addLevel"
+      :current-level="currentLevel"
+      :popupWindow="popupWindow">
+  </LevelThree>
 
 
 
@@ -47,6 +53,7 @@ import WelcomePage from './components/WelcomePage.vue'
 import {defineComponent} from "vue";
 import LevelOne from "@/views/Levels/LevelOne.vue";
 import LevelTwo from "@/views/Levels/LevelTwo.vue";
+import LevelThree from '@/views/Levels/LevelThree.vue';
 import PopupWindow from "@/views/Functionality/PopupWindow.vue";
 
 
@@ -73,6 +80,7 @@ export default defineComponent( {
   components: {
     LevelTwo,
     LevelOne,
+    LevelThree,
     WelcomePage,
     PopupWindow,
   },
