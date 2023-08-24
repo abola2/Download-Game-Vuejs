@@ -140,16 +140,14 @@ iframe{
 
 
 .page_Header {
-  background: #dbe2e8;
-  height: 100px;
-  width: 100%;
+  height: 40%;
+  width: 40%;
   position: fixed;
   overflow: hidden;
   top: 0;
   left: 0;
-  padding: 10px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  padding: 10px -20px 20px;
+  transform: translate(75%, 10%);
   
 }
 
