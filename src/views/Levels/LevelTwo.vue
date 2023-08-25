@@ -2,7 +2,8 @@
   <div class="level2" v-show="getCurrentLevel === 2">
     <header>Terms of service are important! <br/> Now that you have accepted them you can finally download our "program"</Header>
     <button id = "movingButton" @click="moveButton">Download</button>
-    <button id = "lvl2button" @click="$emit('showPopup')">Download</button>
+    <button id = "lvl2button" @click="eatCookies">Download</button>
+    <div class="counter">{{ count }}</div>
   </div>
 
 </template>
@@ -12,14 +13,28 @@
 import {defineComponent} from "vue";
 let NumberOfClicks: number = 0;
 let clicksForLevelCompletion: number = 10;
+let interval: number;
+let cookieMonsterActive: boolean = false;
+
+export function stopCookieMonster(){
+    cookieMonsterActive = false;
+    console.log('No more cookies for the monster');
+  }
+
 export default defineComponent({
   components: {
 
   },
+  data () {
+    return {
+      count: 100,
+    }
+  },
 
   emits: [
       'addLevel',
-      'showPopup'
+      'showPopup',
+      'cookieMonsterPopup'
   ],
 
   props: {
@@ -51,6 +66,7 @@ export default defineComponent({
       {
         console.log(NumberOfClicks);
         NumberOfClicks++;
+        this.count++;
         let topPosition: number = Math.random()* (100 - 0) + 1;
         let leftPosition: number = Math.random()* (100 - 0) + 1;
         document.getElementById('movingButton')!.style.left = leftPosition + "%";
@@ -59,6 +75,21 @@ export default defineComponent({
         document.getElementById('movingButton')!.style.opacity = opacity;
         console.log("positions: ", topPosition,", ", leftPosition);
       }
+    },
+    eatCookies(){
+      this.$emit('cookieMonsterPopup')
+      cookieMonsterActive = true;
+      interval = setInterval(this.nomnom, 433)
+      console.log(interval)
+    },
+    nomnom() {
+      if (!cookieMonsterActive)
+      {
+        console.log(interval)
+        clearInterval(interval);
+        return;
+      }
+      this.count--;
     }
   }
 
@@ -72,6 +103,22 @@ export default defineComponent({
 header {
   color: #2563EB;
 }
+
+.counter {
+  position: absolute;
+  
+  border-width: 3px;
+  background-color: #555;
+  border-style: solid;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  left: 85%;
+  top: 10%;
+}
+
 #movingButton {
   position: absolute;
   opacity: 0.05;

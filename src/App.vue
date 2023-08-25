@@ -31,8 +31,10 @@
   <LevelTwo
       @addLevel="addLevel"
       @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes', false)"
+      @cookieMonsterPopup="popup(-1, 'https://media.giphy.com/media/JrH3p5ZyUHEV6iyvR4/giphy.gif', 'OH NO! The Cookie Monster got to your cookie jar!', '', 'Stop him immediately!','but he\'s cute', 'Yes!', false)"
       :current-level="currentLevel">
       :popupWindow="popupWindow">
+      :cookieMonster="cookieMonsterActive">
 
   </LevelTwo>
 
@@ -54,6 +56,7 @@ import {defineComponent} from "vue";
 import LevelOne from "@/views/Levels/LevelOne.vue";
 import LevelTwo from "@/views/Levels/LevelTwo.vue";
 import LevelThree from '@/views/Levels/LevelThree.vue';
+import {stopCookieMonster} from "@/views/Levels/LevelTwo.vue";
 import PopupWindow from "@/views/Functionality/PopupWindow.vue";
 
 
@@ -73,7 +76,8 @@ export default defineComponent( {
       footerText: "",
       buttonTextLeft: "",
       buttonTextRight: "",
-      tosButton: false
+      tosButton: false,
+      cookieMonsterActive: false
     }
   },
 
@@ -121,6 +125,7 @@ export default defineComponent( {
 
     closePopup() {
       if (this.popupWindow) {
+        stopCookieMonster();
         this.popupWindow = false
       }
     }
