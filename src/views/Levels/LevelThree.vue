@@ -1,6 +1,7 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
     <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D</Header>
+    
     </div>
 
 </template>
