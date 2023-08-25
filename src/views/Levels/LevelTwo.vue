@@ -1,11 +1,22 @@
+
+
+
 <template>
-  <div class="level2" v-show="getCurrentLevel === 2">
-    <header>Terms of service are important! <br/> Now that you have accepted them you can finally download our "program"</Header>
-    <button id = "movingButton" @click="moveButton">Download</button>
-    <button id = "lvl2button" @click="$emit('showPopup')">Download</button>
+  <div class="level3" v-show="getCurrentLevel === 2">
+
+    <div class="full-screen-background">
+      <div class="center-container">
+        <button class="centered-button glow" @click="cookies++">CLICK ME</button>
+      </div>
+      <header>Cookie amount: {{ cookies }}</header>
+      <!-- Your content goes here -->
+      <div class="page_Header_Right"></div>
+    </div>
   </div>
 
 </template>
+
+
 
 <script lang="ts">
 
@@ -13,13 +24,21 @@ import {defineComponent} from "vue";
 let NumberOfClicks: number = 0;
 let clicksForLevelCompletion: number = 10;
 export default defineComponent({
+  data () {
+    return {
+      show: false,
+      wait: 5.0,
+      cookies: 0
+
+    }
+  },
   components: {
 
   },
 
   emits: [
-      'addLevel',
-      'showPopup'
+      'addLevel'
+
   ],
 
   props: {
@@ -40,23 +59,26 @@ export default defineComponent({
 
   },
   methods: {
-    /*completes level once the button has been clicked x times. If the button hasn't been clicked x times moveButton teleports the button to a random position on the screen, and makes it a little easier to see.*/
+
+    cookieClick() {
+
+      this.cookies++
+    },
+    
     moveButton() {
       if (NumberOfClicks >= clicksForLevelCompletion)
       {
         console.log("level completed");
-        this.$emit('addLevel');
+        /*this.$emit('addLevel');*/
       }
       else 
       {
         console.log(NumberOfClicks);
         NumberOfClicks++;
-        let topPosition: number = Math.random()* (100 - 0) + 1;
-        let leftPosition: number = Math.random()* (100 - 0) + 1;
+        let topPosition: number = Math.random()* (100) + 1;
+        let leftPosition: number = Math.random()* (100) + 1;
         document.getElementById('movingButton')!.style.left = leftPosition + "%";
         document.getElementById('movingButton')!.style.top = topPosition + "%";
-        let opacity: string = ((NumberOfClicks + 1) /10).toString();
-        document.getElementById('movingButton')!.style.opacity = opacity;
         console.log("positions: ", topPosition,", ", leftPosition);
       }
     }
@@ -67,28 +89,110 @@ export default defineComponent({
 </script>
 
 
-<style scoped>
+<style>
 
-header {
-  color: #2563EB;
+.page_Header_Right {
+  background: #dbe2e8;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 95%;
+  bottom: 0;
+  transition: left 1.5s ease-in-out;
+
+
 }
+
+.page_Header_Right:hover {
+  background: #d4dae0;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 70%;
+  bottom: 0;
+  transition: left 1.5s ease-in-out;
+
+
+
+}
+
+
+.page_Header_Left {
+  background: #dbe2e8;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  right: 80%;
+  bottom: 0;
+}
+
+
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+
+}
+
+
+.full-screen-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #84a3d2; /* Replace with your desired background color */
+}
+
+
+.centered-button {
+  width: 50%;
+  height: 20%;
+  border-radius: 10px;
+  font-size: larger;
+  font-family: 'DM Sans', sans-serif;
+  transform: scale(1);
+  transition: transform 0.01s ease-in-out;
+
+}
+
+
+.glow {
+  -webkit-box-shadow:0 0 30px #ffffff;
+  -moz-box-shadow: 0 0 30px #f5efef;
+  box-shadow:0 0 30px #e2e2ea;
+}
+
+
+.centered-button:active {
+  transform: scale(1.02);
+  transition: transform 0.05s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
 #movingButton {
   position: absolute;
-  opacity: 0.05;
+  background-color: skyblue;
+  border-radius: 5px;
   height: 5%;
   width: 10%;
-  top: 0%;
-  left: 0%;
-}
-
-#lvl2button {
-  position: absolute;
-  /*always keep this button smaller than #movingButton,
-  so you can click it even if they are on top of each other */
-  height: 4%;
-  width: 9%;
   top: 50%;
-  left: 45%;
+  left: 50%;
 }
 
 </style>
