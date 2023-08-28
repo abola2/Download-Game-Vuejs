@@ -10,7 +10,7 @@
       </div>
       <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
       <!-- Your content goes here -->
-      <div class="page_Header_Right">
+      <div class="page_Header_Right_shop">
         <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies: {{ cookiesPerClick.toFixed(2) }}</button>
         <button @click="buyMultiplayer" class="">Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer: {{ cookieMultiplayer.toFixed(2) }}</button>
       </div>
@@ -115,7 +115,7 @@ export default defineComponent({
 
 <style>
 
-.page_Header_Right {
+.page_Header_Right_shop {
   background: #dbe2e8;
   width: 30%;
   position: absolute;
@@ -129,7 +129,7 @@ export default defineComponent({
 
 }
 
-.page_Header_Right:hover {
+.page_Header_Right_shop:hover {
   background: #d4dae0;
   width: 30%;
   position: absolute;
