@@ -8,11 +8,11 @@
       <div class="center-container">
         <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
       </div>
-      <header>Cookie amount: {{ cookies }}</header>
+      <header>Cookie amount: {{ cookies }} </header>
       <!-- Your content goes here -->
       <div class="page_Header_Right">
-        <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice }} Cookies: {{ cookiesPerClickPrice }}</button>
-        <button @click="buyMultiplayer" class="">Cookie multiplayer price : {{ cookieMultiplayerPrice }} Multiplayer: {{ cookieMultiplayerPrice }}</button>
+        <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice }} Cookies: {{ cookiesPerClick }}</button>
+        <button @click="buyMultiplayer" class="">Cookie multiplayer price: {{ cookieMultiplayerPrice }} Multiplayer: {{ cookieMultiplayer }}</button>
       </div>
     </div>
   </div>
@@ -32,9 +32,9 @@ export default defineComponent({
       show: false,
       wait: 5.0,
       cookies: 0,
-      cookiesPerClick: 1,
+      cookiesPerClick: 2,
       cookiesPerClickPrice: 10,
-      cookieMultiplayer: 1,
+      cookieMultiplayer: 2,
       cookieMultiplayerPrice: 10
     }
   },
@@ -67,14 +67,15 @@ export default defineComponent({
   methods: {
 
     cookieClick() {
-
       this.cookies = this.cookies + this.cookiesPerClickPrice * this.cookieMultiplayer;
     },
+
     buyMultiplayer() {
       if (this.cookies >= this.cookieMultiplayerPrice)
       {
         this.cookies = this.cookies - this.cookieMultiplayerPrice
         this.cookieMultiplayer = this.cookieMultiplayer * 1.25
+        this.cookieMultiplayerPrice = this.cookieMultiplayerPrice + this.cookieMultiplayer * this.cookieMultiplayerPrice
       }
 
     },
@@ -82,7 +83,8 @@ export default defineComponent({
       if (this.cookies >= this.cookiesPerClickPrice)
       {
         this.cookies = this.cookies - this.cookiesPerClickPrice
-        this.cookiesPerClick = this.cookiesPerClick * 1.10
+        this.cookiesPerClick = this.cookiesPerClick * 1.5
+        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick
       }
 
     },
