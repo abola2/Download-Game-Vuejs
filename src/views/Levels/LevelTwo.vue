@@ -8,7 +8,7 @@
       <div class="center-container">
         <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
       </div>
-      <header>Cookie amount: {{ cookies }} </header>
+      <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
       <!-- Your content goes here -->
       <div class="page_Header_Right">
         <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies: {{ cookiesPerClick.toFixed(2) }}</button>
