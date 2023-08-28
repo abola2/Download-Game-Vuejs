@@ -13,8 +13,9 @@
       <div class="page_Header_Top">
         <!-- Your content goes here -->
         <h2 class="center-container-header">Earn million cookies to skip add</h2>
+        <h5 class="center-container-header" v-if="!skipAdd"> Level completed!</h5>
         <div class="center-container-skip">
-        <button class="center-button-skip" @click="$emit('addLevel')" :disabled="skipAdd">click</button>
+        <button class="center-button-skip" @click="$emit('addLevel')" :disabled="skipAdd">Skip add</button>
         </div>
       </div>
         <div class="page_Header_Right_shop">
@@ -208,7 +209,7 @@ export default defineComponent({
   width: 80px;
   text-align: center;
   justify-content: center;
-  margin-top: -15px;
+  margin-top: -50px;
   margin-right: 10px;
 }
 
