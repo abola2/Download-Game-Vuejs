@@ -15,20 +15,20 @@
         {{ popupText }}
       </div>
       <div class="right-container">
-        <b id="popupbutton1" v-show="this.showButtons"
+        <b id="popupbutton1" v-show="showButtons"
            class="button"
            @click="hideButtons"
         >{{ buttonTextLeft }}
         </b>
-        <b id="popupbutton2" v-show="this.showButtons"
+        <b id="popupbutton2" v-show="showButtons"
            class="button"
            @click="buttonFunctionality"
         >{{ buttonTextRight }}
         </b>
       </div>
-        <a id="popupclosebutton" v-show="this.showButtons"
+        <a id="popupclosebutton" v-show="showButtons"
            class="button-close"
-           @click="this.$emit('close-popup');"
+           @click="$emit('close-popup');"
         >X
         </a>
 
