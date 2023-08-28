@@ -6,11 +6,14 @@
 
     <div class="full-screen-background">
       <div class="center-container">
-        <button class="centered-button glow" @click="cookies++">CLICK ME</button>
+        <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
       </div>
       <header>Cookie amount: {{ cookies }}</header>
       <!-- Your content goes here -->
-      <div class="page_Header_Right"></div>
+      <div class="page_Header_Right">
+        <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice }} Cookies: {{ cookiesPerClickPrice }}</button>
+        <button @click="buyMultiplayer" class="">Cookie multiplayer price : {{ cookieMultiplayerPrice }} Multiplayer: {{ cookieMultiplayerPrice }}</button>
+      </div>
     </div>
   </div>
 
@@ -28,8 +31,11 @@ export default defineComponent({
     return {
       show: false,
       wait: 5.0,
-      cookies: 0
-
+      cookies: 0,
+      cookiesPerClick: 1,
+      cookiesPerClickPrice: 10,
+      cookieMultiplayer: 1,
+      cookieMultiplayerPrice: 10
     }
   },
   components: {
@@ -62,7 +68,23 @@ export default defineComponent({
 
     cookieClick() {
 
-      this.cookies++
+      this.cookies = this.cookies + this.cookiesPerClickPrice * this.cookieMultiplayer;
+    },
+    buyMultiplayer() {
+      if (this.cookies >= this.cookieMultiplayerPrice)
+      {
+        this.cookies = this.cookies - this.cookieMultiplayerPrice
+        this.cookieMultiplayer = this.cookieMultiplayer * 1.25
+      }
+
+    },
+    buyMoreCookies() {
+      if (this.cookies >= this.cookiesPerClickPrice)
+      {
+        this.cookies = this.cookies - this.cookiesPerClickPrice
+        this.cookiesPerClick = this.cookiesPerClick * 1.10
+      }
+
     },
     
     moveButton() {
@@ -149,7 +171,7 @@ export default defineComponent({
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #84a3d2; /* Replace with your desired background color */
+  background-color: #84a3d2;
 }
 
 
