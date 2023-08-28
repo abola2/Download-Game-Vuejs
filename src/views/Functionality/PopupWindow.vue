@@ -14,7 +14,7 @@
       <div class="content">
         {{ popupText }}
       </div>
-      <div>
+      <div class="right-container">
         <b id="popupbutton1" v-show="this.showButtons"
            class="button"
            @click="hideButtons"
@@ -25,13 +25,13 @@
            @click="buttonFunctionality"
         >{{ buttonTextRight }}
         </b>
-
+      </div>
         <a id="popupclosebutton" v-show="this.showButtons"
            class="button-close"
            @click="this.$emit('close-popup');"
         >X
         </a>
-      </div>
+
     </div>
   </div>
 
@@ -159,14 +159,15 @@ export default {
 <style>
 .button {
   cursor: pointer;
-  font-size: 20px;
-  height: 15px;
+  font-size: 18px;
+  height: 25px;
   width: 25%;
   color: black;
   border-radius: 2px/5px;
   border: 1px solid black;
   transition: all 0.2s ease-out;
   text-align: center;
+
 }
 
 
@@ -187,6 +188,16 @@ export default {
 
 #popupclosebutton:hover {
   background: #a60a5c;
+}
+
+.right-container {
+  display: flex;
+  justify-content: right;
+  align-items: normal;
+  align-content: center;
+  height: 10px; /* Adjust the height as needed */
+  gap: 10px;
+
 }
 
 
