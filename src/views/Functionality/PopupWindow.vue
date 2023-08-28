@@ -183,11 +183,14 @@ export default {
   color: #333;
 }
 .button:hover {
-  background: #06D85F;
+  background: #d0caca;
+  transform: scale(1.01);
 }
 
 #popupclosebutton:hover {
-  background: #a60a5c;
+  color: #a60a5c;
+  background: none;
+  transform: scale(1.01);
 }
 
 .right-container {
@@ -227,9 +230,6 @@ export default {
   font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .close:hover {
-  color: #06D85F;
-}
 .popup .content {
   max-height: 30%;
   overflow: auto;
