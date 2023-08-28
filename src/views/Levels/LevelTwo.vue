@@ -11,8 +11,8 @@
       <header>Cookie amount: {{ cookies }} </header>
       <!-- Your content goes here -->
       <div class="page_Header_Right">
-        <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice }} Cookies: {{ cookiesPerClick }}</button>
-        <button @click="buyMultiplayer" class="">Cookie multiplayer price: {{ cookieMultiplayerPrice }} Multiplayer: {{ cookieMultiplayer }}</button>
+        <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies: {{ cookiesPerClick.toFixed(2) }}</button>
+        <button @click="buyMultiplayer" class="">Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer: {{ cookieMultiplayer.toFixed(2) }}</button>
       </div>
     </div>
   </div>
@@ -139,9 +139,6 @@ export default defineComponent({
   left: 70%;
   bottom: 0;
   transition: left 1.5s ease-in-out;
-
-
-
 }
 
 
