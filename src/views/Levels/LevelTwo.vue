@@ -1,40 +1,50 @@
+
+
+
 <template>
-  <div class="level2" v-show="getCurrentLevel === 2">
-    <header>Terms of service are important! <br/> Now that you have accepted them you can finally download our "program"</Header>
-    <button id = "movingButton" @click="moveButton">Download</button>
-    <button id = "lvl2button" @click="eatCookies">Download</button>
-    <div class="counter">{{ count }}</div>
+  <div class="level3" v-show="getCurrentLevel === 2">
+
+    <div class="full-screen-background">
+      <div class="center-container">
+        <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
+      </div>
+      <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
+      <!-- Your content goes here -->
+      <div class="page_Header_Right">
+        <button @click="buyMoreCookies" class="">Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies: {{ cookiesPerClick.toFixed(2) }}</button>
+        <button @click="buyMultiplayer" class="">Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer: {{ cookieMultiplayer.toFixed(2) }}</button>
+      </div>
+    </div>
   </div>
 
 </template>
+
+
 
 <script lang="ts">
 
 import {defineComponent} from "vue";
 let NumberOfClicks: number = 0;
 let clicksForLevelCompletion: number = 10;
-let interval: number;
-let cookieMonsterActive: boolean = false;
-
-export function stopCookieMonster(){
-    cookieMonsterActive = false;
-    console.log('No more cookies for the monster');
-  }
-
 export default defineComponent({
+  data () {
+    return {
+      show: false,
+      wait: 5.0,
+      cookies: 0,
+      cookiesPerClick: 2,
+      cookiesPerClickPrice: 10,
+      cookieMultiplayer: 2,
+      cookieMultiplayerPrice: 10
+    }
+  },
   components: {
 
   },
-  data () {
-    return {
-      count: 100,
-    }
-  },
 
   emits: [
-      'addLevel',
-      'showPopup',
-      'cookieMonsterPopup'
+      'addLevel'
+
   ],
 
   props: {
@@ -55,41 +65,46 @@ export default defineComponent({
 
   },
   methods: {
-    /*completes level once the button has been clicked x times. If the button hasn't been clicked x times moveButton teleports the button to a random position on the screen, and makes it a little easier to see.*/
+
+    cookieClick() {
+      this.cookies = this.cookies + this.cookiesPerClickPrice * this.cookieMultiplayer;
+    },
+
+    buyMultiplayer() {
+      if (this.cookies >= this.cookieMultiplayerPrice)
+      {
+        this.cookies = this.cookies - this.cookieMultiplayerPrice
+        this.cookieMultiplayer = this.cookieMultiplayer * 1.25
+        this.cookieMultiplayerPrice = this.cookieMultiplayerPrice + this.cookieMultiplayer * this.cookieMultiplayerPrice
+      }
+
+    },
+    buyMoreCookies() {
+      if (this.cookies >= this.cookiesPerClickPrice)
+      {
+        this.cookies = this.cookies - this.cookiesPerClickPrice
+        this.cookiesPerClick = this.cookiesPerClick * 1.5
+        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick
+      }
+
+    },
+    
     moveButton() {
       if (NumberOfClicks >= clicksForLevelCompletion)
       {
         console.log("level completed");
-        this.$emit('addLevel');
+        /*this.$emit('addLevel');*/
       }
       else 
       {
         console.log(NumberOfClicks);
         NumberOfClicks++;
-        this.count++;
-        let topPosition: number = Math.random()* (100 - 0) + 1;
-        let leftPosition: number = Math.random()* (100 - 0) + 1;
+        let topPosition: number = Math.random()* (100) + 1;
+        let leftPosition: number = Math.random()* (100) + 1;
         document.getElementById('movingButton')!.style.left = leftPosition + "%";
         document.getElementById('movingButton')!.style.top = topPosition + "%";
-        let opacity: string = ((NumberOfClicks + 1) /10).toString();
-        document.getElementById('movingButton')!.style.opacity = opacity;
         console.log("positions: ", topPosition,", ", leftPosition);
       }
-    },
-    eatCookies(){
-      this.$emit('cookieMonsterPopup')
-      cookieMonsterActive = true;
-      interval = setInterval(this.nomnom, 433)
-      console.log(interval)
-    },
-    nomnom() {
-      if (!cookieMonsterActive)
-      {
-        console.log(interval)
-        clearInterval(interval);
-        return;
-      }
-      this.count--;
     }
   }
 
@@ -98,44 +113,107 @@ export default defineComponent({
 </script>
 
 
-<style scoped>
+<style>
 
-header {
-  color: #2563EB;
-}
-
-.counter {
+.page_Header_Right {
+  background: #dbe2e8;
+  width: 30%;
   position: absolute;
-  
-  border-width: 3px;
-  background-color: #555;
-  border-style: solid;
-  width: 100px;
-  height: 40px;
-  text-align: center;
-  font-size: 20px;
-  color: white;
-  left: 85%;
-  top: 10%;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 95%;
+  bottom: 0;
+  transition: left 1.5s ease-in-out;
+
+
 }
+
+.page_Header_Right:hover {
+  background: #d4dae0;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 70%;
+  bottom: 0;
+  transition: left 1.5s ease-in-out;
+}
+
+
+.page_Header_Left {
+  background: #dbe2e8;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  right: 80%;
+  bottom: 0;
+}
+
+
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+
+}
+
+
+.full-screen-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #84a3d2;
+}
+
+
+.centered-button {
+  width: 50%;
+  height: 20%;
+  border-radius: 10px;
+  font-size: larger;
+  font-family: 'DM Sans', sans-serif;
+  transform: scale(1);
+  transition: transform 0.01s ease-in-out;
+
+}
+
+
+.glow {
+  -webkit-box-shadow:0 0 30px #ffffff;
+  -moz-box-shadow: 0 0 30px #f5efef;
+  box-shadow:0 0 30px #e2e2ea;
+}
+
+
+.centered-button:active {
+  transform: scale(1.02);
+  transition: transform 0.05s ease-in-out;
+}
+
+
+
+
+
+
+
+
 
 #movingButton {
   position: absolute;
-  opacity: 0.05;
+  background-color: skyblue;
+  border-radius: 5px;
   height: 5%;
   width: 10%;
-  top: 0%;
-  left: 0%;
-}
-
-#lvl2button {
-  position: absolute;
-  /*always keep this button smaller than #movingButton,
-  so you can click it even if they are on top of each other */
-  height: 4%;
-  width: 9%;
   top: 50%;
-  left: 45%;
+  left: 50%;
 }
 
 </style>
