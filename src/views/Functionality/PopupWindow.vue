@@ -1,81 +1,53 @@
-
-
 <template>
-
-
-
   <!--with video-->
-
 
   <div v-if="popupWindow" id="popup1" class="overlay">
     <div class="popup">
       <h2>{{ popupTitle }}</h2>
-      <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''">
+      <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''" />
       <div class="content">
         {{ popupText }}
       </div>
       <div class="right-container">
-        <b id="popupbutton1" v-show="showButtons"
-           class="button"
-           @click="hideButtons"
-        >{{ buttonTextLeft }}
+        <b id="popupbutton1" v-show="showButtons" class="button" @click="hideButtons"
+          >{{ buttonTextLeft }}
         </b>
-        <b id="popupbutton2" v-show="showButtons"
-           class="button"
-           @click="buttonFunctionality"
-        >{{ buttonTextRight }}
+        <b id="popupbutton2" v-show="showButtons" class="button" @click="buttonFunctionality"
+          >{{ buttonTextRight }}
         </b>
       </div>
-        <a id="popupclosebutton" v-show="showButtons"
-           class="button-close"
-           @click="$emit('close-popup');"
+      <a
+        id="popupclosebutton"
+        v-show="showButtons"
+        class="button-close"
+        @click="$emit('close-popup')"
         >X
-        </a>
-
+      </a>
     </div>
   </div>
-
-
-
-
-
-
-
-
 </template>
 
 <script lang="ts">
-
-
 export default {
-  data () {
+  data() {
     return {
       showButtons: true
     }
   },
-  emits: [
-    'addLevel',
-    'close-popup'
-  ],
-  components: {
-  },
+  emits: ['addLevel', 'close-popup'],
+  components: {},
   computed: {
-    getCurrentLevel (): number {
-      return this.currentLevel;
+    getCurrentLevel(): number {
+      return this.currentLevel
     },
 
-    footerTextComputed (): string {
-      if (this.footerText != "")
-      {
-        return !this.showButtons ? "Oof" : this.footerText;
-      }
-      else
-      {
-        return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
-
+    footerTextComputed(): string {
+      if (this.footerText != '') {
+        return !this.showButtons ? 'Oof' : this.footerText
+      } else {
+        return !this.showButtons ? 'Oof' : "Isn't this monkey cute?"
       }
     }
-
   },
   props: {
     currentLevel: {
@@ -87,74 +59,60 @@ export default {
       type: Boolean
     },
     imageUrl: {
-      default: "",
+      default: '',
       type: String
-
     },
     popupTitle: {
-      default: " nej",
+      default: ' nej',
       type: String
     },
-    popupText:
-        {
-          default: "",
-          type: String
-        },
-    buttonTextLeft:
-        {
-          default:"Yes (no)",
-          type: String
-        },
-    buttonTextRight:
-        {
-          default:"Yes",
-          type: String
-        },
-    footerText:
-        {
-          default:"",
-          type: String
-        },
-    tosButton:
-        {
-          default: false,
-          type: Boolean
-        }
+    popupText: {
+      default: '',
+      type: String
+    },
+    buttonTextLeft: {
+      default: 'Yes (no)',
+      type: String
+    },
+    buttonTextRight: {
+      default: 'Yes',
+      type: String
+    },
+    footerText: {
+      default: '',
+      type: String
+    },
+    tosButton: {
+      default: false,
+      type: Boolean
+    }
   },
-  methods:{
-    hideButtons () {
+  methods: {
+    hideButtons() {
       this.toggleButtons()
-      console.log("hide buttons")
+      console.log('hide buttons')
       setTimeout(() => {
-        console.log("show buttons")
+        console.log('show buttons')
         this.toggleButtons()
-      }, 900);
+      }, 900)
     },
     toggleButtons() {
-      this.showButtons ? this.showButtons = false : this.showButtons = true;
+      this.showButtons ? (this.showButtons = false) : (this.showButtons = true)
     },
     buttonFunctionality() {
-      if (this.tosButton)
-      {
-        console.log("adding level");
-        this.$emit('addLevel');
-        this.$emit('close-popup');
-      }
-      else
-      {
-        console.log("closing popup");
-        this.$emit('close-popup');
+      if (this.tosButton) {
+        console.log('adding level')
+        this.$emit('addLevel')
+        this.$emit('close-popup')
+      } else {
+        console.log('closing popup')
+        this.$emit('close-popup')
       }
     }
-
-
-
   },
-  watch: {
-  }
+  watch: {}
 }
 </script>
-
 
 <style>
 .button {
@@ -167,9 +125,7 @@ export default {
   border: 1px solid black;
   transition: all 0.2s ease-out;
   text-align: center;
-
 }
-
 
 .button-close {
   position: absolute;
@@ -198,11 +154,9 @@ export default {
   justify-content: right;
   align-items: normal;
   align-content: center;
-  height: 10px; /* Adjust the height as needed */
+  height: 10px;
   gap: 10px;
-
 }
-
 
 .overlay {
   top: 0;
@@ -236,7 +190,6 @@ export default {
 }
 
 @media screen and (max-width: 700px) {
-
   .popup {
     width: 70%;
   }

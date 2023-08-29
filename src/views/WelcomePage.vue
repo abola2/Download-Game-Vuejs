@@ -1,34 +1,22 @@
-
-<template >
-
-  <PopupWindows>
-
-  </PopupWindows>
-
+<template>
+  <PopupWindows> </PopupWindows>
 
   <section class="parent" v-show="currentLevel == 0">
     <body class="body">
-    <h1 class="text-center"> Welcome to the funny download game.</h1>
-    <h4 class="text-center "> Start the game by downloading a very nonsuspicious "program"</h4>
-    <button class="btn-play col-lg-12" @click="$emit('addLevel')"></button>
+      <h1 class="text-center">Welcome to the funny download game.</h1>
+      <h4 class="text-center">Start the game by downloading a very nonsuspicious "program"</h4>
+      <button class="btn-play col-lg-12" @click="$emit('addLevel')"></button>
     </body>
   </section>
-
 </template>
 
 <script lang="ts">
-
-import {defineComponent} from "vue";
-
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  components: {
+  components: {},
 
-  },
-
-  emits: [
-    'addLevel',
-  ],
+  emits: ['addLevel'],
 
   props: {
     currentLevel: {
@@ -37,37 +25,20 @@ export default defineComponent({
     }
   },
   computed: {
-    getCurrentLevel (): number {
-      return this.currentLevel;
+    getCurrentLevel(): number {
+      return this.currentLevel
     }
   },
-  watch: {
-
-
-
-  }
+  watch: {}
 })
-
-
-
-
-
 </script>
 
-
-
 <style>
-
-
 /*https://codepen.io/aybukeceylan/pen/yLOxRyG--*/
-
-
-
 
 * {
   box-sizing: border-box;
 }
-
 
 .ex2 .parent {
   display: flex;
@@ -75,17 +46,17 @@ export default defineComponent({
   justify-content: center;
 }
 
-
-
 .parent {
   display: flex;
   flex-wrap: wrap;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
-html { scroll-behavior: smooth; }
-
-html, body {
+html,
+body {
   width: 90%;
   height: 20vh;
   margin: 0;
@@ -106,20 +77,18 @@ html, body {
   --light-font: #79798c;
 }
 
-a { text-decoration: none; cursor: pointer; }
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
 
+&-header {
+  display: table-header-group;
+}
 
-
-
-
-  &-header {
-    display: table-header-group;
-  }
-
-  &-row {
-    display: table-row-group;
-  }
-
+&-row {
+  display: table-row-group;
+}
 
 @keyframes sticky {
   0% {
@@ -143,11 +112,4 @@ a { text-decoration: none; cursor: pointer; }
   border: none;
   border-radius: 10px;
 }
-
-
-
-
-
-
-
 </style>
