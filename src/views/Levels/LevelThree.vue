@@ -1,7 +1,8 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
-    <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D</Header>
-    
+    <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
+    <button class="initialButton1" @click="allTheButtons('initialButton1')">Download</button>
+    <button class="initialButton2" @click="allTheButtons('initialButton2')">Download</button>
     </div>
 
 </template>
@@ -10,7 +11,25 @@
 
 import {defineComponent} from "vue";
 let NumberOfClicks: number = 0;
-let clicksForLevelCompletion: number = 1000;
+let nOfTimesButtonsCreated: number = 0; // this exists so that when the user creates buttons multiple times they can still have different id:s
+let numberOfButtons: number = 50;
+let allButtonsClicked: boolean = false;
+let correctButton: string = "";
+
+function levelProgression(id: string)
+{
+console.log(NumberOfClicks + ' id: ' + id); 
+NumberOfClicks++;
+const btn = document.getElementById(id)
+btn?.remove();
+
+if (NumberOfClicks >= numberOfButtons)
+{
+    console.log('all buttons clicked')
+    allButtonsClicked = true;
+}
+}
+
 export default defineComponent({
 components: {
 
@@ -18,6 +37,7 @@ components: {
 
 emits: [
     'addLevel',
+    'sudokuPopup',
     'showPopup'
 ],
 
@@ -39,25 +59,58 @@ watch: {
 
 },
 methods: {
-    /*completes level once the button has been clicked x times. If the button hasn't been clicked x times moveButton teleports the button to a random position on the screen, and makes it a little easier to see.*/
-    moveButton() {
-    if (NumberOfClicks >= clicksForLevelCompletion)
+    /*Creates a lot of buttons that delete on click. You have to click them all to complete the level.*/
+    allTheButtons(iButton: string) {
+    // if you clicked iButton, cleared all the buttons that it created, and then click iButton again then you can complete the level.
+    if (correctButton == iButton && allButtonsClicked) 
     {
-        console.log("level completed");
-        /*this.$emit('addLevel');*/
+        this.completeLevel();
+        return;
     }
-    else 
+
+    else
     {
-        console.log(NumberOfClicks);
-        NumberOfClicks++;
-        let topPosition: number = Math.random()* (100 - 0) + 1;
-        let leftPosition: number = Math.random()* (100 - 0) + 1;
-        document.getElementById('movingButton')!.style.left = leftPosition + "%";
-        document.getElementById('movingButton')!.style.top = topPosition + "%";
-        let opacity: string = ((NumberOfClicks + 1) /10).toString();
-        document.getElementById('movingButton')!.style.opacity = opacity;
-        console.log("positions: ", topPosition,", ", leftPosition);
+        correctButton = iButton;
+        allButtonsClicked = false;
+        NumberOfClicks = 0;
+        
+        nOfTimesButtonsCreated++;
+        for (let i= 0; i < numberOfButtons; i++){
+            console.log(i);
+            let newButton = document.createElement('button');
+            newButton.style.height = '30px';
+            newButton.style.width = '100px';
+            newButton.style.backgroundColor = '#0a66C2';
+            newButton.style.color = '#ffffff';
+            newButton.style.borderRadius = '25px';
+            newButton.id = 'b' + i + 'n' + nOfTimesButtonsCreated;
+            console.log(newButton.id + "  " + newButton.className);
+            let topPosition: number = Math.random()* (95 - 5);
+            let leftPosition: number = Math.random()* (95 - 5);
+            
+            newButton.style.position = 'absolute';
+            newButton.style.left = leftPosition + "%";
+            newButton.style.top = topPosition + "%";
+            
+            if (i % 10 == 0) // change this 
+            {
+                newButton.onclick = () => this.$emit('sudokuPopup');
+                newButton.textContent = 'Downlod';
+            }
+            else {
+                newButton.onclick = function() { levelProgression(newButton.id) };
+                newButton.textContent = 'Download'; 
+            }
+
+            document.body.appendChild(newButton);
+        }
     }
+    
+    },
+    completeLevel()
+    {
+    console.log("level completed");
+    /*this.$emit('addLevel');*/
     }
 }
 
@@ -69,25 +122,44 @@ methods: {
 <style scoped>
 
 header {
+font-size: xx-large;
 color: #2563EB;
 }
-#movingButton {
+.initialButton1 {
+background-color: #0a66C2;
+color: white;
+border-radius: 25px;
+
 position: absolute;
-opacity: 0.05;
-height: 5%;
-width: 10%;
-top: 0%;
-left: 0%;
+height: 30px;
+width: 100px;
+top: 50%;
+left: 55%;
+
+transform: translate(-50%, -50%);
 }
 
-#lvl2button {
+.initialButton2 {
+background-color: #0a66C2;
+color: white;
+border-radius: 25px;
+
 position: absolute;
-/*always keep this button smaller than #movingButton,
-so you can click it even if they are on top of each other */
-height: 4%;
-width: 9%;
+height: 30px;
+width: 100px;
 top: 50%;
 left: 45%;
+
+transform: translate(-50%, -50%);
 }
+
+.initialButton1:hover,
+.initialButton1:focus,
+.initialButton2:hover,
+.initialButton2:focus { 
+background-color: #16437E;
+color: #ffffff;
+}
+
 
 </style>

@@ -101,6 +101,7 @@ export default defineComponent({
 <style scoped>
 
 header {
+  font-size: xx-large;
   color: #2563EB;
 }
 

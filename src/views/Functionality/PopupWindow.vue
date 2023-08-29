@@ -78,7 +78,7 @@ export default {
       }
       else
       {
-        return !this.showButtons ? "Oof" : "Isn't this monkey cute?";
+        return !this.showButtons ? "Oof" : "";
       }
     },
     
@@ -145,11 +145,6 @@ export default {
     {
       default:"",
       type: String
-    },
-    tosButton:
-    {
-      default: false,
-      type: Boolean
     }
   },
   methods:{
@@ -165,7 +160,7 @@ export default {
       this.showButtons ? this.showButtons = false : this.showButtons = true;
     },
     buttonFunctionality() {
-      if (this.tosButton)
+      if (this.popupText == "TermsOfService")
       {
       console.log("adding level");
       this.$emit('addLevel');

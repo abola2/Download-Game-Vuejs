@@ -8,8 +8,8 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes', false)"
-      @showTosPopup="popup(-1, '', 'We expect you to read the whole of our terms of service','TermsOfService', 'do you accept terms and conditions? ','Yes (no)', 'Yes', true)"
+      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes')"
+      @showTosPopup="popup(-1, '', 'We expect you to read the whole of our terms of service','TermsOfService', 'do you accept terms and conditions? ','Yes (no)', 'Yes')"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelOne>
@@ -24,14 +24,13 @@
       :footer-text="footerText"
       :button-text-left="buttonTextLeft"
       :button-text-right="buttonTextRight"
-      :tos-Button="tosButton"
       :popupWindow="popupWindow">
     </PopupWindow>
 
   <LevelTwo
       @addLevel="addLevel"
-      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes', false)"
-      @cookieMonsterPopup="popup(-1, 'https://media.giphy.com/media/JrH3p5ZyUHEV6iyvR4/giphy.gif', 'OH NO! The Cookie Monster got to your cookie jar!', '', 'Stop him immediately!','but he\'s cute', 'Yes!', false)"
+      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', 'Isn\'t this monkey cute?','Yes (no)', 'Yes')"
+      @cookieMonsterPopup="popup(-1, 'https://media.giphy.com/media/JrH3p5ZyUHEV6iyvR4/giphy.gif', 'OH NO! The Cookie Monster got to your cookie jar!', '', 'Stop him immediately!','but he\'s cute', 'Yes!')"
       :current-level="currentLevel">
       :popupWindow="popupWindow">
       :cookieMonster="cookieMonsterActive">
@@ -40,6 +39,7 @@
 
   <LevelThree
       @addLevel="addLevel"
+      @sudokuPopup="popup(-1, 'https://i.ibb.co/RBwM8FZ/sudoku.png', 'What number should be in the middle square of this sudoku?', '', '','Yes (no)', 'Yes')"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelThree>
@@ -76,7 +76,6 @@ export default defineComponent( {
       footerText: "",
       buttonTextLeft: "",
       buttonTextRight: "",
-      tosButton: false,
       cookieMonsterActive: false
     }
   },
@@ -101,7 +100,7 @@ export default defineComponent( {
       this.currentLevel++
     },
 
-    popup: function (showTImeInMilliseconds: number, gifUrl: string, title: string, text: string, footer: string, buttonTextLeft: string, buttonTextRight: string, tosButton: boolean) {
+    popup: function (showTImeInMilliseconds: number, gifUrl: string, title: string, text: string, footer: string, buttonTextLeft: string, buttonTextRight: string) {
 
       this.popupWindow = true;
       this.gifUrl = gifUrl
@@ -110,7 +109,6 @@ export default defineComponent( {
       this.footerText = footer;
       this.buttonTextLeft = buttonTextLeft;
       this.buttonTextRight= buttonTextRight;
-      this.tosButton = tosButton;
       console.log("start " + this.popupTitle)
 
       if (showTImeInMilliseconds == -1) {
