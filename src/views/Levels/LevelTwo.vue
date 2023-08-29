@@ -7,7 +7,7 @@
     <div class="full-screen-background">
       <div class="center-container">
 
-          <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
+          <button class="centered-button glow" @click="cookieClick"><div class="circle-image"/></button>
         </div>
 
         <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
@@ -145,6 +145,17 @@ export default defineComponent({
 }
 
 
+.circle-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("@/assets/cookies-1264263_640.jpg") center/cover no-repeat;
+}
+
+
 
 
 .page_Header_Top {
@@ -242,21 +253,27 @@ export default defineComponent({
 
 
 .centered-button {
-  width: 50%;
-  height: 20%;
-  border-radius: 10px;
+  width: 20%;
+  height: 40%;
+  border-radius: 50%;
+  background-color: transparent;
+  border-style: hidden;
+  display: inline-block;
   font-size: larger;
   font-family: 'DM Sans', sans-serif;
   transform: scale(1);
   transition: transform 0.01s ease-in-out;
-
+  position: relative;
 }
 
 
 .glow {
-  -webkit-box-shadow:0 0 30px #ffffff;
-  -moz-box-shadow: 0 0 30px #f5efef;
-  box-shadow:0 0 30px #e2e2ea;
+  box-shadow: 0 0 45px rgba(243, 240, 240, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow:hover {
+  box-shadow: 0 0 50px rgba(243, 236, 236, 0.8);
 }
 
 
