@@ -7,7 +7,7 @@
     <div class="full-screen-background">
       <div class="center-container">
 
-          <button class="centered-button glow" @click="cookieClick"><div class="circle-image"/></button>
+          <button class="centered-button glow" :disabled="!skipAdd" @click="cookieClick"><div class="circle-image"/></button>
         </div>
 
         <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
@@ -18,10 +18,10 @@
           <h2 class="center-container-header">Earn million cookies to skip add</h2>
           <h5 class="center-container-header" v-if="!skipAdd"> Level completed!</h5>
           <div class="center-container-skip">
-          <button class="center-button-skip" v-if="!skipAdd" @click="$emit('addLevel')" :disabled="skipAdd">Skip add</button>
+          <button class="center-button-skip glow" v-if="!skipAdd" @click="$emit('addLevel')" :disabled="skipAdd">Skip add</button>
           </div>
         </div>
-        <div class="page_Header_Right_shop" id="shop">
+        <div class="page_Header_Right_shop" v-if="skipAdd" id="shop">
 
         <button @click="buyMoreCookies" class="moreCookies-button">Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies: {{ cookiesPerClick.toFixed(2) }}</button>
         <button @click="buyMultiplayer" class="multiplayer-button">Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer: {{ cookieMultiplayer.toFixed(2) }}</button>
@@ -76,7 +76,7 @@ export default defineComponent({
     },
 
     cookies (amount) {
-      this.skipAdd = amount < 10000;
+      this.skipAdd = amount < 1000000;
 
     }
 
@@ -84,15 +84,15 @@ export default defineComponent({
   methods: {
 
     cookieClick() {
-      this.cookies = this.cookies + this.cookiesPerClickPrice * this.cookieMultiplayer;
+      this.cookies = this.cookies + this.cookiesPerClick * this.cookieMultiplayer;
     },
 
     buyMultiplayer() {
       if (this.cookies >= this.cookieMultiplayerPrice)
       {
         this.cookies = this.cookies - this.cookieMultiplayerPrice
-        this.cookieMultiplayer = this.cookieMultiplayer * 1.25
-        this.cookieMultiplayerPrice = this.cookieMultiplayerPrice + this.cookieMultiplayer * this.cookieMultiplayerPrice
+        this.cookieMultiplayer = this.cookieMultiplayer * 1.35
+        this.cookieMultiplayerPrice = this.cookieMultiplayerPrice + this.cookieMultiplayer * this.cookieMultiplayerPrice*2
       }
 
     },
@@ -100,8 +100,8 @@ export default defineComponent({
       if (this.cookies >= this.cookiesPerClickPrice)
       {
         this.cookies = this.cookies - this.cookiesPerClickPrice
-        this.cookiesPerClick = this.cookiesPerClick * 1.5
-        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick
+        this.cookiesPerClick = this.cookiesPerClick * 1.3
+        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick*2
       }
 
     }
@@ -272,12 +272,12 @@ export default defineComponent({
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.glow:hover {
+.glow:enabled:hover {
   box-shadow: 0 0 50px rgba(243, 236, 236, 0.8);
 }
 
 
-.centered-button:active {
+.centered-button:enabled:active {
   transform: scale(1.02);
   transition: transform 0.05s ease-in-out;
 }
