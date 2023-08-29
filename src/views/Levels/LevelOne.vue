@@ -137,20 +137,6 @@ iframe{
 }
 
 
-
-
-.page_Header {
-  height: 40%;
-  width: 40%;
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  padding: 10px -20px 20px;
-  transform: translate(75%, 10%);
-  
-}
-
 .page_Header_Right {
   background: #dbe2e8;
   width: 30%;
@@ -198,11 +184,6 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   
-}
-
-#headerImg{
-  width: 350px;
-  height: 75px;
 }
 
 #arrow1{
@@ -391,11 +372,5 @@ header {
 		transform: rotate(1turn);
 	}
 }
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+
 </style>
