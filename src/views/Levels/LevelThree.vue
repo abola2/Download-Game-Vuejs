@@ -1,8 +1,8 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
-    <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D</Header>
-    <button id="initialButton1" @click="allTheButtons('initialButton1')">Download</button>
-    <button id="initialButton2" @click="allTheButtons('initialButton2')">Download</button>
+    <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
+    <button class="initialButton1" @click="allTheButtons('initialButton1')">Download</button>
+    <button class="initialButton2" @click="allTheButtons('initialButton2')">Download</button>
     </div>
 
 </template>
@@ -17,18 +17,18 @@ let allButtonsClicked: boolean = false;
 let correctButton: string = "";
 
 function levelProgression(id: string)
-    {
-    console.log(NumberOfClicks + ' id: ' + id); 
-    NumberOfClicks++;
-    const btn = document.getElementById(id)
-    btn?.remove();
+{
+console.log(NumberOfClicks + ' id: ' + id); 
+NumberOfClicks++;
+const btn = document.getElementById(id)
+btn?.remove();
 
-    if (NumberOfClicks >= numberOfButtons)
-    {
-        console.log('all buttons clicked')
-        allButtonsClicked = true;
-    }
-    }
+if (NumberOfClicks >= numberOfButtons)
+{
+    console.log('all buttons clicked')
+    allButtonsClicked = true;
+}
+}
 
 export default defineComponent({
 components: {
@@ -37,6 +37,7 @@ components: {
 
 emits: [
     'addLevel',
+    'sudokuPopup',
     'showPopup'
 ],
 
@@ -79,16 +80,27 @@ methods: {
             let newButton = document.createElement('button');
             newButton.style.height = '30px';
             newButton.style.width = '100px';
-            newButton.textContent = 'Download';
+            newButton.style.backgroundColor = '#0a66C2';
+            newButton.style.color = '#ffffff';
+            newButton.style.borderRadius = '25px';
             newButton.id = 'b' + i + 'n' + nOfTimesButtonsCreated;
-            console.log(newButton.id);
+            console.log(newButton.id + "  " + newButton.className);
             let topPosition: number = Math.random()* (95 - 5);
             let leftPosition: number = Math.random()* (95 - 5);
             
             newButton.style.position = 'absolute';
             newButton.style.left = leftPosition + "%";
             newButton.style.top = topPosition + "%";
-            newButton.onclick = function() { levelProgression(newButton.id) };
+            
+            if (i % 10 == 0) // change this 
+            {
+                newButton.onclick = () => this.$emit('sudokuPopup');
+                newButton.textContent = 'Downlod';
+            }
+            else {
+                newButton.onclick = function() { levelProgression(newButton.id) };
+                newButton.textContent = 'Download'; 
+            }
 
             document.body.appendChild(newButton);
         }
@@ -110,22 +122,44 @@ methods: {
 <style scoped>
 
 header {
+font-size: xx-large;
 color: #2563EB;
 }
-#initialButton1 {
+.initialButton1 {
+background-color: #0a66C2;
+color: white;
+border-radius: 25px;
+
 position: absolute;
 height: 30px;
 width: 100px;
 top: 50%;
 left: 55%;
+
+transform: translate(-50%, -50%);
 }
 
-#initialButton2 {
+.initialButton2 {
+background-color: #0a66C2;
+color: white;
+border-radius: 25px;
+
 position: absolute;
 height: 30px;
 width: 100px;
 top: 50%;
 left: 45%;
+
+transform: translate(-50%, -50%);
 }
+
+.initialButton1:hover,
+.initialButton1:focus,
+.initialButton2:hover,
+.initialButton2:focus { 
+background-color: #16437E;
+color: #ffffff;
+}
+
 
 </style>
