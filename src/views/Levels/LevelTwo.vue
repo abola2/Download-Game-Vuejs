@@ -6,19 +6,22 @@
 
     <div class="full-screen-background">
       <div class="center-container">
-        <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
-      </div>
-      <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
-      <!-- Your content goes here -->
-      <div class="page_Header_Top">
-        <!-- Your content goes here -->
-        <h2 class="center-container-header">Earn million cookies to skip add</h2>
-        <h5 class="center-container-header" v-if="!skipAdd"> Level completed!</h5>
-        <div class="center-container-skip">
-        <button class="center-button-skip" @click="$emit('addLevel')" :disabled="skipAdd">Skip add</button>
+
+          <button class="centered-button glow" @click="cookieClick">CLICK ME</button>
         </div>
-      </div>
-        <div class="page_Header_Right_shop">
+
+        <header>Cookie amount: {{ cookies.toFixed(2) }} </header>
+
+      <!-- Your content goes here -->
+        <div class="page_Header_Top">
+          <!-- Your content goes here -->
+          <h2 class="center-container-header">Earn million cookies to skip add</h2>
+          <h5 class="center-container-header" v-if="!skipAdd"> Level completed!</h5>
+          <div class="center-container-skip">
+          <button class="center-button-skip" v-if="!skipAdd" @click="$emit('addLevel')" :disabled="skipAdd">Skip add</button>
+          </div>
+        </div>
+        <div class="page_Header_Right_shop" id="shop">
 
         <button @click="buyMoreCookies" class="moreCookies-button">Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies: {{ cookiesPerClick.toFixed(2) }}</button>
         <button @click="buyMultiplayer" class="multiplayer-button">Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer: {{ cookieMultiplayer.toFixed(2) }}</button>
@@ -34,8 +37,6 @@
 <script lang="ts">
 
 import {defineComponent} from "vue";
-let NumberOfClicks: number = 0;
-let clicksForLevelCompletion: number = 10;
 export default defineComponent({
   data () {
     return {
@@ -103,24 +104,6 @@ export default defineComponent({
         this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick
       }
 
-    },
-    
-    moveButton() {
-      if (NumberOfClicks >= clicksForLevelCompletion)
-      {
-        console.log("level completed");
-        /*this.$emit('addLevel');*/
-      }
-      else 
-      {
-        console.log(NumberOfClicks);
-        NumberOfClicks++;
-        let topPosition: number = Math.random()* (100) + 1;
-        let leftPosition: number = Math.random()* (100) + 1;
-        document.getElementById('movingButton')!.style.left = leftPosition + "%";
-        document.getElementById('movingButton')!.style.top = topPosition + "%";
-        console.log("positions: ", topPosition,", ", leftPosition);
-      }
     }
   }
 
@@ -139,9 +122,9 @@ export default defineComponent({
   height: 100%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  left: 95%;
+  left: 98%;
   bottom: 0;
-  transition: left 0.9s ease-in-out;
+  transition: left 0.7s ease-in-out;
   gap: 50px 50px;
   padding: 40px 40px;
   display: flex;
@@ -149,7 +132,7 @@ export default defineComponent({
 
 }
 
-.page_Header_Right_shop:hover {
+.page_Header_Right_shop:hover  {
   background: #d4dae0;
   width: 30%;
   position: absolute;
@@ -158,18 +141,20 @@ export default defineComponent({
   border-bottom-right-radius: 3px;
   left: 70%;
   bottom: 0;
-  transition: left 0.6s ease-in-out;
+  transition: left 0.3s ease-in-out;
 }
+
+
 
 
 .page_Header_Top {
   background: #cbbfb9;
   width: 80%;
-  height: 8%;
+  height: 12%;
   border-radius: 5px;
   position: absolute;
   left: 10%;
-  bottom: 90%;
+  bottom: 86%;
   transition: left 1.5s ease-in-out;
 
 }
@@ -180,7 +165,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Adjust the height as needed */
+  height: 100vh;
 
 }
 
@@ -282,20 +267,5 @@ export default defineComponent({
 
 
 
-
-
-
-
-
-
-#movingButton {
-  position: absolute;
-  background-color: skyblue;
-  border-radius: 5px;
-  height: 5%;
-  width: 10%;
-  top: 50%;
-  left: 50%;
-}
 
 </style>
