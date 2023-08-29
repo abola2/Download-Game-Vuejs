@@ -211,7 +211,7 @@ header {
   height: 12.5%;
   transform: rotate(15deg);
   top: 60%;
-  left: 32%;
+  left: 36%;
 }
 #arrow2{
   
@@ -342,6 +342,10 @@ header {
   position: absolute;
   top: 70%;
   left: 16%;
+}
+
+#button1:hover {
+  transform: scale(1.02);
 }
 
 #button1{

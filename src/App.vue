@@ -51,12 +51,11 @@
 
 
 <script lang="ts">
-import WelcomePage from './components/WelcomePage.vue'
+import WelcomePage from './views/WelcomePage.vue'
 import {defineComponent} from "vue";
 import LevelOne from "@/views/Levels/LevelOne.vue";
 import LevelTwo from "@/views/Levels/LevelTwo.vue";
 import LevelThree from '@/views/Levels/LevelThree.vue';
-import {stopCookieMonster} from "@/views/Levels/LevelTwo.vue";
 import PopupWindow from "@/views/Functionality/PopupWindow.vue";
 
 
@@ -97,7 +96,6 @@ export default defineComponent( {
   },
   methods: {
     addLevel() {
-      console.log("current level: " + this.currentLevel)
       this.currentLevel++
     },
 
@@ -111,21 +109,18 @@ export default defineComponent( {
       this.buttonTextLeft = buttonTextLeft;
       this.buttonTextRight= buttonTextRight;
       this.tosButton = tosButton;
-      console.log("start " + this.popupTitle)
 
       if (showTImeInMilliseconds == -1) {
         return
       }
       setTimeout(() => {
         this.popupWindow = false;
-        console.log("end " + this.popupWindow);
       }, showTImeInMilliseconds);
     },
 
 
     closePopup() {
       if (this.popupWindow) {
-        stopCookieMonster();
         this.popupWindow = false
       }
     }
