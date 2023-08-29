@@ -1,8 +1,10 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
     <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
-    <button class="initialButton1" @click="allTheButtons('initialButton1')">Download</button>
-    <button class="initialButton2" @click="allTheButtons('initialButton2')">Download</button>
+    <div class="center-container">
+      <button class="initialButton" @click="allTheButtons('initialButton1')">Download</button>
+    <button class="initialButton" @click="allTheButtons('initialButton2')">Download</button>
+    </div>
     </div>
 
 </template>
@@ -121,45 +123,38 @@ methods: {
 
 <style scoped>
 
+
+
+.center-container {
+  gap: 50px 50px;
+  padding: 40px 40px;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 header {
 font-size: xx-large;
 color: #2563EB;
 }
-.initialButton1 {
-background-color: #0a66C2;
-color: white;
-border-radius: 25px;
-
-position: absolute;
-height: 30px;
-width: 100px;
-top: 50%;
-left: 55%;
-
-transform: translate(-50%, -50%);
+.initialButton {
+  background-color: #0a66C2;
+  color: white;
+  border-radius: 25px;
+  height: 30px;
+  width: 100px;
+  top: 50%;
+  left: 55%;
+  gap: 10px;
+  transform: translate(-50%, -50%);
 }
 
-.initialButton2 {
-background-color: #0a66C2;
-color: white;
-border-radius: 25px;
 
-position: absolute;
-height: 30px;
-width: 100px;
-top: 50%;
-left: 45%;
 
-transform: translate(-50%, -50%);
-}
 
-.initialButton1:hover,
-.initialButton1:focus,
-.initialButton2:hover,
-.initialButton2:focus { 
-background-color: #16437E;
-color: #ffffff;
-}
+
 
 
 </style>
