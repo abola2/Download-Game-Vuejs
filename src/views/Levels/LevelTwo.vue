@@ -1,41 +1,62 @@
 <template>
-  <div class="level2" v-show="getCurrentLevel === 2">
-    <header>Terms of service are important! <br/> Now that you have accepted them you can finally download our "program"</Header>
-    <button id = "movingButton" @click="moveButton">Download</button>
-    <button id = "lvl2button" @click="eatCookies">Download</button>
-    <div class="counter">{{ count }}</div>
-  </div>
+  <div class="level3" v-show="getCurrentLevel === 2">
+    <div class="full-screen-background">
+      <div class="center-container">
+        <button class="centered-button glow" :disabled="!skipAdd" @click="cookieClick">
+          <div class="circle-image" />
+        </button>
+      </div>
 
+      <header>Cookie amount: {{ cookies.toFixed(2) }}</header>
+
+      <!-- Your content goes here -->
+      <div class="page_Header_Top">
+        <!-- Your content goes here -->
+        <h2 class="center-container-header">Earn million cookies to skip add</h2>
+        <h5 class="center-container-header" v-if="!skipAdd">Level completed!</h5>
+        <div class="center-container-skip">
+          <button
+            class="center-button-skip glow"
+            v-if="!skipAdd"
+            @click="$emit('addLevel')"
+            :disabled="skipAdd"
+          >
+            Skip add
+          </button>
+        </div>
+      </div>
+      <div class="page_Header_Right_shop" v-if="skipAdd" id="shop">
+        <button @click="buyMoreCookies" class="moreCookies-button">
+          Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies:
+          {{ cookiesPerClick.toFixed(2) }}
+        </button>
+        <button @click="buyMultiplayer" class="multiplayer-button">
+          Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer:
+          {{ cookieMultiplayer.toFixed(2) }}
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-
-import {defineComponent} from "vue";
-let NumberOfClicks: number = 0;
-let clicksForLevelCompletion: number = 10;
-let interval: number;
-let cookieMonsterActive: boolean = false;
-
-export function stopCookieMonster(){
-    cookieMonsterActive = false;
-    console.log('No more cookies for the monster');
-  }
-
+import { defineComponent } from 'vue'
 export default defineComponent({
-  components: {
-
-  },
-  data () {
+  data() {
     return {
-      count: 100,
+      show: false,
+      wait: 5.0,
+      cookies: 0,
+      cookiesPerClick: 2,
+      cookiesPerClickPrice: 10,
+      cookieMultiplayer: 2,
+      cookieMultiplayerPrice: 10,
+      skipAdd: true
     }
   },
+  components: {},
 
-  emits: [
-      'addLevel',
-      'showPopup',
-      'cookieMonsterPopup'
-  ],
+  emits: ['addLevel'],
 
   props: {
     currentLevel: {
@@ -44,99 +65,186 @@ export default defineComponent({
     }
   },
   computed: {
-    getCurrentLevel (): number {
-      return this.currentLevel;
+    getCurrentLevel(): number {
+      return this.currentLevel
     }
   },
   watch: {
-    getCurrentLevel () {
-      console.log("hidden " + this.currentLevel);
-    }
+    getCurrentLevel() {
+      console.log('hidden ' + this.currentLevel)
+    },
 
+    cookies(amount) {
+      this.skipAdd = amount < 1000000
+    }
   },
   methods: {
-    /*completes level once the button has been clicked x times. If the button hasn't been clicked x times moveButton teleports the button to a random position on the screen, and makes it a little easier to see.*/
-    moveButton() {
-      if (NumberOfClicks >= clicksForLevelCompletion)
-      {
-        console.log("level completed");
-        this.$emit('addLevel');
-      }
-      else 
-      {
-        console.log(NumberOfClicks);
-        NumberOfClicks++;
-        this.count++;
-        let topPosition: number = Math.random()* (100 - 0) + 1;
-        let leftPosition: number = Math.random()* (100 - 0) + 1;
-        document.getElementById('movingButton')!.style.left = leftPosition + "%";
-        document.getElementById('movingButton')!.style.top = topPosition + "%";
-        let opacity: string = ((NumberOfClicks + 1) /10).toString();
-        document.getElementById('movingButton')!.style.opacity = opacity;
-        console.log("positions: ", topPosition,", ", leftPosition);
+    cookieClick() {
+      this.cookies = this.cookies + this.cookiesPerClick * this.cookieMultiplayer
+    },
+
+    buyMultiplayer() {
+      if (this.cookies >= this.cookieMultiplayerPrice) {
+        this.cookies = this.cookies - this.cookieMultiplayerPrice
+        this.cookieMultiplayer = this.cookieMultiplayer * 1.35
+        this.cookieMultiplayerPrice =
+          this.cookieMultiplayerPrice + this.cookieMultiplayer * this.cookieMultiplayerPrice * 2
       }
     },
-    eatCookies(){
-      this.$emit('cookieMonsterPopup')
-      cookieMonsterActive = true;
-      interval = setInterval(this.nomnom, 433)
-      console.log(interval)
-    },
-    nomnom() {
-      if (!cookieMonsterActive)
-      {
-        console.log(interval)
-        clearInterval(interval);
-        return;
+    buyMoreCookies() {
+      if (this.cookies >= this.cookiesPerClickPrice) {
+        this.cookies = this.cookies - this.cookiesPerClickPrice
+        this.cookiesPerClick = this.cookiesPerClick * 1.3
+        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick * 2
       }
-      this.count--;
     }
   }
-
 })
-
 </script>
 
-
-<style scoped>
-
-header {
-  font-size: xx-large;
-  color: #2563EB;
+<style>
+.page_Header_Right_shop {
+  background: #dbe2e8;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 98%;
+  bottom: 0;
+  transition: left 0.7s ease-in-out;
+  gap: 50px 50px;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
-.counter {
+.page_Header_Right_shop:hover {
+  background: #d4dae0;
+  width: 30%;
   position: absolute;
-  
-  border-width: 3px;
-  background-color: #555;
-  border-style: solid;
-  width: 100px;
+  height: 100%;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 70%;
+  bottom: 0;
+  transition: left 0.3s ease-in-out;
+}
+
+.circle-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url('@/assets/cookies-1264263_640.jpg') center/cover no-repeat;
+}
+
+.page_Header_Top {
+  background: #cbbfb9;
+  width: 80%;
+  height: 12%;
+  border-radius: 5px;
+  position: absolute;
+  left: 10%;
+  bottom: 86%;
+  transition: left 1.5s ease-in-out;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-container-skip {
+  display: flex;
+  justify-content: right;
+  align-items: flex-start;
+}
+
+.center-container-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.center-button-skip {
+  border-radius: 5px;
+  border-color: black;
+  background-color: #f1f3f6;
+  color: black;
   height: 40px;
+  width: 80px;
   text-align: center;
-  font-size: 20px;
-  color: white;
-  left: 85%;
-  top: 10%;
+  justify-content: center;
+  margin-top: -50px;
+  margin-right: 10px;
 }
 
-#movingButton {
-  position: absolute;
-  opacity: 0.05;
-  height: 5%;
-  width: 10%;
-  top: 0%;
-  left: 0%;
+.multiplayer-button {
+  border-radius: 5px;
 }
 
-#lvl2button {
-  position: absolute;
-  /*always keep this button smaller than #movingButton,
-  so you can click it even if they are on top of each other */
-  height: 4%;
-  width: 9%;
-  top: 50%;
-  left: 45%;
+.multiplayer-button:hover {
+  transform: scale(1.02);
+  font-weight: bold;
 }
 
+.moreCookies-button {
+  border-radius: 5px;
+}
+
+.moreCookies-button:hover {
+  transform: scale(1.02);
+  font-weight: bold;
+}
+
+.center-button-skip:hover:enabled {
+  transform: scale(1.02);
+}
+
+.center-button-skip:disabled {
+  cursor: default;
+  opacity: 90%;
+}
+
+.full-screen-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #84a3d2;
+}
+
+.centered-button {
+  width: 20%;
+  height: 40%;
+  border-radius: 50%;
+  background-color: transparent;
+  border-style: hidden;
+  display: inline-block;
+  font-size: larger;
+  font-family: 'DM Sans', sans-serif;
+  transform: scale(1);
+  transition: transform 0.01s ease-in-out;
+  position: relative;
+}
+
+.glow {
+  box-shadow: 0 0 45px rgba(243, 240, 240, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow:enabled:hover {
+  box-shadow: 0 0 50px rgba(243, 236, 236, 0.8);
+}
+
+.centered-button:enabled:active {
+  transform: scale(1.02);
+  transition: transform 0.05s ease-in-out;
+}
 </style>
