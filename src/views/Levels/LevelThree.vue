@@ -40,7 +40,8 @@ components: {
 emits: [
     'addLevel',
     'sudokuPopup',
-    'gameEnd'
+    'gameEnd',
+    'pokemonPopup'
 ],
 
 props: {
@@ -85,6 +86,7 @@ methods: {
             newButton.style.backgroundColor = '#0a66C2';
             newButton.style.color = '#ffffff';
             newButton.style.borderRadius = '25px';
+            newButton.textContent = 'Download';
             newButton.id = 'b' + i + 'n' + nOfTimesButtonsCreated;
             console.log(newButton.id + "  " + newButton.className);
             let topPosition: number = Math.random()* (95 - 5);
@@ -94,14 +96,18 @@ methods: {
             newButton.style.left = leftPosition + "%";
             newButton.style.top = topPosition + "%";
             
-            if (i % 10 == 0) // change this 
+            switch (i)
             {
-                newButton.onclick = () => this.sudokuAndLevelProgress(newButton.id);
-                newButton.textContent = 'Downlod';
-            }
-            else {
-                newButton.onclick = function() { levelProgression(newButton.id) };
-                newButton.textContent = 'Download'; 
+                case 5:
+                    
+                    newButton.onclick = () => this.sudokuAndLevelProgress(newButton.id);
+                    break;
+                case 6:
+                    
+                    newButton.onclick = () => this.pokemonAndLevelProgress(newButton.id);
+                    break;
+                default:
+                    newButton.onclick = function() { levelProgression(newButton.id) };
             }
 
             document.getElementById('c-container')!.appendChild(newButton);
@@ -117,7 +123,11 @@ methods: {
     sudokuAndLevelProgress(id: string){
         this.$emit('sudokuPopup')
         levelProgression(id)
-    }
+    },
+    pokemonAndLevelProgress(id: string){
+        this.$emit('pokemonPopup')
+        levelProgression(id)
+    },
 }
 
 })

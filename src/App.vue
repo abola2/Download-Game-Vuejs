@@ -70,7 +70,18 @@
           'Sudoku',
           '',
           '',
-          'Answer'
+          'Answer: '
+        )
+      "
+      @pokemonPopup="
+        popup(
+          -1,
+          'https://i.ibb.co/YbrWPbm/blacephalon.png',
+          'Help! I forgot the name of this pokemon',
+          'Pokemon',
+          '',
+          '',
+          'Answer: '
         )
       "
       @gameEnd="

@@ -14,7 +14,8 @@
         <div class="footertext">
           {{ footerTextComputed }}
         </div>
-        <input id="sudokuInput" placeholder="enter a number here" type="number" max="9" min="1" v-model="input" v-if="popupText == 'Sudoku'">
+        <input id="sudokuInput" placeholder="0" type="number" max="9" min="1" v-model="input" v-if="popupText == 'Sudoku'">
+        <input id="pokemonInput" placeholder="Pikachu" v-model="input" v-if="popupText == 'Pokemon'">
       </div>
       <div class="right-container">
         <b id="popupbutton1" v-show="showButtons" class="button" @click="hideButtons" v-if="buttonTextLeft !== ''"
@@ -73,6 +74,9 @@ export default {
           return "TOS should be here anyday now...";
 
         case "Sudoku":
+          return "";
+
+        case "Pokemon":
           return "";
         default:
           
@@ -142,6 +146,19 @@ export default {
         case "Sudoku":
           console.log(input);
           if (input.value == "4")
+          {
+            input.value = "";
+            this.$emit('close-popup');
+          }
+          else 
+          {
+            input.value = "";
+            this.hideButtons();
+          }
+          break;
+        case "Pokemon":
+          console.log(input);
+          if (input.value.toLowerCase() == "blacephalon")
           {
             input.value = "";
             this.$emit('close-popup');
