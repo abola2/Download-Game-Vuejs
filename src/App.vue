@@ -8,7 +8,7 @@
 
   <LevelOne
       @addLevel="addLevel"
-      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', '','Yes (no)', 'Yes')"
+      @showPopup="popup(-1, 'https://image.ibb.co/epha5A/giphy.gif', 'LOOK! A cool monkey!', '', 'Isn\'t this monkey cute?','Yes (no)', 'Yes')"
       @showTosPopup="popup(-1, '', 'We expect you to read the whole of our terms of service','TermsOfService', 'do you accept terms and conditions? ','Yes (no)', 'Yes')"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
@@ -39,7 +39,8 @@
 
   <LevelThree
       @addLevel="addLevel"
-      @sudokuPopup="popup(-1, 'https://i.ibb.co/RBwM8FZ/sudoku.png', 'What number should be in the middle square of this sudoku?', '', '','Yes (no)', 'Yes')"
+      @sudokuPopup="popup(-1, 'https://i.ibb.co/RBwM8FZ/sudoku.png', 'What number should be in the middle square of this sudoku?', 'Sudoku', '','', 'Answer')"
+      @gameEnd="popup(-1, 'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif', 'Congratulations! You completed the game!','','Now go touch grass or something','','')"
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelThree>
@@ -58,9 +59,6 @@ import LevelTwo from "@/views/Levels/LevelTwo.vue";
 import LevelThree from '@/views/Levels/LevelThree.vue';
 import {stopCookieMonster} from "@/views/Levels/LevelTwo.vue";
 import PopupWindow from "@/views/Functionality/PopupWindow.vue";
-
-
-
 
 
 export default defineComponent( {
