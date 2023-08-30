@@ -1,54 +1,30 @@
-
-
 <template>
+  <!--with video-->
 
-
-
-<!--with video-->
-  <Transition name="modal">
-    <div v-if="popupWindow" class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <div class="modal-header">
-            <slot name="header"> {{ popupTitle }}</slot>
-          </div>
-
-          <div class="modal-body">
-            <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''">
-            <div class="popup-text">{{ popupTextComputed }}</div>
-          </div>
-
-          <div class="modal-footer">
-            <div class="footertext">
-              {{ footerTextComputed }}
-            </div>
-            <input id="sudokuInput" v-model="input" v-if="popupText == 'Sudoku'">
-          </div>
-          <button id="popupbutton1" v-show="this.showButtons" v-if="buttonTextLeft !== ''"
-            class="modal-default-button"
-            @click="hideButtons"
-            >{{ buttonTextLeft }}
-          </button>
-
-          <button id="popupbutton2" v-show="this.showButtons" v-if="buttonTextRight !== ''"
-            class="modal-default-button"
-            @click="buttonFunctionality"
-            >{{ buttonTextRight }}
-          </button>
-
-          <button id="popupclosebutton" v-show="this.showButtons"
-          class="modal-default-button"
-          @click="this.$emit('close-popup');"
-          >X
-          </button>
-        </div>
+  <div v-if="popupWindow" id="popup1" class="overlay">
+    <div class="popup">
+      <h2>{{ popupTitle }}</h2>
+      <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''" />
+      <div class="content">
+        {{ popupText }}
       </div>
+      <div class="right-container">
+        <b id="popupbutton1" v-show="showButtons" class="button" @click="hideButtons"
+          >{{ buttonTextLeft }}
+        </b>
+        <b id="popupbutton2" v-show="showButtons" class="button" @click="buttonFunctionality"
+          >{{ buttonTextRight }}
+        </b>
+      </div>
+      <a
+        id="popupclosebutton"
+        v-show="showButtons"
+        class="button-close"
+        @click="$emit('close-popup')"
+        >X
+      </a>
     </div>
-  </Transition>
-
-
-
-
+  </div>
 </template>
 
 <script lang="ts">
@@ -58,22 +34,17 @@ import { ref } from 'vue'
 const input = ref('');
 
 export default {
-  
-  data () {
+  data() {
     return {
       showButtons: true,
       input
     }
   },
-  emits: [
-      'addLevel',
-      'close-popup'
-  ],
-  components: {
-  },
+  emits: ['addLevel', 'close-popup'],
+  components: {},
   computed: {
-    getCurrentLevel (): number {
-      return this.currentLevel;
+    getCurrentLevel(): number {
+      return this.currentLevel
     },
 
     footerTextComputed (): string {
@@ -111,7 +82,6 @@ export default {
           return this.popupText;
       }
     }
-
   },
   props: {
     currentLevel: {
@@ -123,46 +93,45 @@ export default {
       type: Boolean
     },
     imageUrl: {
-      default: "",
+      default: '',
       type: String
-
     },
     popupTitle: {
-      default: " nej",
+      default: ' nej',
       type: String
     },
-    popupText: 
-    {
-      default: "",
+    popupText: {
+      default: '',
       type: String
     },
-    buttonTextLeft:
-    {
-      default:"Yes (no)",
+    buttonTextLeft: {
+      default: 'Yes (no)',
       type: String
     },
-    buttonTextRight:
-    {
-      default:"Yes",
+    buttonTextRight: {
+      default: 'Yes',
       type: String
     },
-    footerText:
-    {
-      default:"",
+    footerText: {
+      default: '',
       type: String
+    },
+    tosButton: {
+      default: false,
+      type: Boolean
     }
   },
-  methods:{
-    hideButtons () {
+  methods: {
+    hideButtons() {
       this.toggleButtons()
-      console.log("hide buttons")
+      console.log('hide buttons')
       setTimeout(() => {
-        console.log("show buttons")
+        console.log('show buttons')
         this.toggleButtons()
-      }, 900);
+      }, 900)
     },
     toggleButtons() {
-      this.showButtons ? this.showButtons = false : this.showButtons = true;
+      this.showButtons ? (this.showButtons = false) : (this.showButtons = true)
     },
     buttonFunctionality() {
       switch (this.popupText){
@@ -192,110 +161,89 @@ export default {
           break;
       }
     }
-
-
-
   },
-  watch: {
-  }
+  watch: {}
 }
 </script>
 
-
 <style>
+.button {
+  cursor: pointer;
+  font-size: 18px;
+  height: 25px;
+  width: 25%;
+  color: black;
+  border-radius: 2px/5px;
+  border: 1px solid black;
+  transition: all 0.2s ease-out;
+  text-align: center;
+}
 
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
+.button-close {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  transition: all 200ms;
+  font-size: 25px;
+  padding: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.button:hover {
+  background: #d0caca;
+  transform: scale(1.01);
+}
+
+#popupclosebutton:hover {
+  color: #a60a5c;
+  background: none;
+  transform: scale(1.01);
+}
+
+.right-container {
+  display: flex;
+  justify-content: right;
+  align-items: normal;
+  align-content: center;
+  height: 10px;
+  gap: 10px;
+}
+
+.overlay {
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
+  right: 0;
+  transition: opacity 500ms;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
 }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
 }
 
-.modal-container {
-  width: 600px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
 }
 
-.modal-header h3 {
-  margin-top: 10;
-  color: #42b983;
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
 }
 
-.modal-body {
-
-  margin: 20px 0;
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 70%;
+  }
 }
-
-.modal-default-button {
-  border-radius: 20px;
-  float: right;
-}
-
-.footertext {
-  
-  position: absolute;
-  right: 45%;
-  border-radius: 20px;
-  float: right;
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-#popupbutton1 {
-  
-  position: absolute;
-  
-  top: 72.5%;
-  right: 40%;
-}
-
-#popupbutton2 {
-  
-  position: absolute;
-  top: 72.5%;
-  right: 37.5%;
-}
-
-#popupclosebutton {
-
-  position: absolute;
-  top: 25%;
-  right: 37.5%;
-}
-
 </style>
