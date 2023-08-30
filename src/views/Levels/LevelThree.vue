@@ -1,6 +1,6 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
-    <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
+    <header id="lvl3Header">That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
     <div class="center-container" id="c-container">
     <button class="initialButton" @click="allTheButtons('initialButton1')">Download</button>
     <button class="initialButton" @click="allTheButtons('initialButton2')">Download</button>
@@ -20,14 +20,16 @@ let correctButton: string = "";
 
 function levelProgression(id: string)
 {
-console.log(NumberOfClicks + ' id: ' + id); 
+console.log(NumberOfClicks +','+ numberOfButtons +','+ nOfTimesButtonsCreated + ' id: ' + id); 
 NumberOfClicks++;
 const btn = document.getElementById(id)
 btn?.remove();
 
-if (NumberOfClicks >= numberOfButtons)
+if (NumberOfClicks >= numberOfButtons * nOfTimesButtonsCreated - (1 * nOfTimesButtonsCreated)) 
 {
     console.log('all buttons clicked')
+    
+    document.getElementById('lvl3Header')!.textContent = "Hey you clicked them all! But still two remain. Which one could it be?";
     allButtonsClicked = true;
 }
 }
@@ -65,6 +67,7 @@ methods: {
     /*Creates a lot of buttons that delete on click. You have to click them all to complete the level.*/
     allTheButtons(iButton: string) {
     // if you clicked iButton, cleared all the buttons that it created, and then click iButton again then you can complete the level.
+    document.getElementById('lvl3Header')!.textContent = "Woops, that's a lot more than a few buttons. Just don't click that red one!";
     if (correctButton == iButton && allButtonsClicked) 
     {
         this.completeLevel();
@@ -75,7 +78,6 @@ methods: {
     {
         correctButton = iButton;
         allButtonsClicked = false;
-        NumberOfClicks = 0;
         
         nOfTimesButtonsCreated++;
         for (let i= 0; i < numberOfButtons; i++){
@@ -98,6 +100,11 @@ methods: {
             
             switch (i)
             {
+                case 1: // red button
+                    newButton.onclick = () => this.allTheButtons(iButton);
+                    newButton.style.backgroundColor = '#FF0000';
+                    newButton.textContent = 'Don\'t press';
+                    break;
                 case 5:
                     
                     newButton.onclick = () => this.sudokuAndLevelProgress(newButton.id);
@@ -109,7 +116,6 @@ methods: {
                 default:
                     newButton.onclick = function() { levelProgression(newButton.id) };
             }
-
             document.getElementById('c-container')!.appendChild(newButton);
         }
     }

@@ -88,7 +88,7 @@
         popup(
           -1,
           'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif',
-          'Congratulations! You completed the game!',
+          'Congratulations! You completed the game! You won\'t get to donwload anything tho.',
           '',
           'Now go touch grass or something',
           '',
