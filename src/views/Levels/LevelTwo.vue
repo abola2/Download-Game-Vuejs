@@ -30,9 +30,9 @@
           Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies:
           {{ cookiesPerClick.toFixed(2) }}
         </button>
-        <button @click="buyMultiplayer" class="multiplayer-button">
-          Cookie multiplayer price: {{ cookieMultiplayerPrice.toFixed(2) }} Multiplayer:
-          {{ cookieMultiplayer.toFixed(2) }}
+        <button @click="buymultiplier" class="multiplier-button">
+          Cookie multiplier price: {{ cookiemultiplierPrice.toFixed(2) }} multiplier:
+          {{ cookiemultiplier.toFixed(2) }}
         </button>
       </div>
     </div>
@@ -60,8 +60,8 @@ export default defineComponent({
       cookies: 0,
       cookiesPerClick: 2,
       cookiesPerClickPrice: 10,
-      cookieMultiplayer: 2,
-      cookieMultiplayerPrice: 10,
+      cookiemultiplier: 2,
+      cookiemultiplierPrice: 10,
       skipAd: true
     }
   },
@@ -91,22 +91,22 @@ export default defineComponent({
   },
   methods: {
     cookieClick() {
-      this.cookies = this.cookies + this.cookiesPerClick * this.cookieMultiplayer
+      this.cookies = this.cookies + this.cookiesPerClick * this.cookiemultiplier
       if (!cookiesEaten) // if cookiemonster hasn't already appeared, and if the player has >= cookies
         {
-          if (this.cookies >= 100)
+          if (this.cookies >= 1000)
           {
             this.eatCookies();
           }
         }
     },
 
-    buyMultiplayer() {
-      if (this.cookies >= this.cookieMultiplayerPrice) {
-        this.cookies = this.cookies - this.cookieMultiplayerPrice
-        this.cookieMultiplayer = this.cookieMultiplayer * 1.35
-        this.cookieMultiplayerPrice =
-          this.cookieMultiplayerPrice + this.cookieMultiplayer * this.cookieMultiplayerPrice * 2
+    buymultiplier() {
+      if (this.cookies >= this.cookiemultiplierPrice) {
+        this.cookies = this.cookies - this.cookiemultiplierPrice
+        this.cookiemultiplier = this.cookiemultiplier * 1.35
+        this.cookiemultiplierPrice =
+          this.cookiemultiplierPrice + this.cookiemultiplier * this.cookiemultiplierPrice * 2
       }
     },
     buyMoreCookies() {
@@ -129,7 +129,7 @@ export default defineComponent({
         clearInterval(interval);
         return;
       }
-      this.cookies--;
+      this.cookies -= 10;
     }
   }
 })
@@ -217,11 +217,11 @@ export default defineComponent({
   margin-right: 10px;
 }
 
-.multiplayer-button {
+.multiplier-button {
   border-radius: 5px;
 }
 
-.multiplayer-button:hover {
+.multiplier-button:hover {
   transform: scale(1.02);
   font-weight: bold;
 }
