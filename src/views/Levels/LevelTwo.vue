@@ -1,8 +1,8 @@
 <template>
-  <div class="level3" v-show="getCurrentLevel === 2">
+  <div class="level2" v-show="getCurrentLevel === 2">
     <div class="full-screen-background">
       <div class="center-container">
-        <button class="centered-button glow" :disabled="!skipAdd" @click="cookieClick">
+        <button class="centered-button glow" :disabled="!skipAd" @click="cookieClick">
           <div class="circle-image" />
         </button>
       </div>
@@ -12,20 +12,20 @@
       <!-- Your content goes here -->
       <div class="page_Header_Top">
         <!-- Your content goes here -->
-        <h2 class="center-container-header">Earn million cookies to skip add</h2>
-        <h5 class="center-container-header" v-if="!skipAdd">Level completed!</h5>
+        <h2 class="center-container-header">Earn a million cookies to skip ad</h2>
+        <h5 class="center-container-header" v-if="!skipAd">Level completed!</h5>
         <div class="center-container-skip">
           <button
             class="center-button-skip glow"
-            v-if="!skipAdd"
+            v-if="!skipAd"
             @click="$emit('addLevel')"
-            :disabled="skipAdd"
+            :disabled="skipAd"
           >
-            Skip add
+            Skip ad
           </button>
         </div>
       </div>
-      <div class="page_Header_Right_shop" v-if="skipAdd" id="shop">
+      <div class="page_Header_Right_shop" v-if="skipAd" id="shop">
         <button @click="buyMoreCookies" class="moreCookies-button">
           Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies:
           {{ cookiesPerClick.toFixed(2) }}
@@ -51,12 +51,12 @@ export default defineComponent({
       cookiesPerClickPrice: 10,
       cookieMultiplayer: 2,
       cookieMultiplayerPrice: 10,
-      skipAdd: true
+      skipAd: true
     }
   },
   components: {},
 
-  emits: ['addLevel'],
+  emits: ['addLevel','cookieMonsterPopup'],
 
   props: {
     currentLevel: {
@@ -75,7 +75,7 @@ export default defineComponent({
     },
 
     cookies(amount) {
-      this.skipAdd = amount < 1000000
+      this.skipAd = amount < 1000000
     }
   },
   methods: {

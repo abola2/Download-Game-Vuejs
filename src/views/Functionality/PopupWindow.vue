@@ -4,18 +4,27 @@
   <div v-if="popupWindow" id="popup1" class="overlay">
     <div class="popup">
       <h2>{{ popupTitle }}</h2>
-      <img :src="imageUrl" alt="Image" id="appimg" v-if="imageUrl !== ''" />
-      <div class="content">
-        {{ popupText }}
+      <div class="gap">
+        <img :src="imageUrl" alt="Image" v-if="imageUrl !== ''" />
+        <div class="content">
+          {{ popupTextComputed }}
+        </div>
+
+      <div class="modal-footer">
+        <div class="footertext">
+          {{ footerTextComputed }}
+        </div>
+        <input id="sudokuInput" placeholder="enter a number here" type="number" max="9" min="1" v-model="input" v-if="popupText == 'Sudoku'">
       </div>
       <div class="right-container">
-        <b id="popupbutton1" v-show="showButtons" class="button" @click="hideButtons"
+        <b id="popupbutton1" v-show="showButtons" class="button" @click="hideButtons" v-if="buttonTextLeft !== ''"
           >{{ buttonTextLeft }}
         </b>
-        <b id="popupbutton2" v-show="showButtons" class="button" @click="buttonFunctionality"
+        <b id="popupbutton2" v-show="showButtons" class="button" @click="buttonFunctionality" v-if="buttonTextRight !== ''"
           >{{ buttonTextRight }}
         </b>
       </div>
+    </div>
       <a
         id="popupclosebutton"
         v-show="showButtons"
@@ -29,8 +38,7 @@
 
 <script lang="ts">
 
-import { ref } from 'vue'
-/* import { readFile } from "./readFromFile"; */
+import { ref } from 'vue';
 const input = ref('');
 
 export default {
@@ -61,23 +69,13 @@ export default {
     popupTextComputed (): string {
       switch (this.popupText){
         case "TermsOfService":
-          /*
-          let modalbody = document.getElementById('modal-body') as HTMLElement;
-          modalbody.style.setProperty('overflow', 'scroll'); 
-          */
-          /* const file = readFile('../../assets/fake_tos.txt'); 
-          not sure how to fix this, but it's not that important right now
-          Uncaught (in promise) Error: Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code.
-          */
+          
           return "TOS should be here anyday now...";
 
         case "Sudoku":
           return "";
         default:
-          /*
-          let modalbody = document.getElementById('modal-body') as HTMLElement;
-          modalbody.style.setProperty('overflow', 'hidden'); 
-          */
+          
           console.log("the popup should have this text:" + this.popupText);
           return this.popupText;
       }
@@ -219,6 +217,9 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
 }
+.gap{
+  gap: 10px;
+}
 
 .popup {
   margin: 70px auto;
@@ -239,6 +240,14 @@ export default {
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+
+img{
+  display: block;
+  max-width: 325px;
+  max-height: 600px;
+  width: auto;
+  height: auto;
 }
 
 @media screen and (max-width: 700px) {

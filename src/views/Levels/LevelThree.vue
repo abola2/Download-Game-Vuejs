@@ -1,8 +1,8 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
     <header>That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
-    <div class="center-container">
-      <button class="initialButton" @click="allTheButtons('initialButton1')">Download</button>
+    <div class="center-container" id="c-container">
+    <button class="initialButton" @click="allTheButtons('initialButton1')">Download</button>
     <button class="initialButton" @click="allTheButtons('initialButton2')">Download</button>
     </div>
     </div>
@@ -104,7 +104,7 @@ methods: {
                 newButton.textContent = 'Download'; 
             }
 
-            document.body.appendChild(newButton);
+            document.getElementById('c-container')!.appendChild(newButton);
         }
     }
     

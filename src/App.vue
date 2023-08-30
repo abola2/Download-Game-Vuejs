@@ -11,8 +11,7 @@
         '',
         '',
         'Yes (no)',
-        'Yes',
-        false
+        'Yes'
       )
     "
     @showTosPopup="
@@ -23,8 +22,7 @@
         'TermsOfService',
         'do you accept terms and conditions? ',
         'Yes (no)',
-        'Yes',
-        true
+        'Yes'
       )
     "
     :current-level="currentLevel"
@@ -32,20 +30,6 @@
   >
   </LevelOne>
 
-  <PopupWindow
-    @close-popup="closePopup"
-    @addLevel="addLevel"
-    :current-level="currentLevel"
-    :image-url="gifUrl"
-    :popup-title="popupTitle"
-    :popup-text="popupText"
-    :footer-text="footerText"
-    :button-text-left="buttonTextLeft"
-    :button-text-right="buttonTextRight"
-    :tos-Button="tosButton"
-    :popupWindow="popupWindow"
-  >
-  </PopupWindow>
 
   <LevelTwo
     @addLevel="addLevel"
@@ -57,8 +41,7 @@
         '',
         '',
         'Yes (no)',
-        'Yes',
-        false
+        'Yes'
       )
     "
     @cookieMonsterPopup="
@@ -69,8 +52,7 @@
         '',
         'Stop him immediately!',
         'but he\'s cute',
-        'Yes!',
-        false
+        'Yes!'
       )
     "
     :current-level="currentLevel"
@@ -80,11 +62,46 @@
 
   <LevelThree
       @addLevel="addLevel"
-      @sudokuPopup="popup(-1, 'https://i.ibb.co/RBwM8FZ/sudoku.png', 'What number should be in the middle square of this sudoku?', 'Sudoku', '','', 'Answer')"
-      @gameEnd="popup(-1, 'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif', 'Congratulations! You completed the game!','','Now go touch grass or something','','')"
+      @sudokuPopup="
+        popup(
+          -1,
+          'https://i.ibb.co/RBwM8FZ/sudoku.png',
+          'What number should be in the middle square of this sudoku?',
+          'Sudoku',
+          '',
+          '',
+          'Answer'
+        )
+      "
+      @gameEnd="
+        popup(
+          -1,
+          'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif',
+          'Congratulations! You completed the game!',
+          '',
+          'Now go touch grass or something',
+          '',
+          ''
+        )
+      "
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelThree>
+  
+  <PopupWindow
+  @close-popup="closePopup"
+  @addLevel="addLevel"
+  :current-level="currentLevel"
+  :image-url="gifUrl"
+  :popup-title="popupTitle"
+  :popup-text="popupText"
+  :footer-text="footerText"
+  :button-text-left="buttonTextLeft"
+  :button-text-right="buttonTextRight"
+  :popupWindow="popupWindow"
+>
+</PopupWindow>
+
 </template>
 
 <script lang="ts">
@@ -107,7 +124,6 @@ export default defineComponent({
       footerText: '',
       buttonTextLeft: '',
       buttonTextRight: '',
-      tosButton: false,
       cookieMonsterActive: false
     }
   },
@@ -135,7 +151,6 @@ export default defineComponent({
       footer: string,
       buttonTextLeft: string,
       buttonTextRight: string,
-      tosButton: boolean
     ) {
       this.popupWindow = true
       this.gifUrl = gifUrl
@@ -144,7 +159,6 @@ export default defineComponent({
       this.footerText = footer
       this.buttonTextLeft = buttonTextLeft
       this.buttonTextRight = buttonTextRight
-      this.tosButton = tosButton
 
       if (showTImeInMilliseconds == -1) {
         return

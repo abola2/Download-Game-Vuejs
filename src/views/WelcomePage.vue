@@ -1,5 +1,5 @@
 <template>
-  <PopupWindows> </PopupWindows>
+  <PopupWindow> </PopupWindow>
 
   <section class="parent" v-show="currentLevel == 0">
     <body class="body">
