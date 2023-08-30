@@ -38,7 +38,7 @@ components: {
 emits: [
     'addLevel',
     'sudokuPopup',
-    'showPopup'
+    'gameEnd'
 ],
 
 props: {
@@ -94,7 +94,7 @@ methods: {
             
             if (i % 10 == 0) // change this 
             {
-                newButton.onclick = () => this.$emit('sudokuPopup');
+                newButton.onclick = () => this.sudokuAndLevelProgress(newButton.id);
                 newButton.textContent = 'Downlod';
             }
             else {
@@ -109,8 +109,12 @@ methods: {
     },
     completeLevel()
     {
-    console.log("level completed");
+    this.$emit('gameEnd')
     /*this.$emit('addLevel');*/
+    },
+    sudokuAndLevelProgress(id: string){
+        this.$emit('sudokuPopup')
+        levelProgression(id)
     }
 }
 

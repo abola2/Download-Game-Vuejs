@@ -22,14 +22,15 @@
             <div class="footertext">
               {{ footerTextComputed }}
             </div>
+            <input id="sudokuInput" v-model="input" v-if="popupText == 'Sudoku'">
           </div>
-          <button id="popupbutton1" v-show="this.showButtons"
+          <button id="popupbutton1" v-show="this.showButtons" v-if="buttonTextLeft !== ''"
             class="modal-default-button"
             @click="hideButtons"
             >{{ buttonTextLeft }}
           </button>
 
-          <button id="popupbutton2" v-show="this.showButtons"
+          <button id="popupbutton2" v-show="this.showButtons" v-if="buttonTextRight !== ''"
             class="modal-default-button"
             @click="buttonFunctionality"
             >{{ buttonTextRight }}
@@ -51,13 +52,17 @@
 </template>
 
 <script lang="ts">
+
+import { ref } from 'vue'
 /* import { readFile } from "./readFromFile"; */
+const input = ref('');
 
 export default {
   
   data () {
     return {
-      showButtons: true
+      showButtons: true,
+      input
     }
   },
   emits: [
@@ -83,27 +88,27 @@ export default {
     },
     
     popupTextComputed (): string {
-      if (this.popupText != "TermsOfService")
-      {
-        /*
-        let modalbody = document.getElementById('modal-body') as HTMLElement;
-        modalbody.style.setProperty('overflow', 'hidden'); 
-         */
-        console.log("the popup should have this text:" + this.popupText);
-        return this.popupText;
-      }
-      else 
-      {
-        /*
-        let modalbody = document.getElementById('modal-body') as HTMLElement;
-        modalbody.style.setProperty('overflow', 'scroll'); 
-        */
-        /* const file = readFile('../../assets/fake_tos.txt'); 
-        not sure how to fix this, but it's not that important right now
-        Uncaught (in promise) Error: Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code.
-        */
-        const file = "TOS should be here anyday now...";
-        return file;
+      switch (this.popupText){
+        case "TermsOfService":
+          /*
+          let modalbody = document.getElementById('modal-body') as HTMLElement;
+          modalbody.style.setProperty('overflow', 'scroll'); 
+          */
+          /* const file = readFile('../../assets/fake_tos.txt'); 
+          not sure how to fix this, but it's not that important right now
+          Uncaught (in promise) Error: Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code.
+          */
+          return "TOS should be here anyday now...";
+
+        case "Sudoku":
+          return "";
+        default:
+          /*
+          let modalbody = document.getElementById('modal-body') as HTMLElement;
+          modalbody.style.setProperty('overflow', 'hidden'); 
+          */
+          console.log("the popup should have this text:" + this.popupText);
+          return this.popupText;
       }
     }
 
@@ -160,16 +165,31 @@ export default {
       this.showButtons ? this.showButtons = false : this.showButtons = true;
     },
     buttonFunctionality() {
-      if (this.popupText == "TermsOfService")
-      {
-      console.log("adding level");
-      this.$emit('addLevel');
-      this.$emit('close-popup');
-      }
-      else
-      {
-      console.log("closing popup");
-      this.$emit('close-popup');
+      switch (this.popupText){
+        case "TermsOfService":
+          console.log("adding level");
+          this.$emit('addLevel');
+          this.$emit('close-popup');
+          break;
+
+        case "Sudoku":
+          console.log(input);
+          if (input.value == "4")
+          {
+            input.value = "";
+            this.$emit('close-popup');
+          }
+          else 
+          {
+            input.value = "";
+            this.hideButtons();
+          }
+          break;
+
+        default:
+          console.log("closing popup");
+          this.$emit('close-popup');
+          break;
       }
     }
 
