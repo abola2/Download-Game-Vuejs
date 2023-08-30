@@ -70,7 +70,7 @@
           'Sudoku',
           '',
           '',
-          'Answer: '
+          'Answer'
         )
       "
       @pokemonPopup="
@@ -81,7 +81,7 @@
           'Pokemon',
           '',
           '',
-          'Answer: '
+          'Answer'
         )
       "
       @gameEnd="
@@ -122,6 +122,7 @@ import LevelOne from '@/views/Levels/LevelOne.vue'
 import LevelTwo from '@/views/Levels/LevelTwo.vue'
 import LevelThree from '@/views/Levels/LevelThree.vue'
 import PopupWindow from '@/views/Functionality/PopupWindow.vue'
+import {stopCookieMonster} from "@/views/Levels/LevelTwo.vue";
 
 export default defineComponent({
   data() {
@@ -181,7 +182,8 @@ export default defineComponent({
 
     closePopup() {
       if (this.popupWindow) {
-        this.popupWindow = false
+        stopCookieMonster(); // could be in a better place, but idk
+        this.popupWindow = false;
       }
     }
   },

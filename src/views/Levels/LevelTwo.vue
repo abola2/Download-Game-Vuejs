@@ -41,6 +41,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
+let cookieMonsterActive: boolean = false;
+let interval: number;
+let cookiesEaten: boolean = false;
+
+export function stopCookieMonster(){
+    cookieMonsterActive = false;
+    console.log('No more cookies for the monster');
+  }
+
+
 export default defineComponent({
   data() {
     return {
@@ -81,6 +92,13 @@ export default defineComponent({
   methods: {
     cookieClick() {
       this.cookies = this.cookies + this.cookiesPerClick * this.cookieMultiplayer
+      if (!cookiesEaten) // if cookiemonster hasn't already appeared, and if the player has >= cookies
+        {
+          if (this.cookies >= 100)
+          {
+            this.eatCookies();
+          }
+        }
     },
 
     buyMultiplayer() {
@@ -97,6 +115,21 @@ export default defineComponent({
         this.cookiesPerClick = this.cookiesPerClick * 1.3
         this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick * 2
       }
+    },
+    eatCookies(){
+      this.$emit('cookieMonsterPopup')
+      cookieMonsterActive = true;
+      interval = setInterval(this.nomnom, 433)
+      console.log(interval)
+    },
+    nomnom() {
+      if (!cookieMonsterActive)
+      {
+        console.log(interval)
+        clearInterval(interval);
+        return;
+      }
+      this.cookies--;
     }
   }
 })
