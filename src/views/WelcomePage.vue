@@ -3,7 +3,7 @@
 
   <section class="parent" v-show="currentLevel == 0">
     <div class="body">
-      <h1 class="text-center">Welcome to the funny download game.</h1>
+      <h1 class="text-center">Welcome to the download game.</h1>
         <h4 class="text-center">Start the game by downloading a very nonsuspicious "program"</h4>
         <button class="btn-play w-25 p-3" @click="$emit('addLevel')"></button>
     </div>
@@ -15,7 +15,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   components: {},
-
   emits: ['addLevel'],
 
   props: {
@@ -46,13 +45,6 @@ export default defineComponent({
   height: 100vh; /* Adjust as needed */
 
 }
-
-
-
-
-
-
-
 
 
 

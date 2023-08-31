@@ -49,7 +49,7 @@
         -1,
         'https://media.giphy.com/media/JrH3p5ZyUHEV6iyvR4/giphy.gif',
         'OH NO! The Cookie Monster got to your cookie jar!',
-        '',
+        'CookieMonster',
         'Stop him immediately!',
         'but he\'s cute',
         'Yes!'
@@ -89,7 +89,7 @@
           -1,
           'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif',
           'Congratulations! You completed the game! You won\'t get to donwload anything tho.',
-          '',
+          'gameEnd',
           'Now go touch grass or something',
           '',
           ''
@@ -122,7 +122,6 @@ import LevelOne from '@/views/Levels/LevelOne.vue'
 import LevelTwo from '@/views/Levels/LevelTwo.vue'
 import LevelThree from '@/views/Levels/LevelThree.vue'
 import PopupWindow from '@/views/Functionality/PopupWindow.vue'
-import {stopCookieMonster} from "@/views/Levels/LevelTwo.vue";
 
 export default defineComponent({
   data() {
@@ -135,8 +134,7 @@ export default defineComponent({
       popupText: '',
       footerText: '',
       buttonTextLeft: '',
-      buttonTextRight: '',
-      cookieMonsterActive: false
+      buttonTextRight: ''
     }
   },
 
@@ -176,13 +174,12 @@ export default defineComponent({
         return
       }
       setTimeout(() => {
-        this.popupWindow = false
+        this.popupWindow = false;
       }, showTImeInMilliseconds)
     },
 
     closePopup() {
       if (this.popupWindow) {
-        stopCookieMonster(); // could be in a better place, but idk
         this.popupWindow = false;
       }
     }
