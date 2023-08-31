@@ -124,8 +124,7 @@ methods: {
     },
     completeLevel()
     {
-    this.$emit('gameEnd')
-    /*this.$emit('addLevel');*/ // if someone ever adds more levels move 'gameEnd to the last level'
+    this.$emit('gameEnd');
     },
     sudokuAndLevelProgress(id: string){
         this.$emit('sudokuPopup');
