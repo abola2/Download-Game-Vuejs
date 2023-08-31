@@ -31,41 +31,42 @@
     </div>
 
 
+
     <div class="img-add-div">
+      <header id="arctic_fox_Ad_Header">Advertisement:</header>
+      <header id="elephant_Ad_Header">Advertisement:</header>
+      <header id="monkey_Ad_Header">Advertisement:</header>
+      <header id="tower_Ad_Header">Advertisement:</header>
       <img
-        id="mtndew_Ad"
+        id="monkey_Ad"
         class="img-thumbnail"
         src="../../assets/capuchin-8183528_640.jpg"
         alt=""
       />
-      <header id="mtndew_Ad_Header">Advertisement:</header>
     </div>
     <img
-      id="tacobell_Ad"
+      id="elephant_Ad"
       class="img-thumbnail"
       src="../../assets/elephant-1822636_640.jpg"
       alt=""
     />
-    <header id="tacobell_Ad_Header">Advertisement:</header>
     <img
-      id="macncheese_Ad"
+      id="tower_Ad"
       class="img-thumbnail"
       src="../../assets/lifeguard-tower-8173913_640.jpg"
       alt=""
     />
-    <header id="macncheese_Ad_Header">Advertisement:</header>
     <img
-      id="toothpaste_Ad"
+      id="arctic_fox_Ad"
       class="img-thumbnail"
       src="../../assets/iceland-1979445_640.jpg"
       alt=""
     />
-    <header id="toothpaste_Ad_Header">Advertisement:</header>
 
-    <button id="btn_fake_x_mtndew">X</button>
-    <button id="btn_fake_x_tacobell">X</button>
-    <button id="btn_fake_x_macncheese">X</button>
-    <button id="btn_fake_x_toothpaste">X</button>
+    <button id="btn_fake_x_monkey">X</button>
+    <button id="btn_fake_x_elephant">X</button>
+    <button id="btn_fake_x_tower">X</button>
+    <button id="btn_fake_x_arctic_fox">X</button>
 
 
   </div>
@@ -256,7 +257,7 @@ header {
   transform: scaleX(-1) rotate(15deg);
 }
 
-#mtndew_Ad {
+#monkey_Ad {
   border-radius: 2px;
   border: solid #000;
 
@@ -266,27 +267,28 @@ header {
   top: 70%;
   left: 82%;
 }
-#mtndew_Ad_Header {
+#monkey_Ad_Header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
   width: 4.5%;
   position: absolute;
   font-size: 10px;
-  top: 69%;
-  left: 84%;
+  top: 67.5%;
+  left: 82%;
 }
 
-#btn_fake_x_mtndew {
+#btn_fake_x_monkey {
   font-size: 13px;
   position: absolute;
-  top: 69%;
-  left: 96%;
+  top: 70%;
+  left: 95.5%;
   border-radius: 3px;
 }
 
-#tacobell_Ad {
-  border-radius: 3px;
+#elephant_Ad {
+  border-radius: 2px;
+  border: solid #000;
 
   position: absolute;
   height: 25%;
@@ -295,26 +297,26 @@ header {
   left: 82%;
 }
 
-#tacobell_Ad_Header {
+#elephant_Ad_Header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
   width: 4.5%;
   position: absolute;
   font-size: 10px;
-  top: 14%;
-  left: 84%;
+  top: 12.5%;
+  left: 82%;
 }
 
-#btn_fake_x_tacobell {
+#btn_fake_x_elephant {
   font-size: 13px;
   position: absolute;
   top: 15%;
-  left: 96%;
+  left: 95.5%;
   border-radius: 3px;
 }
 
-#macncheese_Ad {
+#tower_Ad {
   border-radius: 2px;
   border: solid #000;
 
@@ -324,26 +326,26 @@ header {
   top: 14%;
   left: 2%;
 }
-#macncheese_Ad_Header {
+#tower_Ad_Header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
   width: 4.5%;
   position: absolute;
   font-size: 10px;
-  top: 13%;
-  left: 4%;
+  top: 11.5%;
+  left: 2%;
 }
 
-#btn_fake_x_macncheese {
+#btn_fake_x_tower {
   font-size: 13px;
   position: absolute;
   top: 14%;
-  left: 16%;
+  left: 15.5%;
   border-radius: 3px;
 }
 
-#toothpaste_Ad {
+#arctic_fox_Ad {
   border-radius: 2px;
   border: solid #000;
 
@@ -354,7 +356,7 @@ header {
   left: 2%;
 }
 
-#toothpaste_Ad_Header {
+#arctic_fox_Ad_Header {
   background: #e4e4e4;
   text-align: left;
   padding: 5px;
@@ -362,15 +364,15 @@ header {
   height: 2%;
   position: absolute;
   font-size: 10px;
-  top: 69%;
-  left: 4%;
+  top: 67.5%;
+  left: 2%;
 }
 
-#btn_fake_x_toothpaste {
+#btn_fake_x_arctic_fox {
   font-size: 13px;
   position: absolute;
   top: 70%;
-  left: 16%;
+  left: 15.5%;
 }
 
 #button1:hover {

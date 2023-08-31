@@ -105,7 +105,7 @@ methods: {
                 case 1: // red button
                     newButton.onclick = () => this.allTheButtons(iButton);
                     newButton.style.backgroundColor = '#FF0000';
-                    newButton.textContent = 'Don\'t download';
+                    newButton.textContent = 'Don\'t click';
                     break;
                 case 2:
                     // if there was more time these popups could use api calls to generate content, but for now they use static images
