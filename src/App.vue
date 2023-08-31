@@ -56,8 +56,7 @@
       )
     "
     :current-level="currentLevel"
-  >
-    :popupWindow="popupWindow"> :cookieMonster="cookieMonsterActive">
+    :popupWindow="popupWindow">
   </LevelTwo>
 
   <LevelThree
@@ -88,17 +87,22 @@
         popup(
           -1,
           'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif',
-          'Congratulations! You completed the game! You won\'t get to donwload anything tho.',
+          'Congratulations! You completed the game! Had to make sure you were smart enough to download our amazing program.',
           'gameEnd',
-          'Now go touch grass or something',
           '',
-          ''
+          '',
+          'Download'
         )
       "
       :current-level="currentLevel"
       :popupWindow="popupWindow">
   </LevelThree>
   
+  <LevelFourOFour
+  @addLevel="addLevel"
+  :current-level="currentLevel">
+  </LevelFourOFour>
+
   <PopupWindow
   @close-popup="closePopup"
   @addLevel="addLevel"
@@ -121,6 +125,7 @@ import { defineComponent } from 'vue'
 import LevelOne from '@/views/Levels/LevelOne.vue'
 import LevelTwo from '@/views/Levels/LevelTwo.vue'
 import LevelThree from '@/views/Levels/LevelThree.vue'
+import LevelFourOFour from '@/views/Levels/LevelFourOFour.vue'
 import PopupWindow from '@/views/Functionality/PopupWindow.vue'
 
 export default defineComponent({
@@ -142,6 +147,7 @@ export default defineComponent({
     LevelTwo,
     LevelOne,
     LevelThree,
+    LevelFourOFour,
     WelcomePage,
     PopupWindow
   },

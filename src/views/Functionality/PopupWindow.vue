@@ -82,6 +82,8 @@ export default {
 
         case "Pokemon":
           return "";
+        case "gameEnd":
+          return "";
         default:
           return this.popupText;
       }
@@ -172,6 +174,10 @@ export default {
             input.value = "";
             this.hideButtons();
           }
+          break;
+        case "gameEnd":
+          this.$emit('addLevel');
+          this.$emit('close-popup');
           break;
 
         default:
