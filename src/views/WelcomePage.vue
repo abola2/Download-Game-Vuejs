@@ -2,11 +2,11 @@
   <PopupWindow> </PopupWindow>
 
   <section class="parent" v-show="currentLevel == 0">
-    <body class="body">
+    <div class="body">
       <h1 class="text-center">Welcome to the funny download game.</h1>
-      <h4 class="text-center">Start the game by downloading a very nonsuspicious "program"</h4>
-      <button class="btn-play col-lg-12" @click="$emit('addLevel')"></button>
-    </body>
+        <h4 class="text-center">Start the game by downloading a very nonsuspicious "program"</h4>
+        <button class="btn-play w-25 p-3" @click="$emit('addLevel')"></button>
+    </div>
   </section>
 </template>
 
@@ -34,33 +34,8 @@ export default defineComponent({
 </script>
 
 <style>
-/*https://codepen.io/aybukeceylan/pen/yLOxRyG--*/
 
-* {
-  box-sizing: border-box;
-}
 
-.ex2 .parent {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.parent {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-html,
-body {
-  width: 90%;
-  height: 20vh;
-  margin: 0;
-}
 
 .body {
   font-family: 'DM Sans', sans-serif;
@@ -68,37 +43,18 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
-  padding: 10px;
+  height: 100vh; /* Adjust as needed */
+
 }
 
-:root {
-  --dark-font: #0f0f10;
-  --light-font: #79798c;
-}
 
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
 
-&-header {
-  display: table-header-group;
-}
 
-&-row {
-  display: table-row-group;
-}
 
-@keyframes sticky {
-  0% {
-    transform: translatey(-88px);
-  }
 
-  100% {
-    transform: translatey(0px);
-  }
-}
+
+
+
 
 .btn-play {
   background-color: #1b9fdc;
@@ -106,10 +62,10 @@ a {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px;
-  width: 120px;
   height: 60px;
   flex-shrink: 0;
   border: none;
   border-radius: 10px;
+  margin-top: 15px;
 }
 </style>
