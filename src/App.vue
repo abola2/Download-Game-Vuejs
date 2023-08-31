@@ -9,7 +9,7 @@
         'https://image.ibb.co/epha5A/giphy.gif',
         'LOOK! A cool monkey!',
         '',
-        '',
+        'Isn\'t this monkey cute?',
         'Yes (no)',
         'Yes'
       )
@@ -39,7 +39,7 @@
         'https://image.ibb.co/epha5A/giphy.gif',
         'LOOK! A cool monkey!',
         '',
-        '',
+        'Isn\'t this monkey cute?',
         'Yes (no)',
         'Yes'
       )
@@ -107,7 +107,7 @@
   @close-popup="closePopup"
   @addLevel="addLevel"
   :current-level="currentLevel"
-  :image-url="gifUrl"
+  :image-url="imgUrl"
   :popup-title="popupTitle"
   :popup-text="popupText"
   :footer-text="footerText"
@@ -134,7 +134,7 @@ export default defineComponent({
       hide: true,
       currentLevel: 0,
       popupWindow: false,
-      gifUrl: '', //https://image.ibb.co/epha5A/giphy.gif
+      imgUrl: '', //https://image.ibb.co/epha5A/giphy.gif
       popupTitle: '',
       popupText: '',
       footerText: '',
@@ -169,7 +169,7 @@ export default defineComponent({
       buttonTextRight: string,
     ) {
       this.popupWindow = true
-      this.gifUrl = gifUrl
+      this.imgUrl = gifUrl
       this.popupTitle = title
       this.popupText = text
       this.footerText = footer
