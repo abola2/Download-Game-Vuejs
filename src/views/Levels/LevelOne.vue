@@ -1,27 +1,36 @@
-<!--
-Level 1 idea
-
-Install free version
-
-Fill page with adds
-
-
-
--->
 
 <template>
   <div class="level1" v-show="currentLevel === 1">
     <div class="page_Header_Right"></div>
     <div class="page_Header_Left"></div>
-    <header class="blue">
-      You fool! That wasn't a real download button. <br />
-      But maybe you can find one here?
-    </header>
-    <button id="button1" v-if="value === 1" @click="$emit('showPopup')">Download</button>
-    <img id="arrow1" v-if="value === 1" src="../../assets/clickbait_arrow.png" alt="" />
-    <img id="arrow2" v-if="value === 1" src="../../assets/clickbait_arrow.png" alt="" />
-    <iframe v-if="value === 2" src="https://www.wikipedia.com" class="" width="60%" height="50%">
-    </iframe>
+    <div class="body">
+      <header class="blue marg">
+        You fool! That wasn't a real download button. <br />
+        But maybe you can find one here?
+      </header>
+        <Multiselect
+            class="multiselect-blue"
+            v-model="value"
+            :close-on-select="true"
+            :searchable="false"
+            :mode="'single'"
+            :placeholder="'select'"
+            :options="[
+              { value: 1, label: 'Buy' },
+              { value: 2, label: 'Wiki' },
+              { value: 3, label: 'Tos' }
+            ]"
+        />
+      <iframe v-if="value === 2" src="https://www.wikipedia.com" class="" width="60%" height="50%">
+      </iframe>
+      <div class="container-row">
+      <img id="arrow1" v-if="value === 1" src="../../assets/clickbait_arrow.png" alt="" />
+      <button id="button1" v-if="value === 1" @click="$emit('showPopup')">Download</button>
+      <img id="arrow2" v-if="value === 1" src="../../assets/clickbait_arrow.png" alt="" />
+      </div>
+    </div>
+
+
     <div class="img-add-div">
       <img
         id="mtndew_Ad"
@@ -58,24 +67,7 @@ Fill page with adds
     <button id="btn_fake_x_macncheese">X</button>
     <button id="btn_fake_x_toothpaste">X</button>
 
-    <div>
-      <div class="multiselect-style">
-        <Multiselect
-          class="multiselect-blue"
-          @select="console.log(value)"
-          v-model="value"
-          :close-on-select="true"
-          :searchable="true"
-          :mode="'single'"
-          :placeholder="'select'"
-          :options="[
-            { value: 1, label: 'Buy' },
-            { value: 2, label: 'Wiki' },
-            { value: 3, label: 'Tos' }
-          ]"
-        />
-      </div>
-    </div>
+
   </div>
 </template>
 
@@ -125,13 +117,33 @@ export default {
 <style src="@vueform/multiselect/themes/default.css"></style>
 
 <style>
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-top: 30px;
+}
+
+
 iframe {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   overflow: hidden;
 }
+
+
+@media screen and (max-height: 800px) {
+  iframe {
+    top: 80%;
+    height: 40%;
+  }
+
+  header {
+    height: 30%;
+  }
+}
+
+
+
 
 .page_Header_Right {
   background: #dbe2e8;
@@ -160,37 +172,55 @@ iframe {
 .multiselect-blue {
   --ms-tag-bg: #dbeafe;
   --ms-tag-color: #2563eb;
-  position: absolute;
-  top: 40%;
-  left: 50%;
   width: 30%;
-  transform: translate(-50%, -50%);
 }
 
 header {
   font-weight: 500;
   font-size: 2.6rem;
   text-align: center;
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding-bottom: 2%;
 }
+
+
+.marg {
+  padding-right: 60px;
+  padding-left: 60px;
+}
+
+@media screen and (max-width: 1025px) {
+  .marg {
+    padding-right: 20%;
+    padding-left: 20%;
+  }
+}
+
+
+@media screen and (max-width: 1400px) {
+  .marg {
+    padding-right: 25%;
+    padding-left: 25%;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .marg {
+    padding-right: 40%;
+    padding-left: 40%;
+    font-size: x-large;
+  }
+}
+
+
 
 #arrow1 {
-  position: absolute;
   height: 12.5%;
   transform: rotate(15deg);
-  top: 60%;
-  left: 36%;
 }
 #arrow2 {
-  position: absolute;
   height: 12.5%;
   transform: scaleX(-1) rotate(15deg);
-
-  top: 60%;
-  left: 58%;
 }
 
 #mtndew_Ad {
@@ -315,16 +345,8 @@ header {
 }
 
 #button1 {
-  /*don't even ask*/
-
   font-weight: 400;
   font-size: 25px;
-
-  position: absolute;
-
-  top: 75%;
-  left: 45%;
-  z-index: 0;
   width: 200px;
   height: 100px;
   border-radius: 10px;
@@ -332,14 +354,8 @@ header {
   padding: 25px;
 
   &::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    left: -50%;
-    top: -150%;
     width: 200%;
     height: 400%;
-    background-color: #399953;
     background-repeat: no-repeat;
     background-size:
       50% 50%,
