@@ -25,7 +25,7 @@
       </iframe>
       <div class="container-row">
       <img id="arrow1" v-if="value === 1" src="../../assets/clickbait_arrow.png" alt="" />
-      <button id="button1" v-if="value === 1" @click="$emit('showPopup')">Download</button>
+      <button id="button1" class="btn-lg m-5" v-if="value === 1" @click="$emit('showPopup')">Download</button>
       <img id="arrow2" v-if="value === 1" src="../../assets/clickbait_arrow.png" alt="" />
       </div>
     </div>
@@ -121,8 +121,8 @@ export default {
 .container-row {
   display: flex;
   flex-direction: row;
-  gap: 20px;
   padding-top: 30px;
+  overflow: hidden;
 }
 
 
@@ -193,6 +193,18 @@ header {
     padding-right: 20%;
     padding-left: 20%;
   }
+
+  #button1 {
+    /*don't even ask*/
+
+    width: 100px;
+    height: 80px;
+
+    &::before {
+      width: 50%;
+      height: 50%;
+    }
+  }
 }
 
 
@@ -210,16 +222,37 @@ header {
     padding-left: 40%;
     font-size: x-large;
   }
+
+
 }
+
+
+@media screen and (max-width: 920px) {
+
+
+  #arrow1 {
+    display: none;
+  }
+  #arrow2 {
+    display: none;
+  }
+
+
+}
+
+
+
+
+
 
 
 
 #arrow1 {
-  height: 12.5%;
+  height: 32.5%;
   transform: rotate(15deg);
 }
 #arrow2 {
-  height: 12.5%;
+  height: 32.5%;
   transform: scaleX(-1) rotate(15deg);
 }
 
@@ -345,28 +378,36 @@ header {
 }
 
 #button1 {
-  font-weight: 400;
+  /*don't even ask*/
+
   font-size: 25px;
+
+  position: sticky;
+  z-index: 0;
   width: 200px;
-  height: 100px;
+  height: 80px;
   border-radius: 10px;
   overflow: hidden;
-  padding: 25px;
 
   &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: -50%;
+    top: -150%;
     width: 200%;
     height: 400%;
     background-repeat: no-repeat;
     background-size:
-      50% 50%,
-      50% 50%;
+        50% 50%,
+        50% 50%;
     background-position:
-      0 0,
-      100% 0,
-      100% 100%,
-      0 100%;
+        0 0,
+        100% 0,
+        100% 100%,
+        0 100%;
     background-image: linear-gradient(#ff69b4, #ff69b4), linear-gradient(#ff51ff, #ff51ff),
-      linear-gradient(#ff2cff, #ff2cff), linear-gradient(#f64a8a, #f64a8a);
+    linear-gradient(#ff2cff, #ff2cff), linear-gradient(#f64a8a, #f64a8a);
     animation: rotate 5s linear infinite;
   }
 }
