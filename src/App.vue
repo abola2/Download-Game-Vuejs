@@ -191,11 +191,6 @@ export default defineComponent({
     }
   },
 
-  watch: {
-    currentLevel() {
-      console.log(this.currentLevel)
-    }
-  }
 })
 </script>
 

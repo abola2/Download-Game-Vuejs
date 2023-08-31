@@ -58,7 +58,7 @@ export default defineComponent({
       show: false,
       wait: 5.0,
       cookies: 0,
-      cookiesPerClick: 2,
+      cookiesPerClick: 200000,
       cookiesPerClickPrice: 10,
       cookiemultiplier: 2,
       cookiemultiplierPrice: 10,
@@ -81,10 +81,6 @@ export default defineComponent({
     }
   },
   watch: {
-    getCurrentLevel() {
-      console.log('hidden ' + this.currentLevel);
-    },
-
     cookies(amount) {
       this.skipAd = amount < 1000000;
     }
