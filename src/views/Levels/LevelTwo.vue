@@ -48,6 +48,7 @@ let cookiesEaten: boolean = false;
 
 export function stopCookieMonster(){
     cookieMonsterActive = false;
+    cookiesEaten = true;
     console.log('No more cookies for the monster');
   }
 
@@ -91,7 +92,7 @@ export default defineComponent({
   },
   methods: {
     cookieClick() {
-      this.cookies = this.cookies + this.cookiesPerClick * this.cookiemultiplier
+      this.cookies = this.cookies + this.cookiesPerClick * this.cookiemultiplier;
       if (!cookiesEaten) // if cookiemonster hasn't already appeared, and if the player has >= cookies
         {
           if (this.cookies >= 1000)

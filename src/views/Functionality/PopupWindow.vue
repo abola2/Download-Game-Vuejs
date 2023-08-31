@@ -39,6 +39,7 @@
 
 <script lang="ts">
 
+import {stopCookieMonster} from "@/views/Levels/LevelTwo.vue";
 import { ref } from 'vue';
 const input = ref('');
 
@@ -72,6 +73,9 @@ export default {
         case "TermsOfService":
           
           return "TOS should be here anyday now...";
+        
+        case "CookieMonster":
+          return "";
 
         case "Sudoku":
           return "";
@@ -142,6 +146,13 @@ export default {
           this.$emit('addLevel');
           this.$emit('close-popup');
           break;
+
+        case "CookieMonster":
+          console.log('no more cookies');
+          stopCookieMonster();
+          this.$emit('close-popup');
+          break; 
+
 
         case "Sudoku":
           console.log(input);
