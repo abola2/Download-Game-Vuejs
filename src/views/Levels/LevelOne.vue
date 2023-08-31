@@ -62,7 +62,6 @@ Fill page with adds
       <div class="multiselect-style">
         <Multiselect
           class="multiselect-blue"
-          @select="console.log(value)"
           v-model="value"
           :close-on-select="true"
           :searchable="true"

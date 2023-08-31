@@ -54,7 +54,7 @@ export default {
   components: {},
   computed: {
     getCurrentLevel(): number {
-      return this.currentLevel
+      return this.currentLevel;
     },
 
     footerTextComputed (): string {
@@ -68,11 +68,11 @@ export default {
       }
     },
     
+    // uses popupText to determine who called the PopupWindow and what the popup should do
     popupTextComputed (): string {
       switch (this.popupText){
         case "TermsOfService":
-          
-          return "TOS should be here anyday now...";
+          return "By accepting the terms of service you agree to blah blah blah...";
         
         case "CookieMonster":
           return "";
@@ -83,8 +83,6 @@ export default {
         case "Pokemon":
           return "";
         default:
-          
-          console.log("the popup should have this text:" + this.popupText);
           return this.popupText;
       }
     }
@@ -129,33 +127,29 @@ export default {
   },
   methods: {
     hideButtons() {
-      this.toggleButtons()
-      console.log('hide buttons')
+      this.toggleButtons();
       setTimeout(() => {
-        console.log('show buttons')
-        this.toggleButtons()
+        this.toggleButtons();
       }, 900)
     },
     toggleButtons() {
-      this.showButtons ? (this.showButtons = false) : (this.showButtons = true)
+      this.showButtons ? (this.showButtons = false) : (this.showButtons = true);
     },
+    // uses popupText to determine who called the PopupWindow and what the popup should do
     buttonFunctionality() {
       switch (this.popupText){
         case "TermsOfService":
-          console.log("adding level");
           this.$emit('addLevel');
           this.$emit('close-popup');
           break;
 
         case "CookieMonster":
-          console.log('no more cookies');
           stopCookieMonster();
           this.$emit('close-popup');
           break; 
 
 
         case "Sudoku":
-          console.log(input);
           if (input.value == "4")
           {
             input.value = "";
@@ -168,7 +162,6 @@ export default {
           }
           break;
         case "Pokemon":
-          console.log(input);
           if (input.value.toLowerCase() == "blacephalon")
           {
             input.value = "";
@@ -182,7 +175,6 @@ export default {
           break;
 
         default:
-          console.log("closing popup");
           this.$emit('close-popup');
           break;
       }

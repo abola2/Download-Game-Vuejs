@@ -30,7 +30,7 @@
           Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies:
           {{ cookiesPerClick.toFixed(2) }}
         </button>
-        <button @click="buymultiplier" class="multiplier-button">
+        <button @click="buyMultiplier" class="multiplier-button">
           Cookie multiplier price: {{ cookiemultiplierPrice.toFixed(2) }} multiplier:
           {{ cookiemultiplier.toFixed(2) }}
         </button>
@@ -49,7 +49,6 @@ let cookiesEaten: boolean = false;
 export function stopCookieMonster(){
     cookieMonsterActive = false;
     cookiesEaten = true;
-    console.log('No more cookies for the monster');
   }
 
 
@@ -78,16 +77,16 @@ export default defineComponent({
   },
   computed: {
     getCurrentLevel(): number {
-      return this.currentLevel
+      return this.currentLevel;
     }
   },
   watch: {
     getCurrentLevel() {
-      console.log('hidden ' + this.currentLevel)
+      console.log('hidden ' + this.currentLevel);
     },
 
     cookies(amount) {
-      this.skipAd = amount < 1000000
+      this.skipAd = amount < 1000000;
     }
   },
   methods: {
@@ -102,31 +101,29 @@ export default defineComponent({
         }
     },
 
-    buymultiplier() {
+    buyMultiplier() {
       if (this.cookies >= this.cookiemultiplierPrice) {
-        this.cookies = this.cookies - this.cookiemultiplierPrice
-        this.cookiemultiplier = this.cookiemultiplier * 1.35
+        this.cookies = this.cookies - this.cookiemultiplierPrice;
+        this.cookiemultiplier = this.cookiemultiplier * 1.35;
         this.cookiemultiplierPrice =
-          this.cookiemultiplierPrice + this.cookiemultiplier * this.cookiemultiplierPrice * 2
+          this.cookiemultiplierPrice + this.cookiemultiplier * this.cookiemultiplierPrice * 2;
       }
     },
     buyMoreCookies() {
       if (this.cookies >= this.cookiesPerClickPrice) {
-        this.cookies = this.cookies - this.cookiesPerClickPrice
-        this.cookiesPerClick = this.cookiesPerClick * 1.3
-        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick * 2
+        this.cookies = this.cookies - this.cookiesPerClickPrice;
+        this.cookiesPerClick = this.cookiesPerClick * 1.3;
+        this.cookiesPerClickPrice = this.cookiesPerClickPrice + this.cookiesPerClick * 2;
       }
     },
     eatCookies(){
       this.$emit('cookieMonsterPopup')
       cookieMonsterActive = true;
-      interval = setInterval(this.nomnom, 433)
-      console.log(interval)
+      interval = setInterval(this.nomNom, 433); // eats cookies every 0.433 seconds (same as the length of the gif)
     },
-    nomnom() {
+    nomNom() {
       if (!cookieMonsterActive)
       {
-        console.log(interval)
         clearInterval(interval);
         return;
       }

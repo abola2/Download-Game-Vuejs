@@ -89,7 +89,7 @@
           -1,
           'https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif',
           'Congratulations! You completed the game! You won\'t get to donwload anything tho.',
-          '',
+          'gameEnd',
           'Now go touch grass or something',
           '',
           ''
@@ -174,7 +174,7 @@ export default defineComponent({
         return
       }
       setTimeout(() => {
-        this.popupWindow = false
+        this.popupWindow = false;
       }, showTImeInMilliseconds)
     },
 
