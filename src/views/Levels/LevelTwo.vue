@@ -2,16 +2,15 @@
   <div class="level2" v-show="getCurrentLevel === 2">
     <div class="full-screen-background">
       <div class="center-container">
+        <header>Cookie amount: {{ cookies.toFixed(2) }}</header>
         <button class="centered-button glow" :disabled="!skipAd" @click="cookieClick">
           <div class="circle-image" />
         </button>
       </div>
 
-      <header>Cookie amount: {{ cookies.toFixed(2) }}</header>
 
-      <!-- Your content goes here -->
+
       <div class="page_Header_Top">
-        <!-- Your content goes here -->
         <h2 class="center-container-header">Earn a million cookies to skip ad</h2>
         <h5 class="center-container-header" v-if="!skipAd">Level completed!</h5>
         <div class="center-container-skip">
@@ -58,7 +57,7 @@ export default defineComponent({
       show: false,
       wait: 5.0,
       cookies: 0,
-      cookiesPerClick: 200000,
+      cookiesPerClick: 1,
       cookiesPerClickPrice: 10,
       cookiemultiplier: 2,
       cookiemultiplierPrice: 10,
@@ -165,7 +164,7 @@ export default defineComponent({
   position: absolute;
   top: 0;
   left: 0;
-  background: url('@/assets/cookies-1264263_640.jpg') center/cover no-repeat;
+  background: url('@/assets/cookie-307960_640.png') center/cover no-repeat;
 }
 
 .page_Header_Top {
@@ -181,6 +180,7 @@ export default defineComponent({
 
 .center-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -258,7 +258,6 @@ export default defineComponent({
   font-family: 'DM Sans', sans-serif;
   transform: scale(1);
   transition: transform 0.01s ease-in-out;
-  position: relative;
 }
 
 .glow {
@@ -271,7 +270,7 @@ export default defineComponent({
 }
 
 .centered-button:enabled:active {
-  transform: scale(1.02);
+  transform: scale(0.92);
   transition: transform 0.05s ease-in-out;
 }
 </style>
