@@ -1,14 +1,16 @@
 <template>
   <div class="level2" v-show="getCurrentLevel === 2">
     <div class="full-screen-background">
+      <a class="glow-background"></a>
       <div class="center-container">
         <header>Cookie amount: {{ cookies.toFixed(2) }}</header>
+
         <button class="centered-button glow" :disabled="!skipAd" @click="cookieClick">
+          <div class="background-container">
           <div class="circle-image" />
+          </div>
         </button>
       </div>
-
-
 
       <div class="page_Header_Top">
         <h2 class="center-container-header">Earn a million cookies to skip ad</h2>
@@ -161,11 +163,12 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  border-style: none;
   background: url('@/assets/cookie-307960_640.png') center/cover no-repeat;
+  padding: 50%;
 }
+
+
 
 .page_Header_Top {
   background: #cbbfb9;
@@ -251,23 +254,11 @@ export default defineComponent({
   width: 20%;
   height: 40%;
   border-radius: 50%;
-  background-color: transparent;
-  border-style: hidden;
-  display: inline-block;
-  font-size: larger;
-  font-family: 'DM Sans', sans-serif;
+  border-style: none;
+  background: none;
   transform: scale(1);
-  transition: transform 0.01s ease-in-out;
 }
 
-.glow {
-  box-shadow: 0 0 45px rgba(243, 240, 240, 0.5);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.glow:enabled:hover {
-  box-shadow: 0 0 50px rgba(243, 236, 236, 0.8);
-}
 
 .centered-button:enabled:active {
   transform: scale(0.92);
