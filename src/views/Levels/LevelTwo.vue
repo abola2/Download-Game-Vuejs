@@ -3,7 +3,7 @@
     <div class="full-screen-background">
       <a class="glow-background"></a>
       <div class="center-container">
-        <header>Cookie amount: {{ cookies.toFixed(2) }}</header>
+        <header>Cookies: {{ cookies.toFixed(0) }}</header>
 
         <button class="centered-button glow" :disabled="!skipAd" @click="cookieClick">
           <div class="background-container">
@@ -26,6 +26,7 @@
           </button>
         </div>
       </div>
+
       <div class="page_Header_Right_shop" v-if="skipAd" id="shop">
         <button @click="buyMoreCookies" class="moreCookies-button">
           Cookie per click price: {{ cookiesPerClickPrice.toFixed(2) }} Cookies:
@@ -43,9 +44,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+
 let cookieMonsterActive: boolean = false;
 let interval: number;
 let cookiesEaten: boolean = false;
+
 
 export function stopCookieMonster(){
     cookieMonsterActive = false;
@@ -97,7 +100,6 @@ export default defineComponent({
           }
         }
     },
-
     buyMultiplier() {
       if (this.cookies >= this.cookiemultiplierPrice) {
         this.cookies = this.cookies - this.cookiemultiplierPrice;
@@ -128,6 +130,7 @@ export default defineComponent({
     }
   }
 })
+
 </script>
 
 <style>
@@ -181,6 +184,7 @@ export default defineComponent({
   transition: left 1.5s ease-in-out;
 }
 
+
 .center-container {
   display: flex;
   flex-direction: column;
@@ -189,17 +193,20 @@ export default defineComponent({
   height: 100vh;
 }
 
+
 .center-container-skip {
   display: flex;
   justify-content: right;
   align-items: flex-start;
 }
 
+
 .center-container-header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
+
 
 .center-button-skip {
   border-radius: 5px;
@@ -214,32 +221,39 @@ export default defineComponent({
   margin-right: 10px;
 }
 
+
 .multiplier-button {
   border-radius: 5px;
 }
+
 
 .multiplier-button:hover {
   transform: scale(1.02);
   font-weight: bold;
 }
 
+
 .moreCookies-button {
   border-radius: 5px;
 }
+
 
 .moreCookies-button:hover {
   transform: scale(1.02);
   font-weight: bold;
 }
 
+
 .center-button-skip:hover:enabled {
   transform: scale(1.02);
 }
+
 
 .center-button-skip:disabled {
   cursor: default;
   opacity: 90%;
 }
+
 
 .full-screen-background {
   position: fixed;
@@ -249,6 +263,7 @@ export default defineComponent({
   height: 100%;
   background-color: #84a3d2;
 }
+
 
 .centered-button {
   width: 20%;

@@ -11,7 +11,8 @@
         '',
         'Isn\'t this monkey cute?',
         'Yes (no)',
-        'Yes'
+        'Yes',
+        true
       )
     "
     @showTosPopup="
@@ -22,7 +23,8 @@
         'TermsOfService',
         'do you accept terms and conditions? ',
         'Yes (no)',
-        'Yes'
+        'Yes',
+        true
       )
     "
     :current-level="currentLevel"
@@ -41,7 +43,8 @@
         '',
         'Isn\'t this monkey cute?',
         'Yes (no)',
-        'Yes'
+        'Yes',
+        true
       )
     "
     @cookieMonsterPopup="
@@ -51,8 +54,9 @@
         'OH NO! The Cookie Monster got to your cookie jar!',
         'CookieMonster',
         'Stop him immediately!',
-        'but he\'s cute',
-        'Yes!'
+        'He\'s cute',
+        'Yes!',
+        false
       )
     "
     :current-level="currentLevel"
@@ -69,7 +73,8 @@
           'Sudoku',
           '',
           '',
-          'Answer'
+          'Answer',
+          false
         )
       "
       @pokemonPopup="
@@ -80,7 +85,20 @@
           'Pokemon',
           '',
           '',
-          'Answer'
+          'Answer',
+          false
+        )
+      "
+      @jokePopup="
+        popup(
+          -1,
+          '',
+          'Why should you never iron a four leaf clover?',
+          'Because you\'d be pressing your luck!',
+          'please laugh',
+          'not funny',
+          'ok',
+          false
         )
       "
       @gameEnd="
@@ -91,7 +109,8 @@
           'gameEnd',
           '',
           '',
-          'Download'
+          'Download',
+          false
         )
       "
       :current-level="currentLevel"
@@ -139,7 +158,8 @@ export default defineComponent({
       popupText: '',
       footerText: '',
       buttonTextLeft: '',
-      buttonTextRight: ''
+      buttonTextRight: '',
+      closeButton: false
     }
   },
 
@@ -167,6 +187,7 @@ export default defineComponent({
       footer: string,
       buttonTextLeft: string,
       buttonTextRight: string,
+      closeButton: boolean
     ) {
       this.popupWindow = true
       this.imgUrl = gifUrl
@@ -175,7 +196,7 @@ export default defineComponent({
       this.footerText = footer
       this.buttonTextLeft = buttonTextLeft
       this.buttonTextRight = buttonTextRight
-
+      this.closeButton = closeButton
       if (showTImeInMilliseconds == -1) {
         return
       }

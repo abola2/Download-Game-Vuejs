@@ -1,9 +1,11 @@
 <template>
     <div class="level3" v-show="getCurrentLevel === 3">
-    <header id="lvl3Header">That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
-    <div class="center-container" id="c-container">
-    <button class="initialButton" @click="allTheButtons('initialButton1')">Download</button>
-    <button class="initialButton" @click="allTheButtons('initialButton2')">Download</button>
+        <div class="header-container">
+            <header id="lvl3Header">That level was tricky! <br/> Thankfully you won't have to deal with weird buttons ever again :D <br/> You've done well. So I gave you two buttons as extra.</Header>
+        </div>
+        <div class="center-container" id="c-container">
+        <button class="initialButton" @click="allTheButtons('initialButton1')">Download</button>
+        <button class="initialButton" @click="allTheButtons('initialButton2')">Download</button>
     </div>
     </div>
 
@@ -41,7 +43,8 @@ emits: [
     'addLevel',
     'sudokuPopup',
     'gameEnd',
-    'pokemonPopup'
+    'pokemonPopup',
+    'jokePopup'
 ],
 
 props: {
@@ -62,12 +65,12 @@ watch: {
 },
 methods: {
     /*
-    this one is a big boi
+    this one is a long boi
     Creates a lot of buttons that delete on click. You have to click them all to complete the level.
     Button position is random
     All buttons have their own id determined by the loop and nOfTimesButtonsCreated
     There are a few joke buttons that call an annoying popup
-    And the red button creates even more buttons for the users annoyance
+    And a red button that creates even more buttons for the users annoyance
     */
     allTheButtons(iButton: string) {
     // if you clicked iButton, cleared all the buttons that it created, and then click iButton again then you can complete the level.
@@ -77,7 +80,7 @@ methods: {
         this.completeLevel();
         return;
     }
-
+    
     else
     {
         correctButton = iButton;
@@ -93,6 +96,7 @@ methods: {
             newButton.style.borderRadius = '25px';
             newButton.textContent = 'Download';
             newButton.id = 'b' + i + 'n' + nOfTimesButtonsCreated;
+            newButton.style.opacity = '0.9';
             let topPosition: number = Math.random()* (95 - 5);
             let leftPosition: number = Math.random()* (95 - 5);
             
@@ -114,13 +118,15 @@ methods: {
                 case 3:
                     newButton.onclick = () => this.pokemonAndLevelProgress(newButton.id);
                     break;
+                case 4:
+                    newButton.onclick = () => this.jokeAndLevelProgress(newButton.id);
+                    break;
                 default:
                     newButton.onclick = function() { levelProgression(newButton.id) };
             }
             document.getElementById('c-container')!.appendChild(newButton);
         }
-    }
-    
+    }    
     },
     completeLevel()
     {
@@ -134,12 +140,16 @@ methods: {
         this.$emit('pokemonPopup');
         levelProgression(id);
     },
+    jokeAndLevelProgress(id: string){
+        console.log('funny please laugh')
+        this.$emit('jokePopup');
+        levelProgression(id);
+    },
 }
 
 })
 
 </script>
-
 
 <style scoped>
 
@@ -150,13 +160,25 @@ flex-direction: row;
 display: flex;
 justify-content: center;
 align-items: center;
-height: 100vh;
+height: 20vh;
 }
 
+
+.header-container {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 50vh;
+}
+
+
 header {
+justify-content: center;
 font-size: xx-large;
 color: #2563EB;
 }
+
+
 .initialButton {
 background-color: #0a66C2;
 color: white;

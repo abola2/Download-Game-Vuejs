@@ -5,8 +5,8 @@
     <div class="popup">
       <h2>{{ popupTitle }}</h2>
       <div class="gap">
-        <img :src="imageUrl" alt="Image" v-if="imageUrl !== ''" />
         <div class="content">
+          <img :src="imageUrl" alt="Image" v-if="imageUrl !== ''" />
           {{ popupTextComputed }}
         </div>
 
@@ -29,6 +29,7 @@
       <a
         id="popupclosebutton"
         v-show="showButtons"
+        v-if="closeButton"
         class="button-close"
         @click="$emit('close-popup')"
         >X
@@ -125,6 +126,10 @@ export default {
     tosButton: {
       default: false,
       type: Boolean
+    },
+    closeButton: {
+      default: false,
+      type: Boolean
     }
   },
   methods: {
@@ -193,9 +198,9 @@ export default {
 <style>
 .button {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   height: 25px;
-  width: 25%;
+  width: 80px;
   color: black;
   border-radius: 2px/5px;
   border: 1px solid black;
@@ -252,7 +257,7 @@ export default {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 45%;
   position: relative;
   transition: all 5s ease-in-out;
 }
@@ -264,13 +269,18 @@ export default {
 }
 
 .popup .content {
+  
+flex-direction: row;
+display: flex;
+justify-content: center;
+align-items: center;
   max-height: 30%;
   overflow: auto;
 }
 
 img{
   display: block;
-  max-width: 325px;
+  max-width: 400px;
   max-height: 600px;
   width: auto;
   height: auto;
