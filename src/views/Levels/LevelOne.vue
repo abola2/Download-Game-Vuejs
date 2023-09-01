@@ -119,10 +119,15 @@ export default {
 
 <style>
 
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .container-row {
   display: flex;
   flex-direction: row;
-  padding-top: 30px;
   overflow: hidden;
 }
 
@@ -136,10 +141,6 @@ iframe {
   iframe {
     top: 80%;
     height: 40%;
-  }
-
-  header {
-    height: 30%;
   }
 }
 
@@ -195,6 +196,7 @@ header {
   .marg {
     padding-right: 20%;
     padding-left: 20%;
+    font-size: 210%;
   }
 
   #button1 {
@@ -221,9 +223,15 @@ header {
 
 @media screen and (max-width: 500px) {
   .marg {
-    padding-right: 40%;
-    padding-left: 40%;
-    font-size: x-large;
+    padding-right: 25%;
+    padding-left: 25%;
+    font-size: 170%;
+  }
+
+  .multiselect-blue {
+    --ms-tag-bg: #dbeafe;
+    --ms-tag-color: #2563eb;
+    width: 28%;
   }
 
 }
