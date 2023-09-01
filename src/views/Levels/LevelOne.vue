@@ -144,8 +144,6 @@ iframe {
 }
 
 
-
-
 .page_Header_Right {
   background: #dbe2e8;
   width: 30%;
@@ -157,6 +155,7 @@ iframe {
   left: 80%;
   bottom: 0;
 }
+
 
 .page_Header_Left {
   background: #dbe2e8;
@@ -170,11 +169,13 @@ iframe {
   bottom: 0;
 }
 
+
 .multiselect-blue {
   --ms-tag-bg: #dbeafe;
   --ms-tag-color: #2563eb;
   width: 30%;
 }
+
 
 header {
   font-weight: 500;
@@ -188,6 +189,7 @@ header {
   padding-right: 60px;
   padding-left: 60px;
 }
+
 
 @media screen and (max-width: 1025px) {
   .marg {
@@ -224,7 +226,6 @@ header {
     font-size: x-large;
   }
 
-
 }
 
 
@@ -242,20 +243,17 @@ header {
 }
 
 
-
-
-
-
-
-
 #arrow1 {
   height: 32.5%;
   transform: rotate(15deg);
 }
+
+
 #arrow2 {
   height: 32.5%;
   transform: scaleX(-1) rotate(15deg);
 }
+
 
 #monkey_Ad {
   border-radius: 2px;
@@ -267,6 +265,8 @@ header {
   top: 70%;
   left: 82%;
 }
+
+
 #monkey_Ad_Header {
   background: #e4e4e4;
   text-align: left;
@@ -278,6 +278,7 @@ header {
   left: 82%;
 }
 
+
 #btn_fake_x_monkey {
   font-size: 13px;
   position: absolute;
@@ -285,6 +286,7 @@ header {
   left: 95.5%;
   border-radius: 3px;
 }
+
 
 #elephant_Ad {
   border-radius: 2px;
@@ -297,6 +299,7 @@ header {
   left: 82%;
 }
 
+
 #elephant_Ad_Header {
   background: #e4e4e4;
   text-align: left;
@@ -308,6 +311,7 @@ header {
   left: 82%;
 }
 
+
 #btn_fake_x_elephant {
   font-size: 13px;
   position: absolute;
@@ -315,6 +319,7 @@ header {
   left: 95.5%;
   border-radius: 3px;
 }
+
 
 #tower_Ad {
   border-radius: 2px;
@@ -326,6 +331,8 @@ header {
   top: 14%;
   left: 2%;
 }
+
+
 #tower_Ad_Header {
   background: #e4e4e4;
   text-align: left;
@@ -337,6 +344,7 @@ header {
   left: 2%;
 }
 
+
 #btn_fake_x_tower {
   font-size: 13px;
   position: absolute;
@@ -344,6 +352,7 @@ header {
   left: 15.5%;
   border-radius: 3px;
 }
+
 
 #arctic_fox_Ad {
   border-radius: 2px;
@@ -356,6 +365,7 @@ header {
   left: 2%;
 }
 
+
 #arctic_fox_Ad_Header {
   background: #e4e4e4;
   text-align: left;
@@ -367,6 +377,7 @@ header {
   top: 67.5%;
   left: 2%;
 }
+
 
 #btn_fake_x_arctic_fox {
   font-size: 13px;
