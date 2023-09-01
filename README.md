@@ -1,12 +1,27 @@
 # Download-game
 
-...
+Have you ever visited a sketchy website in search of an obscure program? 
+
+
+No?
+
+Well we decided to recreate the experience anyways! 
+
+## Authors
+
+Abola / Aapo
+https://github.com/abola2
+
+Edzkimo / Eetu
+https://github.com/edzkimo
 
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) 
-
-
+With extensions for:
+* Typescript
+* Vue
+* Playwright tests
 
 ## Customize configuration
 
@@ -55,3 +70,7 @@ npm run test:e2e -- --debug
 ```sh
 npm run lint
 ```
+
+### faq:
+Is there any practical use for this project? 
+* NO! What did you expect?
